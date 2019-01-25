@@ -28,7 +28,10 @@ package is used by default to speed up the estimation. For higher accuracy in th
 results, the default lme4 optimizers can be used.}
 }
 \value{
-Reformatted data for explanatory item response modeling.
+An eirm-class list that includes the EIRM formula used for the estimation, estimated
+parameters in the model, ability estimates for persons and other random effects (if any), and
+the complete set of results returned from the glmer function. These results can be used for
+further analysis and graphics based on lme4.
 }
 \description{
 The eirm function estimates explanatory item response models with item-related and
@@ -37,11 +40,25 @@ items are nested within persons. If item responses are polytomous, then the data
 be reformatted using the \code{\link{polyreformat}}) function.
 }
 \examples{
+### eirm with binary responses
 data("VerbAgg")
 mod0 <- eirm(formula = "r2 ~ -1 + situ + btype + (1|id)", data = VerbAgg)
 print(mod0) # To get easiness parameters
 print(mod0, Easiness = FALSE) # To get difficulty parameters
+
 mod1 <- eirm(formula = "r2 ~ -1 + situ + btype + mode + (1|id)", data = VerbAgg)
 print(mod1) # To get easiness parameters
 print(mod1, Easiness = FALSE) # To get difficulty parameters
+
+### eirm with polytomous responses
+VerbAgg2 <- polyreformat(data=VerbAgg, id.var = "id", long.format = FALSE,
+var.name = "item", val.name = "resp")
+
+# Rating Scale Model (with fix category thresholds for all items)
+mod2 <- eirm(formula = "polyresponse ~ -1 + item + polycategory + (1|id)", data = VerbAgg2)
+print(mod2)
+
+# Partial Credit Model (with unique category thresholds for each item)
+mod3 <- eirm(formula = "polyresponse ~ -1 + item + polycategory:item + (1|id)", data = VerbAgg2)
+print(mod3)
 }

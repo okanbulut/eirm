@@ -40,5 +40,7 @@ print.eirm <- function(x, Easiness = TRUE, ...){
     cat("Note: The estimated parameters above represent 'difficulty'.")
     invisible(x)
   }
+
+  #if(grepl("polyresponse", x$eirm_formula))
 }
 

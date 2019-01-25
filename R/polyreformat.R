@@ -17,7 +17,10 @@
 #' @param val.name The variable that represents item responses if the data is already in long format;
 #' otherwise this is the
 #' of the variable that represents item responses once the data is transformed into long format.
-#' @return Reformatted data for explanatory item response modeling.
+#' @return Reformatted data for explanatory item response modeling with three new variables: polycategory,
+#' polyresponse, and polyitem. polyresponse is the new dichotomous variable to be used as the response variable
+#' with the \code{\link{eirm}}) function; poylcategory is a new variable that shows the response categories for the polytomous responses; and
+#' polyitem is a new item ID to be used with the \code{\link{eirm}}) function.
 #'
 #' @examples
 #' data("VerbAgg")

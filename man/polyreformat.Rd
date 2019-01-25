@@ -23,7 +23,10 @@ otherwise this is the
 of the variable that represents item responses once the data is transformed into long format.}
 }
 \value{
-Reformatted data for explanatory item response modeling.
+Reformatted data for explanatory item response modeling with three new variables: polycategory,
+polyresponse, and polyitem. polyresponse is the new dichotomous variable to be used as the response variable
+with the \code{\link{eirm}}) function; poylcategory is a new variable that shows the response categories for the polytomous responses; and
+polyitem is a new item ID to be used with the \code{\link{eirm}}) function.
 }
 \description{
 This function prepares the data with polytomous item responses for explanatory item response modeling.

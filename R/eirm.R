@@ -27,13 +27,27 @@
 #' further analysis and graphics based on lme4.
 #'
 #' @examples
+#' ### eirm with binary responses
 #' data("VerbAgg")
 #' mod0 <- eirm(formula = "r2 ~ -1 + situ + btype + (1|id)", data = VerbAgg)
 #' print(mod0) # To get easiness parameters
 #' print(mod0, Easiness = FALSE) # To get difficulty parameters
+#'
 #' mod1 <- eirm(formula = "r2 ~ -1 + situ + btype + mode + (1|id)", data = VerbAgg)
 #' print(mod1) # To get easiness parameters
 #' print(mod1, Easiness = FALSE) # To get difficulty parameters
+#'
+#' ### eirm with polytomous responses
+#' VerbAgg2 <- polyreformat(data=VerbAgg, id.var = "id", long.format = FALSE,
+#' var.name = "item", val.name = "resp")
+#'
+#' # Rating Scale Model (with fix category thresholds for all items)
+#' mod2 <- eirm(formula = "polyresponse ~ -1 + item + polycategory + (1|id)", data = VerbAgg2)
+#' print(mod2)
+#'
+#' # Partial Credit Model (with unique category thresholds for each item)
+#' mod3 <- eirm(formula = "polyresponse ~ -1 + item + polycategory:item + (1|id)", data = VerbAgg2)
+#' print(mod3)
 #' @export
 
 eirm <- function(formula, data, na.action = "na.omit", weights = NULL,
