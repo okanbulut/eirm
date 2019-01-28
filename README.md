@@ -2,7 +2,7 @@
 
 ### Type: R Package
 
-The developmental version can be installed by:
+The development version can be installed by:
 
 ```R
 devtools::install_github(repo = "okanbulut/eirm")
