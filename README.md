@@ -1,4 +1,4 @@
-### eirm: Explanatory Item Response Modeling for Dichotomous and Polytomous Item Responses
+### eirm: [E]xplanatory [I]tem Response [M]odeling for Dichotomous and Polytomous Item Responses
 
 ### Type: R Package
 
