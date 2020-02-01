@@ -29,4 +29,4 @@ Enter one or more numbers, or an empty line to skip updates:
 ```
 
 
-Please choose **option 3** from this list. You can simply type "3" in your `R` console. 
+Please choose **option 3** from this list. You can simply type "3" in your `R` console and hit "enter". 
