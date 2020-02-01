@@ -9,7 +9,7 @@ devtools::install_github(repo = "okanbulut/eirm")
 ```
 
 
-**IMPORTANT:** If you see the following output on your console:
+**IMPORTANT:** If you see the following output on your console, please choose **option 3** from this list. You can simply type "3" in your `R` console and hit "enter". 
 
 
 ```R
@@ -29,4 +29,4 @@ Enter one or more numbers, or an empty line to skip updates:
 ```
 
 
-Please choose **option 3** from this list. You can simply type "3" in your `R` console and hit "enter". 
+
