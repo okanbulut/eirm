@@ -9,7 +9,7 @@ devtools::install_github(repo = "okanbulut/eirm")
 ```
 
 
-If you see the following output on your console:
+**IMPORTANT:** If you see the following output on your console:
 
 
 ```R
