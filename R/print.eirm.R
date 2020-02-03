@@ -1,4 +1,19 @@
-
+#' @title Printing Estimated Parameters for Explanatory IRT Models
+#' @description
+#' This generic function prints estimated parameters from an eirm object returned
+#' from the \code{\link{eirm}} function.
+#'
+#' @param x An object returned from the \code{\link{eirm}} function.
+#' @param difficulty Whether difficulty should be used instead of easiness (default: FALSE)
+#' @param ... Other print-related arguments.
+#'
+#' @return Estimated parameters from an eirm object.
+#'
+#' @examples
+#' data("VerbAgg")
+#' mod0 <- eirm(formula = "r2 ~ -1 + situ + btype + (1|id)", data = VerbAgg)
+#' print(mod0) # or, just mod0
+#' print(mod0, difficulty = TRUE)
 #' @method print eirm
 #' @export
 
@@ -15,7 +30,7 @@ print.eirm <- function(x, difficulty = FALSE, ...){
     cat("\n")
     cat("Number of observations:", as.numeric(summary(x$model)$devcomp$dims[1]), "\n")
     cat("\n")
-    cat("Number of predictors:", as.numeric(summary(x$model)$devcomp$dims[3]-2), "\n")
+    cat("Number of predictors:", as.numeric(summary(x$model)$devcomp$dims[3]), "\n")
     cat("\n")
     cat("Parameter Estimates:\n")
     cat("\n")
@@ -30,7 +45,7 @@ print.eirm <- function(x, difficulty = FALSE, ...){
     cat("\n")
     cat("Number of observations:", as.numeric(summary(x$model)$devcomp$dims[1]), "\n")
     cat("\n")
-    cat("Number of predictors:", as.numeric(summary(x$model)$devcomp$dims[3]-2), "\n")
+    cat("Number of predictors:", as.numeric(summary(x$model)$devcomp$dims[3]), "\n")
     cat("\n")
     cat("Parameter Estimates:\n")
     cat("\n")

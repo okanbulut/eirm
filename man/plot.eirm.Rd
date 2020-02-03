@@ -9,7 +9,7 @@
   pplabel = "Person\\nParameter\\nDistribution", cex.gen = 0.7, ...)
 }
 \arguments{
-\item{x}{An object returned from the eirm function.}
+\item{x}{An object returned from the \code{\link{eirm}} function.}
 
 \item{difficulty}{Whether difficulty should be used instead of easiness (default: FALSE)}
 
@@ -24,13 +24,13 @@
 \item{cex.gen}{A numerical value giving the amount by which plotting text and symbols should
 be magnified relative to the default. Here cex.gen applies to all text labels. The default is 0.7.}
 
-\item{...}{Other plot related arguments.}
+\item{...}{Other plot-related arguments.}
 }
 \value{
 A person-item map.
 }
 \description{
-This function creates a person-item map for an object returned from the \code{\link{eirm}}.
+This function creates a person-item map for an object returned from the \code{\link{eirm}} function.
 The function was modified from \code{\link[eRm]{plotPImap}} in package \pkg{eRm}.
 }
 \examples{

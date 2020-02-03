@@ -1,10 +1,10 @@
 #' @title Person-Item Map for Explanatory IRT Models
 #' @importFrom graphics axis box layout lines mtext par plot points segments
 #' @description
-#' This function creates a person-item map for an object returned from the \code{\link{eirm}}.
+#' This function creates a person-item map for an object returned from the \code{\link{eirm}} function.
 #' The function was modified from \code{\link[eRm]{plotPImap}} in package \pkg{eRm}.
 #'
-#' @param x An object returned from the eirm function.
+#' @param x An object returned from the \code{\link{eirm}} function.
 #' @param difficulty Whether difficulty should be used instead of easiness (default: FALSE)
 #' @param sorted Whether the parameters should be sorted in the plot (default: TRUE).
 #' @param main Main title for the person-item map.
@@ -12,7 +12,7 @@
 #' @param pplabel Title for the upper panel displaying the person parameter distribution.
 #' @param cex.gen A numerical value giving the amount by which plotting text and symbols should
 #' be magnified relative to the default. Here cex.gen applies to all text labels. The default is 0.7.
-#' @param  ... Other plot related arguments.
+#' @param  ... Other plot-related arguments.
 #'
 #' @return A person-item map.
 #'
