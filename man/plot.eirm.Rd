@@ -5,15 +5,20 @@
 \title{Person-Item Map for Explanatory IRT Models}
 \usage{
 \method{plot}{eirm}(x, difficulty = FALSE, sorted = TRUE,
-  main = "Person-Item Map", latdim = "Latent Dimension",
+  theta = NULL, main = "Person-Item Map",
+  latdim = "Latent Dimension",
   pplabel = "Person\\nParameter\\nDistribution", cex.gen = 0.7, ...)
 }
 \arguments{
 \item{x}{An object returned from the \code{\link{eirm}} function.}
 
-\item{difficulty}{Whether difficulty should be used instead of easiness (default: FALSE)}
+\item{difficulty}{Whether difficulty should be used instead of easiness (default: FALSE).}
 
 \item{sorted}{Whether the parameters should be sorted in the plot (default: TRUE).}
+
+\item{theta}{A vector of estimated theta values. If NULL, then theta values are obtained from the
+estimated eirm model. It might be better to save the theta values from a baseline model (e.g., Rasch)
+and use them when creating a person-item map.}
 
 \item{main}{Main title for the person-item map.}
 

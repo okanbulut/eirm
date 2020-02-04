@@ -5,7 +5,10 @@
 #' The function was modified from \code{\link[eRm]{plotPImap}} in package \pkg{eRm}.
 #'
 #' @param x An object returned from the \code{\link{eirm}} function.
-#' @param difficulty Whether difficulty should be used instead of easiness (default: FALSE)
+#' @param difficulty Whether difficulty should be used instead of easiness (default: FALSE).
+#' @param theta A vector of estimated theta values. If NULL, then theta values are obtained from the
+#' estimated eirm model. It might be better to save the theta values from a baseline model (e.g., Rasch)
+#' and use them when creating a person-item map.
 #' @param sorted Whether the parameters should be sorted in the plot (default: TRUE).
 #' @param main Main title for the person-item map.
 #' @param latdim Label of the x-axis, i.e., the latent dimension.
@@ -24,7 +27,7 @@
 #' @method plot eirm
 #' @export
 
-plot.eirm <- function(x, difficulty = FALSE, sorted = TRUE, main = "Person-Item Map",
+plot.eirm <- function(x, difficulty = FALSE, sorted = TRUE, theta = NULL, main = "Person-Item Map",
                       latdim = "Latent Dimension", pplabel = "Person\nParameter\nDistribution",
                       cex.gen = 0.7, ...){
   if (!inherits(x, "eirm")) stop("Use only with 'eirm' objects.\n")
@@ -48,10 +51,19 @@ plot.eirm <- function(x, difficulty = FALSE, sorted = TRUE, main = "Person-Item 
 
   loc <- tr
 
-  # Ability
-  raneff <- as.data.frame(lme4::ranef(x$model)[1])
-  colnames(raneff) <- "theta"
-  theta <- round(raneff, 2)
+  # Theta values
+  if(is.null(theta)) {
+    raneff <- as.data.frame(lme4::ranef(x$model)[1])
+    colnames(raneff) <- "theta"
+    theta <- round(raneff, 2)
+    tt <- table(theta)
+    ttx <- as.numeric(names(tt))
+  } else {
+    theta <- as.data.frame(theta)
+    colnames(theta) <- "theta"
+    theta <- round(theta, 2)
+  }
+
   tt <- table(theta)
   ttx <- as.numeric(names(tt))
   yrange <- c(0, nrow(tr) + 1)
