@@ -49,7 +49,9 @@ plot.eirm <- function(x, difficulty = FALSE, sorted = TRUE, main = "Person-Item 
   loc <- tr
 
   # Ability
-  theta <- round(x$persons$id, 3)
+  raneff <- as.data.frame(lme4::ranef(x$model)[1])
+  colnames(raneff) <- "theta"
+  theta <- round(raneff, 3)
   tt <- table(theta)
   ttx <- as.numeric(names(tt))
   yrange <- c(0, nrow(tr) + 1)
