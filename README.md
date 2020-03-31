@@ -139,7 +139,7 @@ and
 
 **NOTE:** Although `polyreformat` is capable of reshaping wide-format data into long-format and reformat the long data for the analysis with `eirm`, a safer option is to transform the data from wide to long format before using `polyreformat`. The `melt` function from the `reshape2` package can easily transform wide data to long data. 
 
-Several models can be built with the reformatted data:
+Several polytomous models can be estimated using the reformatted data:
 
 **Model 1:** It explains only the first threshold (i.e., threshold from no to maybe) based on explanatory variables:
 
