@@ -1,6 +1,7 @@
 # eirm <img src="https://github.com/okanbulut/eirm/blob/master/eirm_logo.png" align="right" width="120" />
 
-## [e]xplanatory [i]tem [r]esponse [m]odeling for dichotomous and polytomous item responses 
+
+### [e]xplanatory [i]tem [r]esponse [m]odeling for dichotomous and polytomous item responses 
 
 ### Installing the `eirm` package
 
