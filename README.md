@@ -1,7 +1,7 @@
 # eirm: [e]xplanatory [i]tem [r]esponse [m]odeling <img src="https://github.com/okanbulut/eirm/blob/master/eirm_logo.png" align="right" width="120" />
 
 
-### Installing the `eirm` package
+### Installing `eirm`
 
 The development version can be installed by:
 
