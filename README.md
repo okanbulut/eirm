@@ -42,48 +42,48 @@ The following example shows how to use item-related and person-related explanato
 
 ```R
 data("VerbAgg")
-mod0 <- eirm(formula = "r2 ~ -1 + situ + btype + (1|id)", data = VerbAgg)
-print(mod0)
+mod <- eirm(formula = "r2 ~ -1 + situ + btype + mode + (1|id)", data = VerbAgg)
+print(mod) # To get easiness parameters
 
-EIRM formula: "r2 ~ -1 + situ + btype + (1|id)" 
+EIRM formula: "r2 ~ -1 + situ + btype + mode + (1|id)" 
 
 Number of persons: 316 
 
 Number of observations: 7584 
 
-Number of predictors: 4 
+Number of predictors: 5 
 
 Parameter Estimates:
 
            Easiness   S.E. z-value   p-value
-situother     1.376 0.0941   14.62  2.06e-48
-situself      0.371 0.0913    4.06  4.85e-05
-btypescold   -1.031 0.0671  -15.35  3.32e-53
-btypeshout   -1.996 0.0718  -27.80 4.19e-170
+situother     1.744 0.1015   17.19  3.29e-66
+situself      0.716 0.0978    7.32  2.43e-13
+btypescold   -1.055 0.0680  -15.51  3.02e-54
+btypeshout   -2.042 0.0729  -28.00 1.51e-172
+modedo       -0.672 0.0562  -11.95  6.69e-33
 
-Note: The estimated parameters above represent 'easiness'.
+Note: The estimated parameters above represent 'easiness'. Use difficulty = TRUE to get difficulty parameters.
 ```
 
-By default, the `eirm` function returns the **easiness** parameters because the function essentially uses a regression-like parameterization where positive parameters indicate positive contribution to the dependent variable. In order to print the difficulty parameters (instead of easiness), `difficulty = TRUE` must be used:
+By default, the `eirm` function returns the **easiness** parameters because the function essentially uses a regression-like parameterization where positive parameters indicate positive contribution to the dependent variable. In order to print the difficulty parameters (instead of easiness), `print(mod, difficulty = TRUE)` must be used:
 
 ```R
-print(mod0, difficulty = TRUE)
-
-EIRM formula: "r2 ~ -1 + situ + btype + (1|id)" 
+EIRM formula: "r2 ~ -1 + situ + btype + mode + (1|id)" 
 
 Number of persons: 316 
 
 Number of observations: 7584 
 
-Number of predictors: 4 
+Number of predictors: 5 
 
 Parameter Estimates:
 
            Difficulty   S.E. z-value   p-value
-situother      -1.376 0.0941   14.62  2.06e-48
-situself       -0.371 0.0913    4.06  4.85e-05
-btypescold      1.031 0.0671  -15.35  3.32e-53
-btypeshout      1.996 0.0718  -27.80 4.19e-170
+situother      -1.744 0.1015   17.19  3.29e-66
+situself       -0.716 0.0978    7.32  2.43e-13
+btypescold      1.055 0.0680  -15.51  3.02e-54
+btypeshout      2.042 0.0729  -28.00 1.51e-172
+modedo          0.672 0.0562  -11.95  6.69e-33
 
 Note: The estimated parameters above represent 'difficulty'.
 ```
