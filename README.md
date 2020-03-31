@@ -1,4 +1,4 @@
-## eirm: [e]xplanatory [i]tem [r]esponse [m]odeling for dichotomous and polytomous item responses
+## eirm: [e]xplanatory [i]tem [r]esponse [m]odeling for dichotomous and polytomous item responses <img src="man/figures/logo.png" align="right" width="120" />
 
 ### Installing the `eirm` package
 
