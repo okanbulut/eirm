@@ -117,6 +117,22 @@ head(VerbAgg2)
 6    21      F S1WantCurse     yes  6 curse other want  Y  cat_perhaps           NA S1WantCurse.cat_perhaps
 ```
 
+In the reformatted data, `polyresponse` is the new dependent variable (i.e., pseudo-dichotomous version of the original response variable `resp`) and `polycategory` represents the response categories. Based on the reformatted data, each item has two rows based on the following rules (see [Stanke and Bulut (2018)](https://dergipark.org.tr/en/download/article-file/716984) for more details):
+
+* If `polycategory` = "cat_perhaps" and `resp` = "no", then `polyresponse` = 0
+* If `polycategory` = "cat_perhaps" and `resp` = "perhaps", then `polyresponse` = 1
+* If `polycategory` = "cat_perhaps" and `resp` = "yes", then `polyresponse` = NA
+
+and
+
+* If `polycategory` = "cat_yes" and `resp` = "no", then `polyresponse` = NA
+* If `polycategory` = "cat_yes" and `resp` = "perhaps", then `polyresponse` = 0
+* If `polycategory` = "cat_yes" and `resp` = "yes", then `polyresponse` = 1
+
+
+
+**NOTE:** Although `polyreformat` is capable of reshaping wide-format data into long-format and reformat the long data for the analysis with `eirm`, a safer option is to transform the data from wide to long format before using `polyreformat`. The `melt` function from the `reshape2` package can easily transform wide data to long data. 
+
 
 
 
