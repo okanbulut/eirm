@@ -90,7 +90,7 @@ Note: The estimated parameters above represent 'difficulty'.
 
 It is also possible to visualize the parameters using an item-person map using `plot(mod)`, which returns the following plot:
 
-
+![](https://github.com/okanbulut/eirm/blob/master/item-person-map.png)
 ***
 
 ### Example 2: EIRM for polytomous responses 
