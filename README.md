@@ -149,6 +149,7 @@ mod1 <- eirm(formula = "polyresponse ~ -1 + situ + btype + mode + (1|id)", data 
 **Model 2:** It explains the first threshold (i.e., threshold from no to maybe) and second threshold (maybe to yes) based on explanatory variables:
 
 ```R
-mod2 <- eirm(formula = "polyresponse ~ -1 + btype + situ + mode + polycategory + polycategory:btype + (1|id)", data = VerbAgg2)
+mod2 <- eirm(formula = "polyresponse ~ -1 + btype + situ + mode + polycategory + polycategory:btype + (1|id)", 
+             data = VerbAgg2)
 ```
 
