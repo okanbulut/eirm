@@ -124,7 +124,7 @@ head(VerbAgg2)
 6    21      F S1WantCurse     yes  6 curse other want  Y  cat_perhaps           NA S1WantCurse.cat_perhaps
 ```
 
-In the reformatted data, `polyresponse` is the new dependent variable (i.e., pseudo-dichotomous version of the original response variable `resp`) and `polycategory` represents the response categories. Based on the reformatted data, each item has two rows based on the following rules (see [Stanke and Bulut (2019)](https://dergipark.org.tr/en/download/article-file/716984) for more details):
+In the reformatted data, `polyresponse` is the new dependent variable (i.e., pseudo-dichotomous version of the original response variable `resp`) and `polycategory` represents the response categories. Based on the reformatted data, each item has two rows based on the following rules (see [Stanke and Bulut (2019)](https://dergipark.org.tr/en/download/article-file/716984) for further details on this parameterization):
 
 * If `polycategory` = "cat_perhaps" and `resp` = "no", then `polyresponse` = 0
 * If `polycategory` = "cat_perhaps" and `resp` = "perhaps", then `polyresponse` = 1
@@ -137,21 +137,18 @@ and
 * If `polycategory` = "cat_yes" and `resp` = "yes", then `polyresponse` = 1
 
 
-
 **NOTE:** Although `polyreformat` is capable of reshaping wide-format data into long-format and reformat the long data for the analysis with `eirm`, a safer option is to transform the data from wide to long format before using `polyreformat`. The `melt` function from the `reshape2` package can easily transform wide data to long data. 
 
+Several models can be built with the reformatted data:
 
+**Model 1:** It explains only the first threshold (i.e., threshold from no to maybe) based on explanatory variables:
 
+```R
+mod1 <- eirm(formula = "polyresponse ~ -1 + situ + btype + mode + (1|id)", data = VerbAgg2)
+```
+**Model 2:** It explains the first threshold (i.e., threshold from no to maybe) and second threshold (maybe to yes) based on explanatory variables:
 
-
-
-
-
-
-
-
-
-
-
-
+```R
+mod2 <- eirm(formula = "polyresponse ~ -1 + btype + situ + mode + polycategory + polycategory:btype + (1|id)", data = VerbAgg2)
+```
 
