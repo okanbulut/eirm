@@ -106,7 +106,7 @@ plot(mod, difficulty = TRUE, main = "Verbal Aggression Example", latdim = "Verba
 ```
 which will show the difficulty parameters (instead of easiness), change the main title above the plot, and change the x-axis -- the name for the latent trait being measured. 
 
-**Note:** This plot is a modified version of the `plotPImap` function from the eRm package ([(Mair, Hatzinger, Maier, Rusch, & Debelak, 2020)](https://cran.r-project.org/web/packages/eRm/index.html)). 
+**Note:** This plot is a modified version of the `plotPImap` function from the eRm package ([Mair, Hatzinger, Maier, Rusch, & Debelak, 2020](https://cran.r-project.org/web/packages/eRm/index.html)). 
 ***
 
 ### Example 2: EIRM for polytomous responses 
