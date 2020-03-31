@@ -43,7 +43,7 @@ The following example shows how to use item-related and person-related explanato
 ```R
 data("VerbAgg")
 mod <- eirm(formula = "r2 ~ -1 + situ + btype + mode + (1|id)", data = VerbAgg)
-print(mod) # To get easiness parameters
+print(mod)
 
 EIRM formula: "r2 ~ -1 + situ + btype + mode + (1|id)" 
 
@@ -87,3 +87,10 @@ modedo          0.672 0.0562  -11.95  6.69e-33
 
 Note: The estimated parameters above represent 'difficulty'.
 ```
+
+It is also possible to visualize the parameters using an item-person map using `plot(mod)`, which returns the following plot:
+
+
+***
+
+### Example 2: EIRM for polytomous responses 
