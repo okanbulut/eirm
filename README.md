@@ -34,6 +34,13 @@ If this also fails, you can run the following lines all together and select `3: 
 Sys.setenv(R_REMOTES_NO_ERRORS_FROM_WARNINGS=TRUE)
 devtools::install_github(repo = "okanbulut/eirm")
 ```
+
+### Citing ``eirm`` 
+
+To cite ``eirm`` in your work, please use the following APA-style citation:
+
+> Bulut, O. (2019). *eirm: Explanatory item response modeling for dichotomous and polytomous item responses* [Computer software]. Available from <https://github.com/okanbulut/eirm>. 
+
 ***
 
 ### Example 1: EIRM for dichotomous responses 
@@ -117,7 +124,7 @@ head(VerbAgg2)
 6    21      F S1WantCurse     yes  6 curse other want  Y  cat_perhaps           NA S1WantCurse.cat_perhaps
 ```
 
-In the reformatted data, `polyresponse` is the new dependent variable (i.e., pseudo-dichotomous version of the original response variable `resp`) and `polycategory` represents the response categories. Based on the reformatted data, each item has two rows based on the following rules (see [Stanke and Bulut (2018)](https://dergipark.org.tr/en/download/article-file/716984) for more details):
+In the reformatted data, `polyresponse` is the new dependent variable (i.e., pseudo-dichotomous version of the original response variable `resp`) and `polycategory` represents the response categories. Based on the reformatted data, each item has two rows based on the following rules (see [Stanke and Bulut (2019)](https://dergipark.org.tr/en/download/article-file/716984) for more details):
 
 * If `polycategory` = "cat_perhaps" and `resp` = "no", then `polyresponse` = 0
 * If `polycategory` = "cat_perhaps" and `resp` = "perhaps", then `polyresponse` = 1
