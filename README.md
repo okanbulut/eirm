@@ -1,4 +1,4 @@
-### eirm: [E]xplanatory [I]tem [R]esponse [M]odeling for Dichotomous and Polytomous Item Responses
+### eirm: [e]xplanatory [i]tem [r]esponse [m]odeling for dichotomous and polytomous item responses
 
 ### Type: R Package
 
