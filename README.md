@@ -101,3 +101,34 @@ which will show the difficulty parameters (instead of easiness), change the main
 ***
 
 ### Example 2: EIRM for polytomous responses 
+
+It is also possible to use the `eirm` function with polytomous item responses as well. Because the function only accepts dichotomous responses (i.e., binomial distribution), polytomous data must be reformatted first. To reformat the data, the `polyreformat` function can be used. The following example demonstrates how polytomous responses (yes, maybe, and no) in the verbal aggression data set can be reformatted into a dichotomous form:
+
+```R
+VerbAgg2 <- polyreformat(data=VerbAgg, id.var = "id", long.format = FALSE, var.name = "item", val.name = "resp")
+head(VerbAgg2)
+
+  Anger Gender        item    resp id btype  situ mode r2 polycategory polyresponse                polyitem
+1    20      M S1WantCurse      no  1 curse other want  N  cat_perhaps            0 S1WantCurse.cat_perhaps
+2    11      M S1WantCurse      no  2 curse other want  N  cat_perhaps            0 S1WantCurse.cat_perhaps
+3    17      F S1WantCurse perhaps  3 curse other want  Y  cat_perhaps            1 S1WantCurse.cat_perhaps
+4    21      F S1WantCurse perhaps  4 curse other want  Y  cat_perhaps            1 S1WantCurse.cat_perhaps
+5    17      F S1WantCurse perhaps  5 curse other want  Y  cat_perhaps            1 S1WantCurse.cat_perhaps
+6    21      F S1WantCurse     yes  6 curse other want  Y  cat_perhaps           NA S1WantCurse.cat_perhaps
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
