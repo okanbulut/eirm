@@ -10,7 +10,7 @@ devtools::install_github(repo = "okanbulut/eirm")
 ```
 
 
-**IMPORTANT (1):** If you see the following output on your console, please choose `3: None` from this list. You can simply type **3** in your `R` console and hit "enter". 
+**IMPORTANT:** If you see the following output on your console, please choose `3: None` from this list. You can simply type **3** in your `R` console and hit "enter". 
 
 
 ```R
