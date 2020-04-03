@@ -112,7 +112,7 @@ which will show the difficulty parameters (instead of easiness), change the main
 
 ### Example 2: EIRM for polytomous responses 
 
-It is also possible to use the `eirm` function with polytomous item responses as well. Because the function only accepts dichotomous responses (i.e., binomial distribution), polytomous data must be reformatted first. To reformat the data, the `polyreformat` function can be used. The following example demonstrates how polytomous responses (yes, maybe, and no) in the verbal aggression data set can be reformatted into a dichotomous form:
+It is also possible to use the `eirm` function with polytomous item responses as well. Because the function only accepts dichotomous responses (i.e., binomial distribution), polytomous data must be reformatted first. To reformat the data, the `polyreformat` function can be used. The following example demonstrates how polytomous responses (no, perhaps, and yes) in the verbal aggression data set can be reformatted into a dichotomous form:
 
 ```R
 VerbAgg2 <- polyreformat(data=VerbAgg, id.var = "id", long.format = FALSE, var.name = "item", val.name = "resp")
@@ -144,12 +144,12 @@ and
 
 Several polytomous models can be estimated using the reformatted data:
 
-**Model 1:** It explains only the first threshold (i.e., threshold from no to maybe) based on explanatory variables:
+**Model 1:** It explains only the first threshold (i.e., threshold from no to perhaps) based on explanatory variables:
 
 ```R
 mod1 <- eirm(formula = "polyresponse ~ -1 + situ + btype + mode + (1|id)", data = VerbAgg2)
 ```
-**Model 2:** It explains the first threshold (i.e., threshold from no to maybe) and second threshold (maybe to yes) based on explanatory variables:
+**Model 2:** It explains the first threshold (i.e., threshold from no to perhaps) and second threshold (perhaps to yes) based on explanatory variables:
 
 ```R
 mod2 <- eirm(formula = "polyresponse ~ -1 + btype + situ + mode + polycategory + polycategory:btype + (1|id)", 
