@@ -125,7 +125,7 @@ head(VerbAgg2)
 6    21      F S1WantCurse     yes  6 curse other want  Y  cat_perhaps           NA S1WantCurse.cat_perhaps
 ```
 
-In the reformatted data, `polyresponse` is the new dependent variable (i.e., pseudo-dichotomous version of the original response variable `resp`) and `polycategory` represents the response categories. Based on the reformatted data, each item has two rows based on the following rules (see [Stanke and Bulut (2019)](https://dergipark.org.tr/en/download/article-file/716984) for further details on this parameterization):
+In the reformatted data, `polyresponse` is the new dependent variable (i.e., pseudo-dichotomous version of the original response variable `resp`) and `polycategory` represents the response categories. Based on the reformatted data, each item has two rows (number of response categories - 1) based on the following rules (see [Stanke and Bulut (2019)](https://dergipark.org.tr/en/download/article-file/716984) for further details on this parameterization):
 
 * If `polycategory` = "cat_perhaps" and `resp` = "no", then `polyresponse` = 0
 * If `polycategory` = "cat_perhaps" and `resp` = "perhaps", then `polyresponse` = 1
