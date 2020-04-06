@@ -45,10 +45,31 @@ To cite ``eirm`` in your work, please use the following APA-style citation:
 
 ### Example 1: Rasch model
 
-The Rasch model (i.e., a fully descriptive model) can be estimated using `eirm`. The following example shows how to estimate item *easines* parameters for the items in the verbal aggression data set (see `?VerbAgg` for further details). In the formula, "-1" removes the intercept from the model and yields parameter estimates for all items in the data set. With "1" (instead of "-1"), an intercept parameter representing the easiness of the first item and relative easiness parameters for the remaining items (i.e., distance from the easiness of the first item) would be estimated.  
+The Rasch model (i.e., a fully descriptive model) can be estimated using `eirm`. The following example shows how to estimate item *easines* parameters for the items in the verbal aggression data set (see `?VerbAgg` for further details). A preview of the data set is shown below:
 
 ```R
 data("VerbAgg")
+head(VerbAgg)
+
+  Anger Gender        item    resp id btype  situ mode r2
+1    20      M S1WantCurse      no  1 curse other want  N
+2    11      M S1WantCurse      no  2 curse other want  N
+3    17      F S1WantCurse perhaps  3 curse other want  Y
+4    21      F S1WantCurse perhaps  4 curse other want  Y
+5    17      F S1WantCurse perhaps  5 curse other want  Y
+6    21      F S1WantCurse     yes  6 curse other want  Y
+```
+
+To estimate the Rasch model, a regression-like formula must be defined: `formula = "r2 ~ -1 + item + (1|id)"`. In the formula, 
+
+* `r2` is the variable for dichotomous item responses
+* `-1` removes the intercept from the model and yields parameter estimates for all items in the data set. With `1` (instead of `-1`), an intercept parameter representing the easiness of the first item and relative easiness parameters for the remaining items (i.e., distance from the easiness of the first item) would be estimated.
+* `item`is the variable representing item IDs in the data set
+* `(1|id)` represents the random effects for persons represented by the `id` column in the data set.
+
+The output for the Rasch model is shown below:
+
+```R
 mod0 <- eirm(formula = "r2 ~ -1 + item + (1|id)", data = VerbAgg)
 print(mod0)
 
