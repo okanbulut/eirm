@@ -199,7 +199,7 @@ plot(mod2a, difficulty = TRUE, main = "Verbal Aggression Example", latdim = "Ver
 ```
 which will show the difficulty parameters (instead of easiness), change the main title above the plot, and change the x-axis -- the name for the latent trait being measured. 
 
-Also, it is possible to compare nested explanatory models with each other. The following example shows the estimation of a more compact version of `mod2a` -- i.e., with one less variable -- and the comparison of the models (i.e., `mod2a` vs. `mod2b`).
+Also, it is possible to compare nested explanatory models with each other. The following example shows the estimation of a more compact version of `mod2a` with one less variable and compares the two models (i.e., `mod2a` vs. `mod2b`).
 
 ```R
 mod2b <- eirm(formula = "r2 ~ -1 + situ + btype + (1|id)", data = VerbAgg)
