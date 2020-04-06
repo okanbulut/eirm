@@ -165,8 +165,8 @@ ranef(mod1$model)$id
 The following example shows how to use item-related and person-related explanatory variables to explain dichotomous responses in the verbal aggression data set. 
 
 ```R
-mod2 <- eirm(formula = "r2 ~ -1 + situ + btype + mode + (1|id)", data = VerbAgg)
-print(mod2)
+mod2a <- eirm(formula = "r2 ~ -1 + situ + btype + mode + (1|id)", data = VerbAgg)
+print(mod2a)
 
 EIRM formula: "r2 ~ -1 + situ + btype + mode + (1|id)" 
 
@@ -188,16 +188,34 @@ modedo       -0.672 0.0562  -11.95  6.69e-33
 Note: The estimated parameters above represent 'easiness'. Use difficulty = TRUE to get difficulty parameters.
 ```
 
-It is possible to visualize the parameters using an item-person map using `plot(mod2)`, which returns the following plot. Note that this plot is a modified version of the `plotPImap` function from the `eRm` package ([Mair, Hatzinger, Maier, Rusch, & Debelak, 2020](https://cran.r-project.org/web/packages/eRm/index.html)). 
+It is possible to visualize the parameters using an item-person map using `plot(mod2a)`, which returns the following plot. Note that this plot is a modified version of the `plotPImap` function from the `eRm` package ([Mair, Hatzinger, Maier, Rusch, & Debelak, 2020](https://cran.r-project.org/web/packages/eRm/index.html)). 
 
 ![](man/figures/item-person-map.png)
 
 Aesthetic elements such as axis labels and plot title can be added to the plot. For example, the following code updates the x-axis label and the main plot title (see `?plot.eirm` for further details). 
 
 ```R
-plot(mod2, difficulty = TRUE, main = "Verbal Aggression Example", latdim = "Verbal Aggression")
+plot(mod2a, difficulty = TRUE, main = "Verbal Aggression Example", latdim = "Verbal Aggression")
 ```
 which will show the difficulty parameters (instead of easiness), change the main title above the plot, and change the x-axis -- the name for the latent trait being measured. 
+
+Also, it is possible to compare nested explanatory models with each other. The following example shows the estimation of a more compact version of `mod2a` -- i.e., with one less variable -- and the comparison of the models (i.e., `mod2a` vs. `mod2b`).
+
+```R
+mod2b <- eirm(formula = "r2 ~ -1 + situ + btype + (1|id)", data = VerbAgg)
+anova(mod2a$model, mod2b$model)
+
+Data: data
+Models:
+mod2b$model: r2 ~ -1 + situ + btype + (1 | id)
+mod2a$model: r2 ~ -1 + situ + btype + mode + (1 | id)
+
+            Df  AIC  BIC logLik deviance Chisq Chi Df Pr(>Chisq)    
+mod2b$model  5 8390 8424  -4190     8380                            
+mod2a$model  6 8250 8292  -4119     8238   142      1     <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+```
 
 ***
 ### Example 3: EIRM for polytomous responses 
