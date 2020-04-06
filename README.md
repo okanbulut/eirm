@@ -44,9 +44,9 @@ To cite ``eirm`` in your work, please use the following APA-style citation:
 
 ***
 
-### Example 1: EIRM for dichotomous responses 
+### Example 1: Rasch model
 
-The following example shows how to use item-related and person-related explanatory variables to explain dichotomous responses in the verbal aggression data set. To set a baseline model, the Rasch model (i.e., fully descriptive model) can be estimated first:
+To set a baseline model, the Rasch model (i.e., fully descriptive model) can be estimated first:
 
 ```R
 data("VerbAgg")
@@ -136,6 +136,11 @@ Note: The estimated parameters above represent 'difficulty'.
 ```
 The `mod0` object is essentially a `glmerMod`-class object from the `lme4` package ([Bates, Maechler, Bolker, & Walker, 2015](https://www.jstatsoft.org/article/view/v067i01)).
 
+***
+### Example 2: EIRM for dichotomous responses 
+
+The following example shows how to use item-related and person-related explanatory variables to explain dichotomous responses in the verbal aggression data set. 
+
 ```R
 data("VerbAgg")
 mod1 <- eirm(formula = "r2 ~ -1 + situ + btype + mode + (1|id)", data = VerbAgg)
@@ -173,7 +178,8 @@ plot(mod1, difficulty = TRUE, main = "Verbal Aggression Example", latdim = "Verb
 ```
 which will show the difficulty parameters (instead of easiness), change the main title above the plot, and change the x-axis -- the name for the latent trait being measured. 
 
-### Example 2: EIRM for polytomous responses 
+***
+### Example 3: EIRM for polytomous responses 
 
 It is also possible to use the `eirm` function with polytomous item responses as well. Because the function only accepts dichotomous responses (i.e., binomial distribution), polytomous data must be reformatted first. To reformat the data, the `polyreformat` function can be used. The following example demonstrates how polytomous responses (no, perhaps, and yes) in the verbal aggression data set can be reformatted into a dichotomous form:
 
