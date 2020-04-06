@@ -45,7 +45,7 @@ To cite ``eirm`` in your work, please use the following APA-style citation:
 
 ### Example 1: Rasch model
 
-The Rasch model (i.e., a fully descriptive model) can be estimated using `eirm`. The following example shows how to estimate item *easines* parameters for the items in the verbal aggression data set (see `?VerbAgg` for further details). A preview of the data set is shown below:
+The Rasch model (i.e., a fully descriptive model) can be estimated using `eirm`. The following example shows how to estimate Rasch item parameters for the verbal aggression data set (see `?VerbAgg` for further details). A preview of the `VerbAgg` data set is shown below:
 
 ```R
 data("VerbAgg")
@@ -63,9 +63,9 @@ head(VerbAgg)
 To estimate the Rasch model, a regression-like formula must be defined: `formula = "r2 ~ -1 + item + (1|id)"`. In the formula, 
 
 * `r2` is the variable for dichotomous item responses
-* `-1` removes the intercept from the model and yields parameter estimates for all items in the data set. With `1` (instead of `-1`), an intercept parameter representing the easiness of the first item and relative easiness parameters for the remaining items (i.e., distance from the easiness of the first item) would be estimated.
+* `-1` removes the intercept from the model and yields parameter estimates for all items in the data set. With `1` (instead of `-1`), an intercept representing the parameter of the first item and relative parameters for the remaining items (i.e., distance from the parameter of the first item) would be estimated.
 * `item`is the variable representing item IDs in the data set
-* `(1|id)` represents the random effects for persons represented by the `id` column in the data set.
+* `(1|id)` refers to the random effects for persons represented by the `id` column in the data set.
 
 The output for the Rasch model is shown below:
 
