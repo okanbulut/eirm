@@ -70,8 +70,8 @@ To estimate the Rasch model, a regression-like formula must be defined: `formula
 The output for the Rasch model is shown below:
 
 ```R
-mod0 <- eirm(formula = "r2 ~ -1 + item + (1|id)", data = VerbAgg)
-print(mod0)
+mod1 <- eirm(formula = "r2 ~ -1 + item + (1|id)", data = VerbAgg)
+print(mod1)
 
 EIRM formula: "r2 ~ -1 + item + (1|id)" 
 
@@ -113,7 +113,7 @@ Note: The estimated parameters above represent 'easiness'.
 Use difficulty = TRUE to get difficulty parameters.
 ```
 
-By default, the `eirm` function returns the **easiness** parameters because the function uses a regression model parameterization where positive parameters indicate positive association with the dependent variable. In order to print the difficulty parameters (instead of easiness), `print(mod0, difficulty = TRUE)` must be used:
+By default, the `eirm` function returns the **easiness** parameters because the function uses a regression model parameterization where positive parameters indicate positive association with the dependent variable. In order to print the difficulty parameters (instead of easiness), `print(mod1, difficulty = TRUE)` must be used:
 
 ```R
 EIRM formula: "r2 ~ -1 + item + (1|id)" 
@@ -154,10 +154,10 @@ itemS4DoShout       1.9995 0.184 -10.8750 1.52e-27
 
 Note: The estimated parameters above represent 'difficulty'.
 ```
-The `mod0` object is essentially a `glmerMod`-class object from the `lme4` package ([Bates, Maechler, Bolker, & Walker, 2015](https://www.jstatsoft.org/article/view/v067i01)). All `glmerMod` results for the estimated model can seen with `mod0$model`. For example, estimated random effects for persons (i.e., theta estimates) can be obtained using:
+The `mod1` object is essentially a `glmerMod`-class object from the `lme4` package ([Bates, Maechler, Bolker, & Walker, 2015](https://www.jstatsoft.org/article/view/v067i01)). All `glmerMod` results for the estimated model can seen with `mod0$model`. For example, estimated random effects for persons (i.e., theta estimates) can be obtained using:
 
 ```R
-ranef(mod0$model)$id
+ranef(mod1$model)$id
 ```
 
 ***
@@ -166,9 +166,8 @@ ranef(mod0$model)$id
 The following example shows how to use item-related and person-related explanatory variables to explain dichotomous responses in the verbal aggression data set. 
 
 ```R
-data("VerbAgg")
-mod1 <- eirm(formula = "r2 ~ -1 + situ + btype + mode + (1|id)", data = VerbAgg)
-print(mod1)
+mod2 <- eirm(formula = "r2 ~ -1 + situ + btype + mode + (1|id)", data = VerbAgg)
+print(mod2)
 
 EIRM formula: "r2 ~ -1 + situ + btype + mode + (1|id)" 
 
@@ -190,14 +189,14 @@ modedo       -0.672 0.0562  -11.95  6.69e-33
 Note: The estimated parameters above represent 'easiness'. Use difficulty = TRUE to get difficulty parameters.
 ```
 
-It is possible to visualize the parameters using an item-person map using `plot(mod1)`, which returns the following plot. Note that this plot is a modified version of the `plotPImap` function from the `eRm` package ([Mair, Hatzinger, Maier, Rusch, & Debelak, 2020](https://cran.r-project.org/web/packages/eRm/index.html)). 
+It is possible to visualize the parameters using an item-person map using `plot(mod2)`, which returns the following plot. Note that this plot is a modified version of the `plotPImap` function from the `eRm` package ([Mair, Hatzinger, Maier, Rusch, & Debelak, 2020](https://cran.r-project.org/web/packages/eRm/index.html)). 
 
 ![](https://github.com/okanbulut/eirm/blob/master/item-person-map.png)
 
 Aesthetic elements such as axis labels and plot title can be added to the plot. For example, the following code updates the x-axis label and the main plot title (see `?plot.eirm` for further details). 
 
 ```R
-plot(mod1, difficulty = TRUE, main = "Verbal Aggression Example", latdim = "Verbal Aggression")
+plot(mod2, difficulty = TRUE, main = "Verbal Aggression Example", latdim = "Verbal Aggression")
 ```
 which will show the difficulty parameters (instead of easiness), change the main title above the plot, and change the x-axis -- the name for the latent trait being measured. 
 
