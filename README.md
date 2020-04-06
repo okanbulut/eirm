@@ -9,7 +9,6 @@ The development version can be installed by:
 devtools::install_github(repo = "okanbulut/eirm")
 ```
 
-
 **Note:** If you see the following output on your console (or something similar), please choose `3: None` from this list. You can simply type **3** in your `R` console and hit "enter". 
 
 
@@ -46,7 +45,7 @@ To cite ``eirm`` in your work, please use the following APA-style citation:
 
 ### Example 1: Rasch model
 
-To set a baseline model, the Rasch model (i.e., fully descriptive model) can be estimated first:
+The Rasch model (i.e., a fully descriptive model) can be estimated using `eirm`. The following example shows how to estimate item *easines* parameters for the items in the verbal aggression data set (see `?VerbAgg` for further details). In the formula, "-1" removes the intercept from the model and yields parameter estimates for all items in the data set. With "1" (instead of "-1"), an intercept parameter representing the easiness of the first item and relative easiness parameters for the remaining items (i.e., distance from the easiness of the first item) would be estimated.  
 
 ```R
 data("VerbAgg")
@@ -134,7 +133,11 @@ itemS4DoShout       1.9995 0.184 -10.8750 1.52e-27
 
 Note: The estimated parameters above represent 'difficulty'.
 ```
-The `mod0` object is essentially a `glmerMod`-class object from the `lme4` package ([Bates, Maechler, Bolker, & Walker, 2015](https://www.jstatsoft.org/article/view/v067i01)).
+The `mod0` object is essentially a `glmerMod`-class object from the `lme4` package ([Bates, Maechler, Bolker, & Walker, 2015](https://www.jstatsoft.org/article/view/v067i01)). All `glmerMod` results for the estimated model can seen with `mod0$model`. For example, estimated random effects for persons (i.e., theta estimates) can be obtained using:
+
+```R
+ranef(mod0$model)$id
+```
 
 ***
 ### Example 2: EIRM for dichotomous responses 
