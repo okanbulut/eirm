@@ -96,19 +96,17 @@ modedo          0.672 0.0562  -11.95  6.69e-33
 Note: The estimated parameters above represent 'difficulty'.
 ```
 
-It is also possible to visualize the parameters using an item-person map using `plot(mod)`, which returns the following plot:
+It is possible to visualize the parameters using an item-person map using `plot(mod)`, which returns the following plot. Note that this plot is a modified version of the `plotPImap` function from the `eRm` package ([Mair, Hatzinger, Maier, Rusch, & Debelak, 2020](https://cran.r-project.org/web/packages/eRm/index.html)). 
+***
 
 ![](https://github.com/okanbulut/eirm/blob/master/item-person-map.png)
 
-It is possible to further edit the plot with additional features. For example:
+Aesthetic elements such as axis labels and plot title can be added to the plot. For example, the following code updates the x-axis label and the main plot title (see `?plot.eirm` for further details). 
 
 ```R
 plot(mod, difficulty = TRUE, main = "Verbal Aggression Example", latdim = "Verbal Aggression")
 ```
 which will show the difficulty parameters (instead of easiness), change the main title above the plot, and change the x-axis -- the name for the latent trait being measured. 
-
-**Note:** This plot is a modified version of the `plotPImap` function from the eRm package ([Mair, Hatzinger, Maier, Rusch, & Debelak, 2020](https://cran.r-project.org/web/packages/eRm/index.html)). 
-***
 
 ### Example 2: EIRM for polytomous responses 
 
