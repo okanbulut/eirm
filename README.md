@@ -1,4 +1,4 @@
-# eirm: [e]xplanatory [i]tem [r]esponse [m]odeling <img src="man/figures/eirm_logo.png" align="right" width="120" />
+# eirm: explanatory item response modeling <img src="man/figures/eirm_logo.png" align="right" width="120" />
 
 ### Installing `eirm`
 
