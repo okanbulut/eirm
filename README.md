@@ -190,7 +190,7 @@ modedo       -0.672 0.0562  -11.95  6.69e-33
 Note: The estimated parameters above represent 'easiness'. Use difficulty = TRUE to get difficulty parameters.
 ```
 
-It is possible to visualize the parameters using an item-person map using `plot(mod)`, which returns the following plot. Note that this plot is a modified version of the `plotPImap` function from the `eRm` package ([Mair, Hatzinger, Maier, Rusch, & Debelak, 2020](https://cran.r-project.org/web/packages/eRm/index.html)). 
+It is possible to visualize the parameters using an item-person map using `plot(mod1)`, which returns the following plot. Note that this plot is a modified version of the `plotPImap` function from the `eRm` package ([Mair, Hatzinger, Maier, Rusch, & Debelak, 2020](https://cran.r-project.org/web/packages/eRm/index.html)). 
 ***
 
 ![](https://github.com/okanbulut/eirm/blob/master/item-person-map.png)
@@ -240,12 +240,12 @@ Several polytomous models can be estimated using the reformatted data:
 **Model 1:** It explains only the first threshold (i.e., threshold from no to perhaps) based on explanatory variables:
 
 ```R
-mod1 <- eirm(formula = "polyresponse ~ -1 + situ + btype + mode + (1|id)", data = VerbAgg2)
+mod3 <- eirm(formula = "polyresponse ~ -1 + situ + btype + mode + (1|id)", data = VerbAgg2)
 ```
 **Model 2:** It explains the first threshold (i.e., threshold from no to perhaps) and second threshold (perhaps to yes) based on explanatory variables:
 
 ```R
-mod2 <- eirm(formula = "polyresponse ~ -1 + btype + situ + mode + polycategory + polycategory:btype + (1|id)", 
+mod4 <- eirm(formula = "polyresponse ~ -1 + btype + situ + mode + polycategory + polycategory:btype + (1|id)", 
              data = VerbAgg2)
 ```
 
