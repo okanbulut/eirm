@@ -154,7 +154,7 @@ itemS4DoShout       1.9995 0.184 -10.8750 1.52e-27
 
 Note: The estimated parameters above represent 'difficulty'.
 ```
-The `mod1` object is essentially a `glmerMod`-class object from the `lme4` package ([Bates, Maechler, Bolker, & Walker, 2015](https://www.jstatsoft.org/article/view/v067i01)). All `glmerMod` results for the estimated model can seen with `mod0$model`. For example, estimated random effects for persons (i.e., theta estimates) can be obtained using:
+The `mod1` object is essentially a `glmerMod`-class object from the `lme4` package ([Bates, Maechler, Bolker, & Walker, 2015](https://www.jstatsoft.org/article/view/v067i01)). All `glmerMod` results for the estimated model can seen with `mod1$model`. For example, estimated random effects for persons (i.e., theta estimates) can be obtained using:
 
 ```R
 ranef(mod1$model)$id
