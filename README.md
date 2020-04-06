@@ -191,7 +191,6 @@ Note: The estimated parameters above represent 'easiness'. Use difficulty = TRUE
 ```
 
 It is possible to visualize the parameters using an item-person map using `plot(mod1)`, which returns the following plot. Note that this plot is a modified version of the `plotPImap` function from the `eRm` package ([Mair, Hatzinger, Maier, Rusch, & Debelak, 2020](https://cran.r-project.org/web/packages/eRm/index.html)). 
-***
 
 ![](https://github.com/okanbulut/eirm/blob/master/item-person-map.png)
 
