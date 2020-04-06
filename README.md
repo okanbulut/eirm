@@ -113,7 +113,7 @@ Note: The estimated parameters above represent 'easiness'.
 Use difficulty = TRUE to get difficulty parameters.
 ```
 
-By default, the `eirm` function returns the **easiness** parameters because the function essentially uses a regression-like parameterization where positive parameters indicate positive contribution to the dependent variable. In order to print the difficulty parameters (instead of easiness), `print(mod0, difficulty = TRUE)` must be used:
+By default, the `eirm` function returns the **easiness** parameters because the function uses a regression model parameterization where positive parameters indicate positive contribution to the dependent variable. In order to print the difficulty parameters (instead of easiness), `print(mod0, difficulty = TRUE)` must be used:
 
 ```R
 EIRM formula: "r2 ~ -1 + item + (1|id)" 
