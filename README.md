@@ -190,7 +190,7 @@ Note: The estimated parameters above represent 'easiness'. Use difficulty = TRUE
 
 It is possible to visualize the parameters using an item-person map using `plot(mod2)`, which returns the following plot. Note that this plot is a modified version of the `plotPImap` function from the `eRm` package ([Mair, Hatzinger, Maier, Rusch, & Debelak, 2020](https://cran.r-project.org/web/packages/eRm/index.html)). 
 
-![](https://github.com/okanbulut/eirm/blob/master/item-person-map.png)
+![](man/figures/item-person-map.png)
 
 Aesthetic elements such as axis labels and plot title can be added to the plot. For example, the following code updates the x-axis label and the main plot title (see `?plot.eirm` for further details). 
 
