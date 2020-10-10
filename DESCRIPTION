@@ -4,11 +4,15 @@ Title: Explanatory Item Response Modeling for Dichotomous and Polytomous Items
 Version: 0.2.0
 Author: Okan Bulut <bulut@ualberta.ca>
 Maintainer: Okan Bulut <bulut@ualberta.ca>
-Description: This package provides a suite of data analysis and visualizations tools for the analysis of dichotomous and polytomous item responses. The generalized linear mixed modeling (GLMM) framework is used for examining the impact of item-related and person-related variables on responses. The items are repeated measures that  are nested underpersons. The model details can be found at de Boeck and Wilson's (2004) Explanatory Item Response Models - A Generalized Linear and Nonlinear Approach <DOI: 10.1007/978-1-4757-3990-9>.
+Description: Analysis of dichotomous and polytomous response data using the explanatory item response modeling framework (De Boeck & Wilson (2004) <doi:10.1007/978-1-4757-3990-9>). Generalized linear mixed modeling is used for examining the effects of item-related and person-related variables on item responses. 
 Depends:
     lme4,
     reshape2,
     optimx
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
 License: GPL-3 + file LICENSE
 Encoding: UTF-8
 LazyData: true
