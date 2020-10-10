@@ -4,8 +4,13 @@
 \alias{polyreformat}
 \title{Reformat polytomous item responses in a long format for explanatory item response modeling}
 \usage{
-polyreformat(data, id.var, long.format = FALSE, var.name = "item",
-  val.name = "resp")
+polyreformat(
+  data,
+  id.var,
+  long.format = FALSE,
+  var.name = "item",
+  val.name = "resp"
+)
 }
 \arguments{
 \item{data}{A data frame -- either in a wide format where the rows represent persons and columns represent items

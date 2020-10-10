@@ -4,10 +4,17 @@
 \alias{plot.eirm}
 \title{Person-Item Map for Explanatory IRT Models}
 \usage{
-\method{plot}{eirm}(x, difficulty = FALSE, sorted = TRUE,
-  theta = NULL, main = "Person-Item Map",
+\method{plot}{eirm}(
+  x,
+  difficulty = FALSE,
+  sorted = TRUE,
+  theta = NULL,
+  main = "Person-Item Map",
   latdim = "Latent Dimension",
-  pplabel = "Person\\nParameter\\nDistribution", cex.gen = 0.7, ...)
+  pplabel = "Person\\nParameter\\nDistribution",
+  cex.gen = 0.7,
+  ...
+)
 }
 \arguments{
 \item{x}{An object returned from the \code{\link{eirm}} function.}

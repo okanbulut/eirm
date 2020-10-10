@@ -4,14 +4,16 @@
 \name{testdata}
 \alias{testdata}
 \title{Fabricated Short Quiz with Explanatory Variables}
-\format{A long format data frame containing 1000 examinees' responses to 10 items and additional variables.
+\format{
+A long format data frame containing 1000 examinees' responses to 10 items and additional variables.
 \describe{
 \item{person}{Examinee ID}
 \item{item}{Item ID}
 \item{response}{Dichotomous item responses}
 \item{gender}{Examinees' gender where F is female and M is male}
 \item{itemtype}{A variable to define whether the items on the quiz have a visual component}
-}}
+}
+}
 \usage{
 testdata
 }

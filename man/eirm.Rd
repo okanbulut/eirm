@@ -4,9 +4,14 @@
 \alias{eirm}
 \title{Estimating explanatory item response modeling using the GLMM framework}
 \usage{
-eirm(formula, data, na.action = "na.omit", weights = NULL,
-  control = glmerControl(optimizer = "optimx", calc.derivs = FALSE,
-  optCtrl = list(method = "nlminb", starttests = FALSE, kkt = FALSE)))
+eirm(
+  formula,
+  data,
+  na.action = "na.omit",
+  weights = NULL,
+  control = glmerControl(optimizer = "optimx", calc.derivs = FALSE, optCtrl =
+    list(method = "nlminb", starttests = FALSE, kkt = FALSE))
+)
 }
 \arguments{
 \item{formula}{A regression-like formula that defines item responses as a dependent
