@@ -28,6 +28,7 @@
 #' further analysis and graphics based on lme4.
 #'
 #' @examples
+#' \dontrun{
 #' data("VerbAgg")
 #' mod0 <- eirm(formula = "r2 ~ -1 + situ + btype + (1|id)", data = VerbAgg)
 #' print(mod0) # To get easiness parameters
@@ -37,6 +38,7 @@
 #' print(mod1) # To get easiness parameters
 #' print(mod1, difficulty = TRUE) # To get difficulty parameters
 #' plot(mod1)
+#' }
 #' @export
 
 eirm <- function(formula, data, na.action = "na.omit", weights = NULL,

@@ -45,6 +45,7 @@ items are nested within persons. If item responses are polytomous, then the data
 be reformatted using the \code{\link{polyreformat}}) function.
 }
 \examples{
+\dontrun{
 data("VerbAgg")
 mod0 <- eirm(formula = "r2 ~ -1 + situ + btype + (1|id)", data = VerbAgg)
 print(mod0) # To get easiness parameters
@@ -54,4 +55,5 @@ mod1 <- eirm(formula = "r2 ~ -1 + situ + btype + mode + (1|id)", data = VerbAgg)
 print(mod1) # To get easiness parameters
 print(mod1, difficulty = TRUE) # To get difficulty parameters
 plot(mod1)
+}
 }
