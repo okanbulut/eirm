@@ -48,7 +48,8 @@ By default, the `eirm` function returns the **easiness** parameters because the 
 ```{r, echo = TRUE, eval = TRUE}
 print(mod1, difficulty = TRUE)
 ```
-The `mod1` object is essentially a `glmerMod`-class object from the `lme4` package ([Bates, Maechler, Bolker, & Walker, 2015](https://www.jstatsoft.org/article/view/v067i01)). All `glmerMod` results for the estimated model can seen with `mod1$model`. For example, estimated random effects for persons (i.e., theta estimates) can be obtained using:
+
+The `mod1` object is essentially a `glmerMod`-class object from the `lme4` package (Bates, Maechler, Bolker, & Walker (2015) <doi:10.18637/jss.v067.i01>). All `glmerMod` results for the estimated model can seen with `mod1$model`. For example, estimated random effects for persons (i.e., theta estimates) can be obtained using:
 
 ```{r, echo = TRUE, eval = TRUE}
 theta <- ranef(mod1$model)$id
@@ -67,7 +68,7 @@ mod2a <- eirm(formula = "r2 ~ -1 + situ + btype + mode + (1|id)", data = VerbAgg
 print(mod2a)
 ```
 
-It is possible to visualize the parameters using an item-person map using `plot(mod2a)`, which returns the following plot. Note that this plot is a modified version of the `plotPImap` function from the `eRm` package ([Mair, Hatzinger, Maier, Rusch, & Debelak, 2020](https://cran.r-project.org/web/packages/eRm/index.html)). 
+It is possible to visualize the parameters using an item-person map using `plot(mod2a)`, which returns the following plot. Note that this plot is a modified version of the `plotPImap` function from the `eRm` package). 
 
 ```{r, echo = TRUE, eval = TRUE}
 plot(mod2a)
@@ -101,7 +102,7 @@ VerbAgg2 <- polyreformat(data=VerbAgg, id.var = "id", long.format = FALSE,
 head(VerbAgg2)
 ```
 
-In the reformatted data, `polyresponse` is the new dependent variable (i.e., pseudo-dichotomous version of the original response variable `resp`) and `polycategory` represents the response categories. Based on the reformatted data, each item has two rows (number of response categories - 1) based on the following rules (see [Stanke and Bulut (2019)](https://dergipark.org.tr/en/download/article-file/716984) for further details on this parameterization):
+In the reformatted data, `polyresponse` is the new dependent variable (i.e., pseudo-dichotomous version of the original response variable `resp`) and `polycategory` represents the response categories. Based on the reformatted data, each item has two rows (number of response categories - 1) based on the following rules (Stanke & Bulut (2019) <doi:10.21449/ijate.515085>) for further details on this parameterization):
 
 * If `polycategory` = "cat_perhaps" and `resp` = "no", then `polyresponse` = 0
 * If `polycategory` = "cat_perhaps" and `resp` = "perhaps", then `polyresponse` = 1
@@ -124,6 +125,7 @@ Several polytomous models can be estimated using the reformatted data:
 mod3 <- eirm(formula = "polyresponse ~ -1 + situ + btype + mode + (1|id)", 
              data = VerbAgg2)
 ```
+
 **Model 2:** It explains the first threshold (i.e., threshold from no to perhaps) and second threshold (perhaps to yes) based on explanatory variables:
 
 ```{r, echo = TRUE, eval = FALSE}
