@@ -11,7 +11,7 @@
 #' @param data A data frame -- either in a wide format where the rows represent persons and columns represent items
 #' explanatory variables or in a long format where there are multiple rows for each person (i.e., nested data)
 #' @param id.var The variable that represents examinee IDs.
-#' @param long.format Whether the data is already in a long format (default is FALSE)
+#' @param long.format Whether the data follow a wide format and thus need to be transformed into a long format (default is FALSE)
 #' @param var.name The variable that represents item IDs if the data is already in long format; otherwise this is the
 #' of the variable that represents item IDs once the data is transformed into long format.
 #' @param val.name The variable that represents item responses if the data is already in long format;
@@ -28,7 +28,7 @@
 
 polyreformat <- function(data, id.var, long.format = FALSE, var.name = "item", val.name = "resp"){
 
-  #Transform the data into long format if long.format=TRUE
+  # Transform the data into long format if long.format=TRUE
   if(long.format) {
     data <- as.data.frame(data)
     dataMat <- melt(data, id = id.var, variable.name = var.name, value.name = val.name)
