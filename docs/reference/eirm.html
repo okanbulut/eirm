@@ -185,17 +185,85 @@ the complete set of results returned from the glmer function. These results can 
 further analysis and graphics based on lme4.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"VerbAgg"</span><span class='op'>)</span>
 <span class='va'>mod0</span> <span class='op'>&lt;-</span> <span class='fu'>eirm</span><span class='op'>(</span>formula <span class='op'>=</span> <span class='st'>"r2 ~ -1 + situ + btype + (1|id)"</span>, data <span class='op'>=</span> <span class='va'>VerbAgg</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>mod0</span><span class='op'>)</span> <span class='co'># To get easiness parameters</span>
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>mod0</span>, difficulty <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span> <span class='co'># To get difficulty parameters</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>mod0</span><span class='op'>)</span>
-<span class='va'>mod1</span> <span class='op'>&lt;-</span> <span class='fu'>eirm</span><span class='op'>(</span>formula <span class='op'>=</span> <span class='st'>"r2 ~ -1 + situ + btype + mode + (1|id)"</span>, data <span class='op'>=</span> <span class='va'>VerbAgg</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; EIRM formula: "r2 ~ -1 + situ + btype + (1|id)" 
+#&gt; 
+#&gt; Number of persons: 316 
+#&gt; 
+#&gt; Number of observations: 7584 
+#&gt; 
+#&gt; Number of predictors: 4 
+#&gt; 
+#&gt; Parameter Estimates:
+#&gt; 
+#&gt;              Easiness       S.E.    z-value       p-value
+#&gt; situother   1.3757776 0.09409460  14.621217  2.056918e-48
+#&gt; situself    0.3711422 0.09134751   4.062971  4.845215e-05
+#&gt; btypescold -1.0310191 0.06714884 -15.354234  3.318058e-53
+#&gt; btypeshout -1.9956435 0.07178245 -27.801272 4.186816e-170
+#&gt; 
+#&gt; Note: The estimated parameters above represent 'easiness'.
+#&gt; Use difficulty = TRUE to get difficulty parameters.</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>mod0</span>, difficulty <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span> <span class='co'># To get difficulty parameters</span>
+</div><div class='output co'>#&gt; EIRM formula: "r2 ~ -1 + situ + btype + (1|id)" 
+#&gt; 
+#&gt; Number of persons: 316 
+#&gt; 
+#&gt; Number of observations: 7584 
+#&gt; 
+#&gt; Number of predictors: 4 
+#&gt; 
+#&gt; Parameter Estimates:
+#&gt; 
+#&gt;            Difficulty       S.E.    z-value       p-value
+#&gt; situother  -1.3757776 0.09409460  14.621217  2.056918e-48
+#&gt; situself   -0.3711422 0.09134751   4.062971  4.845215e-05
+#&gt; btypescold  1.0310191 0.06714884 -15.354234  3.318058e-53
+#&gt; btypeshout  1.9956435 0.07178245 -27.801272 4.186816e-170
+#&gt; 
+#&gt; Note: The estimated parameters above represent 'difficulty'.</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>mod0</span><span class='op'>)</span>
+</div><div class='img'><img src='eirm-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='va'>mod1</span> <span class='op'>&lt;-</span> <span class='fu'>eirm</span><span class='op'>(</span>formula <span class='op'>=</span> <span class='st'>"r2 ~ -1 + situ + btype + mode + (1|id)"</span>, data <span class='op'>=</span> <span class='va'>VerbAgg</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>mod1</span><span class='op'>)</span> <span class='co'># To get easiness parameters</span>
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>mod1</span>, difficulty <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span> <span class='co'># To get difficulty parameters</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>mod1</span><span class='op'>)</span>
-<span class='op'>}</span>
+</div><div class='output co'>#&gt; EIRM formula: "r2 ~ -1 + situ + btype + mode + (1|id)" 
+#&gt; 
+#&gt; Number of persons: 316 
+#&gt; 
+#&gt; Number of observations: 7584 
+#&gt; 
+#&gt; Number of predictors: 5 
+#&gt; 
+#&gt; Parameter Estimates:
+#&gt; 
+#&gt;              Easiness       S.E.   z-value       p-value
+#&gt; situother   1.7437027 0.10145090  17.18765  3.285796e-66
+#&gt; situself    0.7158127 0.09775376   7.32261  2.431943e-13
+#&gt; btypescold -1.0551642 0.06803581 -15.50895  3.017583e-54
+#&gt; btypeshout -2.0421978 0.07292877 -28.00263 1.509082e-172
+#&gt; modedo     -0.6715770 0.05621055 -11.94753  6.688613e-33
+#&gt; 
+#&gt; Note: The estimated parameters above represent 'easiness'.
+#&gt; Use difficulty = TRUE to get difficulty parameters.</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>mod1</span>, difficulty <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span> <span class='co'># To get difficulty parameters</span>
+</div><div class='output co'>#&gt; EIRM formula: "r2 ~ -1 + situ + btype + mode + (1|id)" 
+#&gt; 
+#&gt; Number of persons: 316 
+#&gt; 
+#&gt; Number of observations: 7584 
+#&gt; 
+#&gt; Number of predictors: 5 
+#&gt; 
+#&gt; Parameter Estimates:
+#&gt; 
+#&gt;            Difficulty       S.E.   z-value       p-value
+#&gt; situother  -1.7437027 0.10145090  17.18765  3.285796e-66
+#&gt; situself   -0.7158127 0.09775376   7.32261  2.431943e-13
+#&gt; btypescold  1.0551642 0.06803581 -15.50895  3.017583e-54
+#&gt; btypeshout  2.0421978 0.07292877 -28.00263 1.509082e-172
+#&gt; modedo      0.6715770 0.05621055 -11.94753  6.688613e-33
+#&gt; 
+#&gt; Note: The estimated parameters above represent 'difficulty'.</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>mod1</span><span class='op'>)</span>
+</div><div class='img'><img src='eirm-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

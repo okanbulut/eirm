@@ -28,7 +28,7 @@
 #' further analysis and graphics based on lme4.
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' data("VerbAgg")
 #' mod0 <- eirm(formula = "r2 ~ -1 + situ + btype + (1|id)", data = VerbAgg)
 #' print(mod0) # To get easiness parameters
@@ -45,7 +45,13 @@ eirm <- function(formula, data, na.action = "na.omit", weights = NULL,
                  control = glmerControl(optimizer = "optimx", calc.derivs = FALSE,
                  optCtrl = list(method = "nlminb", starttests = FALSE, kkt = FALSE))) {
 
+  # Reset the option settings once the analysis is done
+  current_options <- options()
+  on.exit(options(current_options))
+
+  # Set the number of digits to 3
   options(digits=3)
+
   eirm_formula <- as.formula(formula)
 
   if(is.null(weights)) {

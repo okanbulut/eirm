@@ -7,7 +7,7 @@ Authors@R:
     comment = c(ORCID="0000-0001-5853-1267"))
 Maintainer: Okan Bulut <bulut@ualberta.ca>
 URL: https://github.com/okanbulut/eirm
-Description: Analysis of dichotomous and polytomous response data using the explanatory item response modeling framework. Generalized linear mixed modeling is used for estimating the effects of item-related and person-related variables on item responses. 
+Description: Analysis of dichotomous and polytomous response data using the explanatory item response modeling framework, as described in Stanke & Bulut (2019) <doi:10.21449/ijate.515085> and De Boeck & Wilson (2004) <doi:10.1007/978-1-4757-3990-9>. Generalized linear mixed modeling is used for estimating the effects of item-related and person-related variables on dichotomous and polytomous item responses. 
 Depends:
     lme4,
     reshape2,

@@ -69,6 +69,10 @@ plot.eirm <- function(x, difficulty = FALSE, sorted = TRUE, theta = NULL, main =
   yrange <- c(0, nrow(tr) + 1)
   xrange <- range(c(tr, theta), na.rm = T)
 
+  # Reset par settings once it is done
+  old_par <- par(no.readonly = TRUE)
+  on.exit(par(old_par))
+
   # Plot begins here
   def.par <- par(no.readonly = TRUE)
   nf <- layout(matrix(c(2, 1), 2, 1, byrow = TRUE), heights = c(1, 3), T)

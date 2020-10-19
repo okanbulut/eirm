@@ -18,7 +18,7 @@ explanatory variables or in a long format where there are multiple rows for each
 
 \item{id.var}{The variable that represents examinee IDs.}
 
-\item{long.format}{Whether the data follow a wide format and thus need to be transformed into a long format (default is FALSE)}
+\item{long.format}{Whether the data follow a wide format and thus need to be transformed into a long format first (default is FALSE)}
 
 \item{var.name}{The variable that represents item IDs if the data is already in long format; otherwise this is the
 of the variable that represents item IDs once the data is transformed into long format.}
