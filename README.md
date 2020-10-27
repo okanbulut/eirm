@@ -2,6 +2,12 @@
 
 ### Installing `eirm`
 
+The stable version on CRAN can be installed by:
+
+```R
+install.packages("eirm")
+```
+
 The development version can be installed by:
 
 ```R
