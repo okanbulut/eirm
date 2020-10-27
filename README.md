@@ -14,7 +14,7 @@ The development version can be installed by:
 devtools::install_github(repo = "okanbulut/eirm")
 ```
 
-**Note:** If you see the following output on your console (or something similar), please choose `3: None` from this list. You can simply type **3** in your `R` console and hit "enter". 
+**Note:** If you download the Github version and see the following output on your console (or something similar), please choose `3: None` from this list. You can simply type **3** in your `R` console and hit "enter". 
 
 
 ```R
@@ -44,7 +44,7 @@ devtools::install_github(repo = "okanbulut/eirm")
 
 To cite ``eirm`` in your work, please use the following APA-style citation:
 
-> Bulut, O. (2019). *eirm: Explanatory item response modeling for dichotomous and polytomous item responses* [Computer software]. Available from <https://github.com/okanbulut/eirm>. 
+> Bulut, O. (2019). *eirm: Explanatory item response modeling for dichotomous and polytomous item responses* [Computer software]. Available from <http://CRAN.R-project.org/package=eirm>. 
 
 ***
 
