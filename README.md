@@ -1,5 +1,8 @@
 # eirm: explanatory item response modeling <img src="man/figures/eirm_logo.png" align="right" width="120" />
 
+[![R build status](https://github.com/okanbulut/eirm/workflows/R-CMD-check/badge.svg)](https://github.com/okanbulut/eirm/actions)
+
+
 ### Installing `eirm`
 
 The stable version on CRAN can be installed by:
