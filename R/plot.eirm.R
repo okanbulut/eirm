@@ -1,5 +1,5 @@
 #' @title Person-Item Map for Explanatory IRT Models
-#' @importFrom graphics axis box layout lines mtext par plot points segments
+#' @importFrom graphics axis layout lines mtext par plot points segments
 #' @description
 #' This function creates a person-item map for an object returned from the \code{\link{eirm}} function.
 #' The function was modified from \code{\link[eRm]{plotPImap}} in package \pkg{eRm}.
@@ -70,23 +70,23 @@ plot.eirm <- function(x, difficulty = FALSE, sorted = TRUE, theta = NULL, main =
   xrange <- range(c(tr, theta), na.rm = T)
 
   # Reset par settings once it is done
-  old_par <- par(no.readonly = TRUE)
-  on.exit(par(old_par))
+  old_par <- graphics::par(no.readonly = TRUE)
+  on.exit(graphics::par(old_par))
 
   # Plot begins here
-  def.par <- par(no.readonly = TRUE)
-  nf <- layout(matrix(c(2, 1), 2, 1, byrow = TRUE), heights = c(1, 3), T)
-  par(mar = c(2.5, 4, 0, 1))
-  plot(xrange, yrange, xlim = xrange, ylim = yrange, main = "",
+  def.par <- graphics::par(no.readonly = TRUE)
+  nf <- graphics::layout(matrix(c(2, 1), 2, 1, byrow = TRUE), heights = c(1, 3), T)
+  graphics::par(mar = c(2.5, 4, 0, 1))
+  graphics::plot(xrange, yrange, xlim = xrange, ylim = yrange, main = "",
        ylab = "", type = "n", yaxt = "n", xaxt = "n", ...)
-  axis(2, at = 1:nrow(tr), labels = rev(rownames(tr)), las = 2,
+  graphics::axis(2, at = 1:nrow(tr), labels = rev(rownames(tr)), las = 2,
        cex.axis = cex.gen)
-  axis(1, at = seq(floor(xrange[1]), ceiling(xrange[2])), cex.axis = cex.gen,
+  graphics::axis(1, at = seq(floor(xrange[1]), ceiling(xrange[2])), cex.axis = cex.gen,
        padj = -1.5)
-  mtext(latdim, 1, 1.2, cex = cex.gen + 0.1)
+  graphics::mtext(latdim, 1, 1.2, cex = cex.gen + 0.1)
   y.offset <- nrow(tr) * 0.0275
   tr.rug <- as.numeric(tr)
-  segments(tr.rug, rep(yrange[2], length(tr.rug)) + y.offset,
+  graphics::segments(tr.rug, rep(yrange[2], length(tr.rug)) + y.offset,
            tr.rug, rep(yrange[2], length(tr.rug)) + 100)
   warn <- rep(" ", nrow(tr))
 
@@ -95,17 +95,17 @@ plot.eirm <- function(x, difficulty = FALSE, sorted = TRUE, theta = NULL, main =
     assign("trpoints", tr[i, !is.na(tr[i, ])])
     npnts <- length(trpoints)
     ptcol = "black"
-    lines(xrange * 1.5, rep(j, 2), lty = "dotted")
-    points(loc[i], j, pch = 20, cex = 1.5, col = ptcol)
+    graphics::lines(xrange * 1.5, rep(j, 2), lty = "dotted")
+    graphics::points(loc[i], j, pch = 20, cex = 1.5, col = ptcol)
   }
-  axis(4, at = 1:nrow(tr), tick = FALSE, labels = warn, hadj = 2.5, padj = 0.7, las = 2)
-  par(mar = c(0, 4, 3, 1))
-  plot(ttx, tt, type = "n", main = main, axes = FALSE,
+  graphics::axis(4, at = 1:nrow(tr), tick = FALSE, labels = warn, hadj = 2.5, padj = 0.7, las = 2)
+  graphics::par(mar = c(0, 4, 3, 1))
+  graphics::plot(ttx, tt, type = "n", main = main, axes = FALSE,
        ylab = "", xlim = xrange, ylim = c(0, max(tt)), ...)
-  points(ttx, tt, type = "h", col = "gray", lend = 2,
+  graphics::points(ttx, tt, type = "h", col = "gray", lend = 2,
          lwd = 5)
-  mtext(pplabel, 2, 0.5, las = 2, cex = cex.gen)
-  box()
-  par(def.par)
+  graphics::mtext(pplabel, 2, 0.5, las = 2, cex = cex.gen)
+  graphics::box()
+  graphics::par(def.par)
 }
 

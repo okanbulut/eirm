@@ -1,3 +1,6 @@
+# eirm 0.3
+
+- A Shiny app was added to run `eirm` with a GUI.
 
 # eirm 0.2
 
