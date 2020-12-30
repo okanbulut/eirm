@@ -2,6 +2,11 @@
 
 [![R build status](https://github.com/okanbulut/eirm/workflows/R-CMD-check/badge.svg)](https://github.com/okanbulut/eirm/actions)
 
+[![CodeFactor](https://www.codefactor.io/repository/github/okanbulut/eirm/badge)](https://www.codefactor.io/repository/github/okanbulut/eirm)
+
+[![](https://www.r-pkg.org/badges/version/eirm?color=orange)](https://cran.r-project.org/package=eirm)
+
+[![](http://cranlogs.r-pkg.org/badges/grand-total/eirm?color=blue)](https://cran.r-project.org/package=eirm)
 
 ### Installing `eirm`
 
