@@ -82,16 +82,17 @@
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#eirm-explanatory-item-response-modeling-" class="anchor"></a>eirm: explanatory item response modeling <img src="reference/figures/eirm_logo.png" align="right" width="120">
 </h1></div>
+
 <div id="installing-eirm" class="section level3">
 <h3 class="hasAnchor">
 <a href="#installing-eirm" class="anchor"></a>Installing <code>eirm</code>
 </h3>
 <p>The stable version on CRAN can be installed by:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"eirm"</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"eirm"</span><span class="op">)</span></code></pre></div>
 <p>The development version can be installed by:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span>repo <span class="op">=</span> <span class="st">"okanbulut/eirm"</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span>repo <span class="op">=</span> <span class="st">"okanbulut/eirm"</span><span class="op">)</span></code></pre></div>
 <p><strong>Note:</strong> If you download the Github version and see the following output on your console (or something similar), please choose <code>3: None</code> from this list. You can simply type <strong>3</strong> in your <code>R</code> console and hit “enter”.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>Downloading GitHub repo okanbulut<span class="op">/</span>eirm<span class="op">@</span>master</span>
 <span id="cb3-2"><a href="#cb3-2"></a>These packages have more recent versions available.</span>
@@ -107,9 +108,9 @@
 <span id="cb3-12"><a href="#cb3-12"></a></span>
 <span id="cb3-13"><a href="#cb3-13"></a>Enter one or more numbers, or an empty line to skip updates<span class="op">:</span></span></code></pre></div>
 <p>If this also fails, you can run the following lines all together and select <code>3: None</code> by typing <strong>3</strong> in your <code>R</code> console:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/Sys.setenv.html">Sys.setenv</a></span><span class="op">(</span>R_REMOTES_NO_ERRORS_FROM_WARNINGS<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span>repo <span class="op">=</span> <span class="st">"okanbulut/eirm"</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Sys.setenv.html">Sys.setenv</a></span><span class="op">(</span>R_REMOTES_NO_ERRORS_FROM_WARNINGS<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span>repo <span class="op">=</span> <span class="st">"okanbulut/eirm"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="citing-eirm" class="section level3">
 <h3 class="hasAnchor">
@@ -227,8 +228,8 @@
 <span id="cb7-36"><a href="#cb7-36"></a></span>
 <span id="cb7-37"><a href="#cb7-37"></a>Note<span class="op">:</span><span class="st"> </span>The estimated parameters above represent <span class="st">'difficulty'</span>.</span></code></pre></div>
 <p>The <code>mod1</code> object is essentially a <code>glmerMod</code>-class object from the <code>lme4</code> package (<a href="https://www.jstatsoft.org/article/view/v067i01">Bates, Maechler, Bolker, &amp; Walker, 2015</a>). All <code>glmerMod</code> results for the estimated model can seen with <code>mod1$model</code>. For example, estimated random effects for persons (i.e., theta estimates) can be obtained using:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit">
-<span class="fu">ranef</span><span class="op">(</span><span class="va">mod1</span><span class="op">$</span><span class="va">model</span><span class="op">)</span><span class="op">$</span><span class="va">id</span></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ranef</span><span class="op">(</span><span class="va">mod1</span><span class="op">$</span><span class="va">model</span><span class="op">)</span><span class="op">$</span><span class="va">id</span></code></pre></div>
 <hr>
 </div>
 <div id="example-2-eirm-for-dichotomous-responses" class="section level3">
@@ -259,8 +260,8 @@
 <p>It is possible to visualize the parameters using an item-person map using <code><a href="https://rdrr.io/r/graphics/plot.default.html">plot(mod2a)</a></code>, which returns the following plot. Note that this plot is a modified version of the <code>plotPImap</code> function from the <code>eRm</code> package (<a href="https://cran.r-project.org/web/packages/eRm/index.html">Mair, Hatzinger, Maier, Rusch, &amp; Debelak, 2020</a>).</p>
 <p><img src="reference/figures/item-person-map.png"></p>
 <p>Aesthetic elements such as axis labels and plot title can be added to the plot. For example, the following code updates the x-axis label and the main plot title (see <code><a href="reference/plot.eirm.html">?plot.eirm</a></code> for further details).</p>
-<div class="sourceCode" id="cb10"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">mod2a</span>, difficulty <span class="op">=</span> <span class="cn">TRUE</span>, main <span class="op">=</span> <span class="st">"Verbal Aggression Example"</span>, latdim <span class="op">=</span> <span class="st">"Verbal Aggression"</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">mod2a</span>, difficulty <span class="op">=</span> <span class="cn">TRUE</span>, main <span class="op">=</span> <span class="st">"Verbal Aggression Example"</span>, latdim <span class="op">=</span> <span class="st">"Verbal Aggression"</span><span class="op">)</span></code></pre></div>
 <p>which will show the difficulty parameters (instead of easiness), change the main title above the plot, and change the x-axis – the name for the latent trait being measured.</p>
 <p>Also, it is possible to compare nested explanatory models with each other. The following example shows the estimation of a more compact version of <code>mod2a</code> with one less variable and compares the two models (i.e., <code>mod2a</code> vs. <code>mod2b</code>).</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>mod2b &lt;-<span class="st"> </span><span class="kw">eirm</span>(<span class="dt">formula =</span> <span class="st">"r2 ~ -1 + situ + btype + (1|id)"</span>, <span class="dt">data =</span> VerbAgg)</span>
@@ -307,12 +308,12 @@
 <p><strong>NOTE:</strong> Although <code>polyreformat</code> is capable of reshaping wide-format data into long-format and reformat the long data for the analysis with <code>eirm</code>, a safer option is to transform the data from wide to long format before using <code>polyreformat</code>. The <code>melt</code> function from the <code>reshape2</code> package can easily transform wide data to long data.</p>
 <p>Several polytomous models can be estimated using the reformatted data:</p>
 <p><strong>Model 1:</strong> It explains only the first threshold (i.e., threshold from no to perhaps) based on explanatory variables:</p>
-<div class="sourceCode" id="cb13"><pre class="downlit">
-<span class="va">mod3</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/eirm.html">eirm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="st">"polyresponse ~ -1 + situ + btype + mode + (1|id)"</span>, data <span class="op">=</span> <span class="va">VerbAgg2</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mod3</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/eirm.html">eirm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="st">"polyresponse ~ -1 + situ + btype + mode + (1|id)"</span>, data <span class="op">=</span> <span class="va">VerbAgg2</span><span class="op">)</span></code></pre></div>
 <p><strong>Model 2:</strong> It explains the first threshold (i.e., threshold from no to perhaps) and second threshold (perhaps to yes) based on explanatory variables:</p>
-<div class="sourceCode" id="cb14"><pre class="downlit">
-<span class="va">mod4</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/eirm.html">eirm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="st">"polyresponse ~ -1 + btype + situ + mode + polycategory + polycategory:btype + (1|id)"</span>, 
-             data <span class="op">=</span> <span class="va">VerbAgg2</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mod4</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/eirm.html">eirm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="st">"polyresponse ~ -1 + btype + situ + mode + polycategory + polycategory:btype + (1|id)"</span>, 
+             data <span class="op">=</span> <span class="va">VerbAgg2</span><span class="op">)</span></code></pre></div>
 </div>
 </div>
   </div>
@@ -340,7 +341,13 @@
 </ul>
 </div>
 
-  </div>
+  <div class="dev-status">
+<h2>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://github.com/okanbulut/eirm/actions"><img src="https://github.com/okanbulut/eirm/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
+</ul>
+</div>
+</div>
 </div>
 
 

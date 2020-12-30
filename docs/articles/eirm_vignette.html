@@ -77,7 +77,8 @@
 
       
 
-      </header><div class="row">
+      </header><script src="eirm_vignette_files/accessible-code-block-0.0.1/empty-anchor.js"></script><link href="eirm_vignette_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
+<script src="eirm_vignette_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Using eirm for estimating explanatory IRT models</h1>
@@ -94,9 +95,9 @@
 <h3 class="hasAnchor">
 <a href="#example-1-rasch-model" class="anchor"></a>Example 1: Rasch model</h3>
 <p>The Rasch model (i.e., a fully descriptive model) can be estimated using <code>eirm</code>. The following example shows how to estimate Rasch item parameters for the verbal aggression data set (see <code>?VerbAgg</code> for further details). A preview of the <code>VerbAgg</code> data set is shown below:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"VerbAgg"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">VerbAgg</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"VerbAgg"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">VerbAgg</span><span class="op">)</span></code></pre></div>
 <pre><code>##   Anger Gender        item    resp id btype  situ mode r2
 ## 1    20      M S1WantCurse      no  1 curse other want  N
 ## 2    11      M S1WantCurse      no  2 curse other want  N
@@ -116,26 +117,26 @@
 <code>(1|id)</code> refers to the random effects for persons represented by the <code>id</code> column in the data set.</li>
 </ul>
 <p>The output for the Rasch model is shown below:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="va">mod1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/eirm.html">eirm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="st">"r2 ~ -1 + item + (1|id)"</span>, data <span class="op">=</span> <span class="va">VerbAgg</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">mod1</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mod1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/eirm.html">eirm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="st">"r2 ~ -1 + item + (1|id)"</span>, data <span class="op">=</span> <span class="va">VerbAgg</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">mod1</span><span class="op">)</span></code></pre></div>
 <p>By default, the <code>eirm</code> function returns the <strong>easiness</strong> parameters because the function uses a regression model parameterization where positive parameters indicate positive association with the dependent variable. In order to print the difficulty parameters (instead of easiness), <code><a href="https://rdrr.io/r/base/print.html">print(mod1, difficulty = TRUE)</a></code> must be used:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">mod1</span>, difficulty <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">mod1</span>, difficulty <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <p>The <code>mod1</code> object is essentially a <code>glmerMod</code>-class object from the <code>lme4</code> package (Bates, Maechler, Bolker, &amp; Walker (2015)). All <code>glmerMod</code> results for the estimated model can seen with <code>mod1$model</code>. For example, estimated random effects for persons (i.e., theta estimates) can be obtained using:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="va">theta</span> <span class="op">&lt;-</span> <span class="fu">ranef</span><span class="op">(</span><span class="va">mod1</span><span class="op">$</span><span class="va">model</span><span class="op">)</span><span class="op">$</span><span class="va">id</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">theta</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">theta</span> <span class="op">&lt;-</span> <span class="fu">ranef</span><span class="op">(</span><span class="va">mod1</span><span class="op">$</span><span class="va">model</span><span class="op">)</span><span class="op">$</span><span class="va">id</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">theta</span><span class="op">)</span></code></pre></div>
 <hr>
 </div>
 <div id="example-2-eirm-for-dichotomous-responses" class="section level3">
 <h3 class="hasAnchor">
 <a href="#example-2-eirm-for-dichotomous-responses" class="anchor"></a>Example 2: EIRM for dichotomous responses</h3>
 <p>The following example shows how to use item-related and person-related explanatory variables to explain dichotomous responses in the verbal aggression data set.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit">
-<span class="va">mod2a</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/eirm.html">eirm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="st">"r2 ~ -1 + situ + btype + mode + (1|id)"</span>, data <span class="op">=</span> <span class="va">VerbAgg</span><span class="op">)</span>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mod2a</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/eirm.html">eirm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="st">"r2 ~ -1 + situ + btype + mode + (1|id)"</span>, data <span class="op">=</span> <span class="va">VerbAgg</span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">mod2a</span><span class="op">)</span></pre></div>
+<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">mod2a</span><span class="op">)</span></code></pre></div>
 <pre><code>## EIRM formula: "r2 ~ -1 + situ + btype + mode + (1|id)" 
 ## 
 ## Number of persons: 316 
@@ -156,28 +157,28 @@
 ## Note: The estimated parameters above represent 'easiness'.
 ## Use difficulty = TRUE to get difficulty parameters.</code></pre>
 <p>It is possible to visualize the parameters using an item-person map using <code><a href="https://rdrr.io/r/graphics/plot.default.html">plot(mod2a)</a></code>, which returns the following plot. Note that this plot is a modified version of the <code>plotPImap</code> function from the <code>eRm</code> package).</p>
-<div class="sourceCode" id="cb8"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">mod2a</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">mod2a</span><span class="op">)</span></code></pre></div>
 <p>Aesthetic elements such as axis labels and plot title can be added to the plot. For example, the following code updates the x-axis label and the main plot title (see <code><a href="../reference/plot.eirm.html">?plot.eirm</a></code> for further details).</p>
-<div class="sourceCode" id="cb9"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">mod2a</span>, difficulty <span class="op">=</span> <span class="cn">TRUE</span>, main <span class="op">=</span> <span class="st">"Verbal Aggression Example"</span>, latdim <span class="op">=</span> <span class="st">"Verbal Aggression"</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">mod2a</span>, difficulty <span class="op">=</span> <span class="cn">TRUE</span>, main <span class="op">=</span> <span class="st">"Verbal Aggression Example"</span>, latdim <span class="op">=</span> <span class="st">"Verbal Aggression"</span><span class="op">)</span></code></pre></div>
 <p>This plot wpuld show the difficulty parameters (instead of easiness), change the main title above the plot, and change the x-axis – the name for the latent trait being measured.</p>
 <p>Also, it is possible to compare nested explanatory models with each other. The following example shows the estimation of a more compact version of <code>mod2a</code> with one less variable and compares the two models (i.e., <code>mod2a</code> vs. <code>mod2b</code>).</p>
-<div class="sourceCode" id="cb10"><pre class="downlit">
-<span class="va">mod2b</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/eirm.html">eirm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="st">"r2 ~ -1 + situ + btype + (1|id)"</span>, data <span class="op">=</span> <span class="va">VerbAgg</span><span class="op">)</span>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mod2b</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/eirm.html">eirm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="st">"r2 ~ -1 + situ + btype + (1|id)"</span>, data <span class="op">=</span> <span class="va">VerbAgg</span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/r/stats/anova.html">anova</a></span><span class="op">(</span><span class="va">mod2a</span><span class="op">$</span><span class="va">model</span>, <span class="va">mod2b</span><span class="op">$</span><span class="va">model</span><span class="op">)</span></pre></div>
+<span class="fu"><a href="https://rdrr.io/r/stats/anova.html">anova</a></span><span class="op">(</span><span class="va">mod2a</span><span class="op">$</span><span class="va">model</span>, <span class="va">mod2b</span><span class="op">$</span><span class="va">model</span><span class="op">)</span></code></pre></div>
 <hr>
 </div>
 <div id="example-3-eirm-for-polytomous-responses" class="section level3">
 <h3 class="hasAnchor">
 <a href="#example-3-eirm-for-polytomous-responses" class="anchor"></a>Example 3: EIRM for polytomous responses</h3>
 <p>It is also possible to use the <code>eirm</code> function with polytomous item responses as well. Because the function only accepts dichotomous responses (i.e., binomial distribution), polytomous data must be reformatted first. To reformat the data, the <code>polyreformat</code> function can be used. The following example demonstrates how polytomous responses (no, perhaps, and yes) in the verbal aggression data set can be reformatted into a dichotomous form:</p>
-<div class="sourceCode" id="cb11"><pre class="downlit">
-<span class="va">VerbAgg2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/polyreformat.html">polyreformat</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">VerbAgg</span>, id.var <span class="op">=</span> <span class="st">"id"</span>, long.format <span class="op">=</span> <span class="cn">FALSE</span>, 
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">VerbAgg2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/polyreformat.html">polyreformat</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">VerbAgg</span>, id.var <span class="op">=</span> <span class="st">"id"</span>, long.format <span class="op">=</span> <span class="cn">FALSE</span>, 
                          var.name <span class="op">=</span> <span class="st">"item"</span>, val.name <span class="op">=</span> <span class="st">"resp"</span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">VerbAgg2</span><span class="op">)</span></pre></div>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">VerbAgg2</span><span class="op">)</span></code></pre></div>
 <pre><code>##   Anger Gender        item    resp id btype  situ mode r2 polycategory
 ## 1    20      M S1WantCurse      no  1 curse other want  N  cat_perhaps
 ## 2    11      M S1WantCurse      no  2 curse other want  N  cat_perhaps
@@ -207,13 +208,13 @@
 <p><strong>NOTE:</strong> Although <code>polyreformat</code> is capable of reshaping wide-format data into long-format and reformat the long data for the analysis with <code>eirm</code>, a safer option is to transform the data from wide to long format before using <code>polyreformat</code>. The <code>melt</code> function from the <code>reshape2</code> package can easily transform wide data to long data.</p>
 <p>Several polytomous models can be estimated using the reformatted data:</p>
 <p><strong>Model 1:</strong> It explains only the first threshold (i.e., threshold from no to perhaps) based on explanatory variables:</p>
-<div class="sourceCode" id="cb13"><pre class="downlit">
-<span class="va">mod3</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/eirm.html">eirm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="st">"polyresponse ~ -1 + situ + btype + mode + (1|id)"</span>, 
-             data <span class="op">=</span> <span class="va">VerbAgg2</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mod3</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/eirm.html">eirm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="st">"polyresponse ~ -1 + situ + btype + mode + (1|id)"</span>, 
+             data <span class="op">=</span> <span class="va">VerbAgg2</span><span class="op">)</span></code></pre></div>
 <p><strong>Model 2:</strong> It explains the first threshold (i.e., threshold from no to perhaps) and second threshold (perhaps to yes) based on explanatory variables:</p>
-<div class="sourceCode" id="cb14"><pre class="downlit">
-<span class="va">mod4</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/eirm.html">eirm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="st">"polyresponse ~ -1 + btype + situ + mode + 
-             polycategory + polycategory:btype + (1|id)"</span>, data <span class="op">=</span> <span class="va">VerbAgg2</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mod4</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/eirm.html">eirm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="st">"polyresponse ~ -1 + btype + situ + mode + 
+             polycategory + polycategory:btype + (1|id)"</span>, data <span class="op">=</span> <span class="va">VerbAgg2</span><span class="op">)</span></code></pre></div>
 </div>
   </div>
 
