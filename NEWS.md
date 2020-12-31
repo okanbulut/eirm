@@ -6,4 +6,4 @@
 
 - The package is now available on CRAN.
 - The `polyreformat` function was fixed.
-- Typos in the function descrions were removed.
+- Typos in the function descriptions were removed.
