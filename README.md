@@ -53,6 +53,13 @@ To cite ``eirm`` in your work, please use the following APA-style citation:
 
 ***
 
+### Shiny GUI for `eirm`
+
+You can use `eirmShiny()` to open the Shiny GUI for the `eirm` function:
+
+![](https://github.com/okanbulut/eirm/blob/master/eirmGIF.gif)
+
+
 ### Example 1: Rasch model
 
 The Rasch model (i.e., a fully descriptive model) can be estimated using `eirm`. The following example shows how to estimate Rasch item parameters for the verbal aggression data set (see `?VerbAgg` for further details). A preview of the `VerbAgg` data set is shown below:
