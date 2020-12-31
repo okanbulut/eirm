@@ -57,7 +57,7 @@ To cite ``eirm`` in your work, please use the following APA-style citation:
 
 You can use `eirmShiny()` to open the Shiny GUI for the `eirm` function:
 
-![](https://github.com/okanbulut/eirm/blob/master/eirmGIF.gif)
+![](man/figures/eirmGIF.gif)
 
 
 ### Example 1: Rasch model
