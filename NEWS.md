@@ -1,6 +1,7 @@
 # eirm 0.3.0
 
 - A Shiny app was added to run `eirm` with a GUI.
+- The pipe operator (`%>%`) was added to the package. 
 
 # eirm 0.2.0
 
