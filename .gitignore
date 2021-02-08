@@ -4,3 +4,6 @@
 .Ruserdata
 doc
 Meta
+.Rdata
+.httr-oauth
+.DS_Store
