@@ -7,4 +7,5 @@
 ^doc$
 ^Meta$
 ^\.github$
+^README\.md$
 
