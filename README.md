@@ -1,4 +1,4 @@
-# eirm: explanatory item response modeling <img src="man/figures/eirm_logo.png" align="right" width="120" />
+# eirm: Explanatory Item Response Modeling <img src="man/figures/eirm_logo.png" align="right" width="120" />
 
 [![R build status](https://github.com/okanbulut/eirm/workflows/R-CMD-check/badge.svg)](https://github.com/okanbulut/eirm/actions) [![CodeFactor](https://www.codefactor.io/repository/github/okanbulut/eirm/badge)](https://www.codefactor.io/repository/github/okanbulut/eirm)
 [![](https://www.r-pkg.org/badges/version/eirm?color=orange)](https://cran.r-project.org/package=eirm)
