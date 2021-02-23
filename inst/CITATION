@@ -1,0 +1,28 @@
+
+citHeader("To cite eirm in your publications, use:")
+
+citEntry(
+  entry    = "Article",
+  author   = personList(as.person("Luke Stanke"), as.person("Okan Bulut")),
+  title    = "Explanatory item response models for polytomous item responses",
+  journal  = "International Journal of Assessment Tools in Education",
+  year     = "2019",
+  volume   = "6",
+  number   = "2",
+  pages    = "259-278",
+  doi      = "10.21449/ijate.515085",
+  textVersion = paste("Stanke, L., & Bulut, O. (2019). Explanatory item response models for polytomous item responses. International Journal of Assessment Tools in Education, 6(2), 259–278. doi: 10.21449/ijate.515085")
+)
+
+
+citEntry(entry = "Manual",
+  title = "{eirm}: Explanatory item response modeling for dichotomous and polytomous item responses",
+  author = as.person("Okan Bulut"),
+  year = "2021",
+  doi = "10.5281/zenodo.4556285",
+  note = "R package version 0.3.0",
+  url = "http://CRAN.R-project.org/package=eirm",
+  textVersion = paste("Bulut, O. (2021).",
+  "eirm: Explanatory item response modeling for dichotomous and polytomous item responses",
+  "R package version 0.3.0. URL: http://CRAN.R-project.org/package=eirm.")
+)

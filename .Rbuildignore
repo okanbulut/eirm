@@ -1,3 +1,4 @@
+.gitignore
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^_pkgdown\.yml$
@@ -6,3 +7,4 @@
 ^doc$
 ^Meta$
 ^\.github$
+

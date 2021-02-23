@@ -4,6 +4,7 @@
 [![](https://www.r-pkg.org/badges/version/eirm?color=orange)](https://cran.r-project.org/package=eirm)
 [![](https://img.shields.io/badge/devel%20version-0.3-yellow.svg)](https://github.com/okanbulut/eirm)
 [![](http://cranlogs.r-pkg.org/badges/grand-total/eirm?color=blue)](https://cran.r-project.org/package=eirm)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4556285.svg)](https://doi.org/10.5281/zenodo.4556285)
 [![Rbadge](https://img.shields.io/badge/Build%20with-♥%20and%20R-red)](https://github.com/okanbulut/eirm)
 
 ### Installing `eirm`
