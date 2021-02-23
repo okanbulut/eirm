@@ -6,6 +6,11 @@
 ^pkgdown$
 ^doc$
 ^Meta$
+png$
+gif$
+aux$
+log$
+out$
 ^\.github$
 ^README\.md$
 
