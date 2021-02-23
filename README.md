@@ -51,7 +51,8 @@ devtools::install_github(repo = "okanbulut/eirm")
 
 To cite ``eirm`` in your work, please use the following APA-style citation:
 
-> Bulut, O. (2020). *eirm: Explanatory item response modeling for dichotomous and polytomous item responses* [Computer software]. Available from <http://CRAN.R-project.org/package=eirm>. 
+> Bulut, O. (2020). *eirm: Explanatory item response modeling for dichotomous and polytomous item responses*, R package version 0.3.0. doi: 10.5281/zenodo.4556285 Available from <https://CRAN.R-project.org/package=eirm>.
+
 
 ***
 
