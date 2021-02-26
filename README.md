@@ -7,6 +7,7 @@
 status](https://github.com/okanbulut/eirm/workflows/R-CMD-check/badge.svg)](https://github.com/okanbulut/eirm/actions)
 [![CodeFactor](https://www.codefactor.io/repository/github/okanbulut/eirm/badge)](https://www.codefactor.io/repository/github/okanbulut/eirm)
 [![](https://www.r-pkg.org/badges/version/eirm?color=orange)](https://cran.r-project.org/package=eirm)
+[![](https://www.r-pkg.org/badges/version-last-release/eirm)](https://cran.r-project.org/package=eirm)
 [![](https://img.shields.io/badge/devel%20version-0.4-yellow.svg)](https://github.com/okanbulut/eirm)
 [![](http://cranlogs.r-pkg.org/badges/grand-total/eirm?color=blue)](https://cran.r-project.org/package=eirm)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4556285.svg)](https://doi.org/10.5281/zenodo.4556285)
