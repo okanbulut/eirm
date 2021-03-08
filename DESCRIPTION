@@ -1,7 +1,7 @@
 Package: eirm
 Type: Package
 Title: Explanatory Item Response Modeling for Dichotomous and Polytomous Items
-Version: 0.3
+Version: 0.4.0
 Authors@R:
     person("Okan", "Bulut", email = "bulut@ualberta.ca", role = c("aut", "cre"),
     comment = c(ORCID="0000-0001-5853-1267"))
