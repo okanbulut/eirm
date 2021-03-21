@@ -15,7 +15,7 @@ status](https://github.com/okanbulut/eirm/workflows/R-CMD-check/badge.svg)](http
 
 ### Installing `eirm`
 
-The stable version on CRAN can be installed by:
+The latest version on CRAN can be installed by:
 
 ``` r
 install.packages("eirm")
@@ -76,7 +76,7 @@ You can use `eirmShiny()` to open the Shiny GUI for the `eirm` function:
 
 ### Example 1: Rasch model
 
-The Rasch model (i.e., a fully descriptive model) can be estimated using
+The Rasch model (i.e., a fully-descriptive model) can be estimated using
 `eirm`. The following example shows how to estimate Rasch item
 parameters for the verbal aggression data set (see `?VerbAgg` for
 further details). A preview of the `VerbAgg` data set is shown below:
@@ -97,13 +97,13 @@ head(VerbAgg)
 To estimate the Rasch model, a regression-like formula must be defined:
 `formula = "r2 ~ -1 + item + (1|id)"`. In the formula,
 
--   `r2` is the variable for dichotomous item responses
+-   `r2` is the variable for dichotomous item responses.
 -   `-1` removes the intercept from the model and yields parameter
-    estimates for all items in the data set. With `1` (instead of `-1`),
-    an intercept representing the parameter of the first item and
-    relative parameters for the remaining items (i.e., distance from the
-    parameter of the first item) would be estimated.
--   `item`is the variable representing item IDs in the data set
+    estimates for **all** items in the data set. With `1` (instead of
+    `-1`), an intercept representing the parameter of the first item and
+    relative parameters for the remaining items (i.e., distances from
+    the parameter of the first item) would be estimated.
+-   `item`is the variable representing item IDs in the data set.
 -   `(1|id)` refers to the random effects for persons represented by the
     `id` column in the data set.
 
@@ -202,9 +202,9 @@ Note: The estimated parameters above represent 'difficulty'.
 The `mod1` object is essentially a `glmerMod`-class object from the
 `lme4` package ([Bates, Maechler, Bolker, & Walker,
 2015](https://www.jstatsoft.org/article/view/v067i01)). All `glmerMod`
-results for the estimated model can seen with `mod1$model`. For example,
-estimated random effects for persons (i.e., theta estimates) can be
-obtained using:
+results for the estimated model can be seen with `mod1$model`. For
+example, estimated random effects for persons (i.e., theta estimates)
+can be obtained using:
 
 ``` r
 ranef(mod1$model)$id
