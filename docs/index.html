@@ -90,7 +90,7 @@
 <h3 class="hasAnchor">
 <a href="#installing-eirm" class="anchor"></a>Installing <code>eirm</code>
 </h3>
-<p>The stable version on CRAN can be installed by:</p>
+<p>The latest version on CRAN can be installed by:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"eirm"</span><span class="op">)</span></code></pre></div>
 <p>The development version can be installed by:</p>
@@ -135,7 +135,7 @@
 <div id="example-1-rasch-model" class="section level3">
 <h3 class="hasAnchor">
 <a href="#example-1-rasch-model" class="anchor"></a>Example 1: Rasch model</h3>
-<p>The Rasch model (i.e., a fully descriptive model) can be estimated using <code>eirm</code>. The following example shows how to estimate Rasch item parameters for the verbal aggression data set (see <code>?VerbAgg</code> for further details). A preview of the <code>VerbAgg</code> data set is shown below:</p>
+<p>The Rasch model (i.e., a fully-descriptive model) can be estimated using <code>eirm</code>. The following example shows how to estimate Rasch item parameters for the verbal aggression data set (see <code>?VerbAgg</code> for further details). A preview of the <code>VerbAgg</code> data set is shown below:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"VerbAgg"</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(VerbAgg)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -149,11 +149,11 @@
 <p>To estimate the Rasch model, a regression-like formula must be defined: <code>formula = "r2 ~ -1 + item + (1|id)"</code>. In the formula,</p>
 <ul>
 <li>
-<code>r2</code> is the variable for dichotomous item responses</li>
+<code>r2</code> is the variable for dichotomous item responses.</li>
 <li>
-<code>-1</code> removes the intercept from the model and yields parameter estimates for all items in the data set. With <code>1</code> (instead of <code>-1</code>), an intercept representing the parameter of the first item and relative parameters for the remaining items (i.e., distance from the parameter of the first item) would be estimated.</li>
+<code>-1</code> removes the intercept from the model and yields parameter estimates for <strong>all</strong> items in the data set. With <code>1</code> (instead of <code>-1</code>), an intercept representing the parameter of the first item and relative parameters for the remaining items (i.e., distances from the parameter of the first item) would be estimated.</li>
 <li>
-<code>item</code>is the variable representing item IDs in the data set</li>
+<code>item</code>is the variable representing item IDs in the data set.</li>
 <li>
 <code>(1|id)</code> refers to the random effects for persons represented by the <code>id</code> column in the data set.</li>
 </ul>
@@ -237,7 +237,7 @@
 <span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>itemS4DoShout       <span class="fl">1.9995</span> <span class="fl">0.184</span> <span class="sc">-</span><span class="fl">10.8750</span> <span class="fl">1.52e-27</span></span>
 <span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>Note<span class="sc">:</span> The estimated parameters above represent <span class="st">'difficulty'</span>.</span></code></pre></div>
-<p>The <code>mod1</code> object is essentially a <code>glmerMod</code>-class object from the <code>lme4</code> package (<a href="https://www.jstatsoft.org/article/view/v067i01">Bates, Maechler, Bolker, &amp; Walker, 2015</a>). All <code>glmerMod</code> results for the estimated model can seen with <code>mod1$model</code>. For example, estimated random effects for persons (i.e., theta estimates) can be obtained using:</p>
+<p>The <code>mod1</code> object is essentially a <code>glmerMod</code>-class object from the <code>lme4</code> package (<a href="https://www.jstatsoft.org/article/view/v067i01">Bates, Maechler, Bolker, &amp; Walker, 2015</a>). All <code>glmerMod</code> results for the estimated model can be seen with <code>mod1$model</code>. For example, estimated random effects for persons (i.e., theta estimates) can be obtained using:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ranef</span><span class="op">(</span><span class="va">mod1</span><span class="op">$</span><span class="va">model</span><span class="op">)</span><span class="op">$</span><span class="va">id</span></code></pre></div>
 <hr>

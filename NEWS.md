@@ -1,3 +1,7 @@
+# eirm 0.4
+
+- A simulation function (simEIRM) was added to simulate different EIRM models.
+
 # eirm 0.3
 
 - A Shiny app was added to run `eirm` with a GUI.

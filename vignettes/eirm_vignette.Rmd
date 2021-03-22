@@ -5,7 +5,7 @@ description: >
   How does eirm can be used for estimating dichotomous and polytomous 
   explanatory IRT models in R?
 vignette: >
-  %\VignetteIndexEntry{Using eirm}
+  %\VignetteIndexEntry{Using eirm for estimating explanatory IRT models}
   %\VignetteEngine{knitr::rmarkdown}
   \usepackage[utf8]{inputenc}
 ---
