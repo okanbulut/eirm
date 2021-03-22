@@ -40,10 +40,10 @@
 
 
 <meta property="og:title" content="Simulate data for explanatory item response modeling — simEIRM" />
-<meta property="og:description" content="This function simulates a response data set based on item-level and person-level predictors.
-Based on the item-level (itemtype: 0 or 1) and person-level (group: 0 or 1) variables, binary responses are
-generated for a user-defined number of items and persons. This simple data set can be used for
-testing different EIRM model with item, person, and item-by-person predictors." />
+<meta property="og:description" content="This function simulates a dichotomous response data set based on item-level and person-level predictors.
+There are two predictors: an item-level (itemtype: 0 or 1) and a person-level (group: 0 or 1).
+Dichotomous responses are generated for user-defined numbers of items and persons. This simple data set can
+be used for simulating and testing different EIRM model with item, person, and item-by-person predictors." />
 
 
 
@@ -132,10 +132,10 @@ testing different EIRM model with item, person, and item-by-person predictors." 
     </div>
 
     <div class="ref-description">
-    <p>This function simulates a response data set based on item-level and person-level predictors.
-Based on the item-level (itemtype: 0 or 1) and person-level (group: 0 or 1) variables, binary responses are
-generated for a user-defined number of items and persons. This simple data set can be used for
-testing different EIRM model with item, person, and item-by-person predictors.</p>
+    <p>This function simulates a dichotomous response data set based on item-level and person-level predictors.
+There are two predictors: an item-level (itemtype: 0 or 1) and a person-level (group: 0 or 1).
+Dichotomous responses are generated for user-defined numbers of items and persons. This simple data set can
+be used for simulating and testing different EIRM model with item, person, and item-by-person predictors.</p>
     </div>
 
     <pre class="usage"><span class='fu'>simEIRM</span><span class='op'>(</span>
@@ -145,8 +145,8 @@ testing different EIRM model with item, person, and item-by-person predictors.</
   theta.sd <span class='op'>=</span> <span class='fl'>1</span>,
   difficulty.mean <span class='op'>=</span> <span class='fl'>0</span>,
   difficulty.sd <span class='op'>=</span> <span class='fl'>0.8</span>,
-  person.group.size <span class='op'>=</span> <span class='cn'>NULL</span>,
-  item.group.size <span class='op'>=</span> <span class='cn'>NULL</span>,
+  group.size <span class='op'>=</span> <span class='cn'>NULL</span>,
+  itemtype.size <span class='op'>=</span> <span class='cn'>NULL</span>,
   group.effect <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>0</span><span class='op'>)</span>,
   itemtype.effect <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>0</span><span class='op'>)</span>,
   dif <span class='op'>=</span> <span class='fl'>0</span>,
@@ -181,13 +181,13 @@ testing different EIRM model with item, person, and item-by-person predictors.</
       <td><p>Standard deviation of a normal distribution to be used for generating item difficulty values (default is 0.8).</p></td>
     </tr>
     <tr>
-      <th>person.group.size</th>
-      <td><p>The numbers of persons in person groups (i.e., Group 0 vs. Group 1). The sum of these numbers
+      <th>group.size</th>
+      <td><p>The number of persons for each group (i.e., Group 0 vs. Group 1). The sum of these numbers
 should be equal to nperson. If NULL, the first half of the persons becomes Group 0 and the other half becomes Group 1.</p></td>
     </tr>
     <tr>
-      <th>item.group.size</th>
-      <td><p>The numbers of items in item groups (i.e., itemtype 0 vs. itemtype 1). The sum of these numbers
+      <th>itemtype.size</th>
+      <td><p>The number of items for each itemtype (i.e., itemtype 0 vs. itemtype 1). The sum of these numbers
 should be equal to nitem. If NULL, the first half of the items becomes itemtype 0 and the other half becomes itemtype 1.</p></td>
     </tr>
     <tr>
@@ -222,7 +222,7 @@ seed would ensure reproducibility of the results.</p></td>
 <li><p>itemtype: Item groups (either 0 or 1).</p></li>
 <li><p>itemtype.effect: The magnitude of itemtype effect used for generating responses.</p></li>
 <li><p>dif: The magnitude of DIF used for generating responses.</p></li>
-<li><p>response: Binary responses generated based on theta and difficulty.</p></li>
+<li><p>response: Dichotomous responses generated based on theta and difficulty.</p></li>
 </ul>
 
 
@@ -230,9 +230,9 @@ seed would ensure reproducibility of the results.</p></td>
     <pre class="examples"><div class='input'><span class='co'># A Linear Logistic Test Model (LLTM) with item group effects with 10 items and 1000 persons</span>
 <span class='co'># First 4 items will be itemtype = 0 and the rest will be itemtype = 1</span>
 <span class='co'># Items with itemtype = 1 will be 0.3 logit more difficult.</span>
-<span class='va'>data.lltm</span> <span class='op'>&lt;-</span> <span class='fu'>simEIRM</span><span class='op'>(</span>nitem <span class='op'>=</span> <span class='fl'>10</span>, nperson <span class='op'>=</span> <span class='fl'>1000</span>, item.group.size <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>4</span>, <span class='fl'>6</span><span class='op'>)</span>,
+<span class='va'>data.lltm</span> <span class='op'>&lt;-</span> <span class='fu'>simEIRM</span><span class='op'>(</span>nitem <span class='op'>=</span> <span class='fl'>10</span>, nperson <span class='op'>=</span> <span class='fl'>1000</span>, itemtype.size <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>4</span>, <span class='fl'>6</span><span class='op'>)</span>,
 itemtype.effect <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>0.3</span><span class='op'>)</span><span class='op'>)</span>
-
+</div><div class='output co'>#&gt; <span class='error'>Error in simEIRM(nitem = 10, nperson = 1000, itemtype.size = c(4, 6),     itemtype.effect = c(0, 0.3)): unused argument (itemtype.size = c(4, 6))</span></div><div class='input'>
 <span class='co'># A latent regression model (LRM) with person group effects with 10 items and 1000 persons</span>
 <span class='co'># Half of the persons will be group = 0 and the other half will be group = 1 (Default)</span>
 <span class='co'># The average ability for persons with group = 1 will be 0.5 logit higher.</span>
@@ -241,9 +241,9 @@ itemtype.effect <span class='op'>=</span> <span class='fu'><a href='https://rdrr
 <span class='co'># A differential item functioning (DIF) scenario with 15 items and 1000 persons</span>
 <span class='co'># The last five items will have DIF with 0.3 logit. Group 0 will have 700 persons (reference group)</span>
 <span class='co'># and Group 1 will have 300 persons (focal group)</span>
-<span class='va'>data.dif</span> <span class='op'>&lt;-</span> <span class='fu'>simEIRM</span><span class='op'>(</span>nitem <span class='op'>=</span> <span class='fl'>15</span>, nperson <span class='op'>=</span> <span class='fl'>1000</span>, person.group.size <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>700</span>, <span class='fl'>300</span><span class='op'>)</span>,
+<span class='va'>data.dif</span> <span class='op'>&lt;-</span> <span class='fu'>simEIRM</span><span class='op'>(</span>nitem <span class='op'>=</span> <span class='fl'>15</span>, nperson <span class='op'>=</span> <span class='fl'>1000</span>, group.size <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>700</span>, <span class='fl'>300</span><span class='op'>)</span>,
 dif <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>10</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>0.3</span>, <span class='fl'>5</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
-</div></pre>
+</div><div class='output co'>#&gt; <span class='error'>Error in simEIRM(nitem = 15, nperson = 1000, group.size = c(700, 300),     dif = c(rep(0, 10), rep(0.3, 5))): unused argument (group.size = c(700, 300))</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

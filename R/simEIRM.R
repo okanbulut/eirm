@@ -10,7 +10,7 @@
 #' @param theta.mean Mean of a normal distribution to be used for generating theta values (default is 0).
 #' @param theta.sd Standard deviation of a normal distribution to be used for generating theta values (default is 1).
 #' @param difficulty.mean Mean of a normal distribution to be used for generating item difficulty values (default is 0).
-#' @param difficulty.sd Standard deviation of a normal distribution to be used for generating item difficulty values (default is 0.8).
+#' @param difficulty.sd Standard deviation of a normal distribution to be used for generating item difficulty values (default is 1).
 #' @param group.size The number of persons for each group (i.e., Group 0 vs. Group 1). The sum of these numbers
 #' should be equal to nperson. If NULL, the first half of the persons becomes Group 0 and the other half becomes Group 1.
 #' @param itemtype.size The number of items for each itemtype (i.e., itemtype 0 vs. itemtype 1). The sum of these numbers
@@ -55,7 +55,7 @@
 #' @export
 
 simEIRM <- function(nitem, nperson, theta.mean = 0, theta.sd = 1,
-                    difficulty.mean = 0, difficulty.sd = 0.8,
+                    difficulty.mean = 0, difficulty.sd = 1,
                     group.size = NULL, itemtype.size = NULL,
                     group.effect = c(0, 0), itemtype.effect = c(0, 0),
                     dif = 0, seed = NULL) {
