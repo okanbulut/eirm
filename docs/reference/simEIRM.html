@@ -144,7 +144,7 @@ be used for simulating and testing different EIRM model with item, person, and i
   theta.mean <span class='op'>=</span> <span class='fl'>0</span>,
   theta.sd <span class='op'>=</span> <span class='fl'>1</span>,
   difficulty.mean <span class='op'>=</span> <span class='fl'>0</span>,
-  difficulty.sd <span class='op'>=</span> <span class='fl'>0.8</span>,
+  difficulty.sd <span class='op'>=</span> <span class='fl'>1</span>,
   group.size <span class='op'>=</span> <span class='cn'>NULL</span>,
   itemtype.size <span class='op'>=</span> <span class='cn'>NULL</span>,
   group.effect <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>0</span><span class='op'>)</span>,
@@ -178,7 +178,7 @@ be used for simulating and testing different EIRM model with item, person, and i
     </tr>
     <tr>
       <th>difficulty.sd</th>
-      <td><p>Standard deviation of a normal distribution to be used for generating item difficulty values (default is 0.8).</p></td>
+      <td><p>Standard deviation of a normal distribution to be used for generating item difficulty values (default is 1).</p></td>
     </tr>
     <tr>
       <th>group.size</th>
@@ -232,9 +232,9 @@ seed would ensure reproducibility of the results.</p></td>
 <span class='co'># Items with itemtype = 1 will be 0.3 logit more difficult.</span>
 <span class='va'>data.lltm</span> <span class='op'>&lt;-</span> <span class='fu'>simEIRM</span><span class='op'>(</span>nitem <span class='op'>=</span> <span class='fl'>10</span>, nperson <span class='op'>=</span> <span class='fl'>1000</span>, itemtype.size <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>4</span>, <span class='fl'>6</span><span class='op'>)</span>,
 itemtype.effect <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>0.3</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in simEIRM(nitem = 10, nperson = 1000, itemtype.size = c(4, 6),     itemtype.effect = c(0, 0.3)): unused argument (itemtype.size = c(4, 6))</span></div><div class='input'>
+
 <span class='co'># A latent regression model (LRM) with person group effects with 10 items and 1000 persons</span>
-<span class='co'># Half of the persons will be group = 0 and the other half will be group = 1 (Default)</span>
+<span class='co'># The first half of the persons will be group = 0 and the other half will be group = 1 (Default)</span>
 <span class='co'># The average ability for persons with group = 1 will be 0.5 logit higher.</span>
 <span class='va'>data.lrm</span> <span class='op'>&lt;-</span> <span class='fu'>simEIRM</span><span class='op'>(</span>nitem <span class='op'>=</span> <span class='fl'>10</span>, nperson <span class='op'>=</span> <span class='fl'>1000</span>, group.effect <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>0.5</span><span class='op'>)</span><span class='op'>)</span>
 
@@ -243,7 +243,7 @@ itemtype.effect <span class='op'>=</span> <span class='fu'><a href='https://rdrr
 <span class='co'># and Group 1 will have 300 persons (focal group)</span>
 <span class='va'>data.dif</span> <span class='op'>&lt;-</span> <span class='fu'>simEIRM</span><span class='op'>(</span>nitem <span class='op'>=</span> <span class='fl'>15</span>, nperson <span class='op'>=</span> <span class='fl'>1000</span>, group.size <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>700</span>, <span class='fl'>300</span><span class='op'>)</span>,
 dif <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>10</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>0.3</span>, <span class='fl'>5</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in simEIRM(nitem = 15, nperson = 1000, group.size = c(700, 300),     dif = c(rep(0, 10), rep(0.3, 5))): unused argument (group.size = c(700, 300))</span></div></pre>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

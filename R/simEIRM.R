@@ -43,7 +43,7 @@
 #' itemtype.effect = c(0, 0.3))
 #'
 #' # A latent regression model (LRM) with person group effects with 10 items and 1000 persons
-#' # Half of the persons will be group = 0 and the other half will be group = 1 (Default)
+#' # The first half of the persons will be group = 0 and the other half will be group = 1 (Default)
 #' # The average ability for persons with group = 1 will be 0.5 logit higher.
 #' data.lrm <- simEIRM(nitem = 10, nperson = 1000, group.effect = c(0, 0.5))
 #'
