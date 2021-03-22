@@ -11,8 +11,8 @@ simEIRM(
   theta.sd = 1,
   difficulty.mean = 0,
   difficulty.sd = 0.8,
-  person.group.size = NULL,
-  item.group.size = NULL,
+  group.size = NULL,
+  itemtype.size = NULL,
   group.effect = c(0, 0),
   itemtype.effect = c(0, 0),
   dif = 0,
@@ -32,10 +32,10 @@ simEIRM(
 
 \item{difficulty.sd}{Standard deviation of a normal distribution to be used for generating item difficulty values (default is 0.8).}
 
-\item{person.group.size}{The numbers of persons in person groups (i.e., Group 0 vs. Group 1). The sum of these numbers
+\item{group.size}{The number of persons for each group (i.e., Group 0 vs. Group 1). The sum of these numbers
 should be equal to nperson. If NULL, the first half of the persons becomes Group 0 and the other half becomes Group 1.}
 
-\item{item.group.size}{The numbers of items in item groups (i.e., itemtype 0 vs. itemtype 1). The sum of these numbers
+\item{itemtype.size}{The number of items for each itemtype (i.e., itemtype 0 vs. itemtype 1). The sum of these numbers
 should be equal to nitem. If NULL, the first half of the items becomes itemtype 0 and the other half becomes itemtype 1.}
 
 \item{group.effect}{The magnitudes of person group effect  (in logits) for Group 0 and Group 1, respectively.}
@@ -60,20 +60,20 @@ A long-format response data set is returned, with the following components:
 \item itemtype: Item groups (either 0 or 1).
 \item itemtype.effect: The magnitude of itemtype effect used for generating responses.
 \item dif: The magnitude of DIF used for generating responses.
-\item response: Binary responses generated based on theta and difficulty.
+\item response: Dichotomous responses generated based on theta and difficulty.
 }
 }
 \description{
-This function simulates a response data set based on item-level and person-level predictors.
-Based on the item-level (itemtype: 0 or 1) and person-level (group: 0 or 1) variables, binary responses are
-generated for a user-defined number of items and persons. This simple data set can be used for
-testing different EIRM model with item, person, and item-by-person predictors.
+This function simulates a dichotomous response data set based on item-level and person-level predictors.
+There are two predictors: an item-level (itemtype: 0 or 1) and a person-level (group: 0 or 1).
+Dichotomous responses are generated for user-defined numbers of items and persons. This simple data set can
+be used for simulating and testing different EIRM model with item, person, and item-by-person predictors.
 }
 \examples{
 # A Linear Logistic Test Model (LLTM) with item group effects with 10 items and 1000 persons
 # First 4 items will be itemtype = 0 and the rest will be itemtype = 1
 # Items with itemtype = 1 will be 0.3 logit more difficult.
-data.lltm <- simEIRM(nitem = 10, nperson = 1000, item.group.size = c(4, 6),
+data.lltm <- simEIRM(nitem = 10, nperson = 1000, itemtype.size = c(4, 6),
 itemtype.effect = c(0, 0.3))
 
 # A latent regression model (LRM) with person group effects with 10 items and 1000 persons
@@ -84,6 +84,6 @@ data.lrm <- simEIRM(nitem = 10, nperson = 1000, group.effect = c(0, 0.5))
 # A differential item functioning (DIF) scenario with 15 items and 1000 persons
 # The last five items will have DIF with 0.3 logit. Group 0 will have 700 persons (reference group)
 # and Group 1 will have 300 persons (focal group)
-data.dif <- simEIRM(nitem = 15, nperson = 1000, person.group.size = c(700, 300),
+data.dif <- simEIRM(nitem = 15, nperson = 1000, group.size = c(700, 300),
 dif = c(rep(0, 10), rep(0.3, 5)))
 }

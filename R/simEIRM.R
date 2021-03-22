@@ -1,19 +1,19 @@
 #' @title Simulate data for explanatory item response modeling
 #' @importFrom stats rbinom rnorm
 #' @description
-#' This function simulates a response data set based on item-level and person-level predictors.
-#' Based on the item-level (itemtype: 0 or 1) and person-level (group: 0 or 1) variables, binary responses are
-#' generated for a user-defined number of items and persons. This simple data set can be used for
-#' testing different EIRM model with item, person, and item-by-person predictors.
+#' This function simulates a dichotomous response data set based on item-level and person-level predictors.
+#' There are two predictors: an item-level (itemtype: 0 or 1) and a person-level (group: 0 or 1).
+#' Dichotomous responses are generated for user-defined numbers of items and persons. This simple data set can
+#' be used for simulating and testing different EIRM model with item, person, and item-by-person predictors.
 #' @param nitem Number of items to be simulated.
 #' @param nperson Number of persons to be simulated.
 #' @param theta.mean Mean of a normal distribution to be used for generating theta values (default is 0).
 #' @param theta.sd Standard deviation of a normal distribution to be used for generating theta values (default is 1).
 #' @param difficulty.mean Mean of a normal distribution to be used for generating item difficulty values (default is 0).
 #' @param difficulty.sd Standard deviation of a normal distribution to be used for generating item difficulty values (default is 0.8).
-#' @param person.group.size The numbers of persons in person groups (i.e., Group 0 vs. Group 1). The sum of these numbers
+#' @param group.size The number of persons for each group (i.e., Group 0 vs. Group 1). The sum of these numbers
 #' should be equal to nperson. If NULL, the first half of the persons becomes Group 0 and the other half becomes Group 1.
-#' @param item.group.size The numbers of items in item groups (i.e., itemtype 0 vs. itemtype 1). The sum of these numbers
+#' @param itemtype.size The number of items for each itemtype (i.e., itemtype 0 vs. itemtype 1). The sum of these numbers
 #' should be equal to nitem. If NULL, the first half of the items becomes itemtype 0 and the other half becomes itemtype 1.
 #' @param group.effect The magnitudes of person group effect  (in logits) for Group 0 and Group 1, respectively.
 #' @param itemtype.effect The magnitudes of item type effect (in logits) for itemtype 0 and item type 1, respectively.
@@ -32,14 +32,14 @@
 #' \item itemtype: Item groups (either 0 or 1).
 #' \item itemtype.effect: The magnitude of itemtype effect used for generating responses.
 #' \item dif: The magnitude of DIF used for generating responses.
-#' \item response: Binary responses generated based on theta and difficulty.
+#' \item response: Dichotomous responses generated based on theta and difficulty.
 #' }
 #'
 #' @examples
 #' # A Linear Logistic Test Model (LLTM) with item group effects with 10 items and 1000 persons
 #' # First 4 items will be itemtype = 0 and the rest will be itemtype = 1
 #' # Items with itemtype = 1 will be 0.3 logit more difficult.
-#' data.lltm <- simEIRM(nitem = 10, nperson = 1000, item.group.size = c(4, 6),
+#' data.lltm <- simEIRM(nitem = 10, nperson = 1000, itemtype.size = c(4, 6),
 #' itemtype.effect = c(0, 0.3))
 #'
 #' # A latent regression model (LRM) with person group effects with 10 items and 1000 persons
@@ -50,12 +50,13 @@
 #' # A differential item functioning (DIF) scenario with 15 items and 1000 persons
 #' # The last five items will have DIF with 0.3 logit. Group 0 will have 700 persons (reference group)
 #' # and Group 1 will have 300 persons (focal group)
-#' data.dif <- simEIRM(nitem = 15, nperson = 1000, person.group.size = c(700, 300),
+#' data.dif <- simEIRM(nitem = 15, nperson = 1000, group.size = c(700, 300),
 #' dif = c(rep(0, 10), rep(0.3, 5)))
 #' @export
 
-simEIRM <- function(nitem, nperson, theta.mean = 0, theta.sd = 1, difficulty.mean = 0,
-                    difficulty.sd = 0.8, person.group.size = NULL, item.group.size = NULL,
+simEIRM <- function(nitem, nperson, theta.mean = 0, theta.sd = 1,
+                    difficulty.mean = 0, difficulty.sd = 0.8,
+                    group.size = NULL, itemtype.size = NULL,
                     group.effect = c(0, 0), itemtype.effect = c(0, 0),
                     dif = 0, seed = NULL) {
 
@@ -71,21 +72,21 @@ simEIRM <- function(nitem, nperson, theta.mean = 0, theta.sd = 1, difficulty.mea
   }
 
   # Define person groups
-  if(is.null(person.group.size)) {
+  if(is.null(group.size)) {
     g1 <- round(nperson/2, 0)
     g2 <- nperson - g1
   } else {
-    g1 <- person.group.size[1]
-    g2 <- person.group.size[2]
+    g1 <- group.size[1]
+    g2 <- group.size[2]
   }
 
   # Define item groups
-  if(is.null(item.group.size)) {
+  if(is.null(itemtype.size)) {
     it1 <- round(nitem/2, 0)
     it2 <- nitem - it1
   } else {
-    it1 <- item.group.size[1]
-    it2 <- item.group.size[2]
+    it1 <- itemtype.size[1]
+    it2 <- itemtype.size[2]
   }
 
   # Generate data
