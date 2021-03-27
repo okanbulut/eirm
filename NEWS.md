@@ -1,6 +1,7 @@
 # eirm 0.4
 
 - A simulation function (simEIRM) was added to simulate different EIRM models.
+- A marginal effect plot was added. 
 
 # eirm 0.3
 

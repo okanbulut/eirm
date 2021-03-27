@@ -17,7 +17,9 @@ Imports:
     shiny,
     shinydashboard, 
     shinycssloaders,
-    readxl
+    readxl,
+    ggeffects,
+    ggplot2
 Suggests: 
     knitr,
     rmarkdown
