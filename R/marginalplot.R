@@ -1,7 +1,7 @@
 #' @title Plots of Estimated Marginal Effects in Explanatory IRT Models
 #' @name marginalplot
 #' @importFrom ggeffects ggpredict get_x_title get_legend_title
-#' @importFrom ggplot2 ggplot aes geom_point position_dodge geom_errorbar scale_y_continuous labs theme_bw facet_wrap
+#' @importFrom ggplot2 ggplot aes_string geom_point position_dodge geom_errorbar scale_y_continuous labs theme_bw facet_wrap
 #' @description
 #' This function uses \code{\link[ggeffects]{ggpredict}} to calculate marginal effects for explanatory variables in
 #' an explanatory IRT model estimated with the \code{\link{eirm}} function. It returns a plot of estimated probabilities
@@ -34,10 +34,11 @@ marginalplot <- function(x, predictors, conf.int = 0.95, plot.title = NULL) {
   mod <- ggpredict(x$model, terms = predictors, ci.lvl = conf.int)
 
   if(length(predictors) == 1) {
+    # Only one variable
     p <- ggplot(mod,
-                aes(x="x", y="predicted")) +
+                aes_string(x="x", y="predicted")) +
       geom_point(position = position_dodge(width = 0.25), size = 2) +
-      geom_errorbar(aes(ymin="conf.low", ymax="conf.high"),
+      geom_errorbar(aes_string(ymin="conf.low", ymax="conf.high"),
                     width=.1, position = position_dodge(width = 0.25)) +
       scale_y_continuous(limits = c(0, 1)) +
       labs(title = plot.title,
@@ -46,11 +47,12 @@ marginalplot <- function(x, predictors, conf.int = 0.95, plot.title = NULL) {
            shape = get_legend_title(mod)) +
       theme_bw()
   } else if(length(predictors) == 2) {
+    # Two variables
     p <- ggplot(mod,
-                aes(x="x", y="predicted", group="group")) +
-      geom_point(aes(shape = "group"),
+                aes_string(x="x", y="predicted", group="group")) +
+      geom_point(aes_string(shape = "group"),
                  position = position_dodge(width = 0.25), size = 2) +
-      geom_errorbar(aes(ymin="conf.low", ymax="conf.high"),
+      geom_errorbar(aes_string(ymin="conf.low", ymax="conf.high"),
                     width=.1, position = position_dodge(width = 0.25)) +
       scale_y_continuous(limits = c(0, 1)) +
       labs(title = plot.title,
@@ -59,11 +61,12 @@ marginalplot <- function(x, predictors, conf.int = 0.95, plot.title = NULL) {
            shape = get_legend_title(mod)) +
       theme_bw()
   } else {
+    # Three variables
     p <- ggplot(mod,
-                aes(x="x", y="predicted", group="group")) +
-      geom_point(aes(shape = "group"),
+                aes_string(x="x", y="predicted", group="group")) +
+      geom_point(aes_string(shape = "group"),
                  position = position_dodge(width = 0.25), size = 2) +
-      geom_errorbar(aes(ymin="conf.low", ymax="conf.high"),
+      geom_errorbar(aes_string(ymin="conf.low", ymax="conf.high"),
                     width=.1, position = position_dodge(width = 0.25)) +
       scale_y_continuous(limits = c(0, 1)) +
       labs(title = plot.title,
