@@ -262,6 +262,20 @@ which will show the difficulty parameters (instead of easiness), change
 the main title above the plot, and change the x-axis – the name for the
 latent trait being measured.
 
+In addition to item-person map, we can also visualize the marginal
+effects in the model using the `marginalplot` function. This plot uses
+the [ggeffects](https://strengejacke.github.io/ggeffects/index.html)
+package to calculate the marginal effects and the
+[ggplot2](https://ggplot2.tidyverse.org/) package to create a plot. The
+following code will return a marginal effect plot with the three
+explanatory variables in `mod2a`.
+
+``` r
+marginalplot(mod2a, predictors = c("situ", "btype", "mode"))
+```
+
+![](man/figures/marginalplot.png)
+
 Also, it is possible to compare nested explanatory models with each
 other. The following example shows the estimation of a more compact
 version of `mod2a` with one less variable and compares the two models
