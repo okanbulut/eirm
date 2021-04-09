@@ -99,14 +99,15 @@ simEIRM <- function(nitem, nperson, theta.mean = 0, theta.sd = 1,
     theta=c(sort(rep(rnorm(g1, mean = theta.mean, sd = theta.sd), nitem)),
             sort(rep(rnorm(g2, mean = theta.mean, sd = theta.sd), nitem))),
     # Item difficulty
-    difficulty=rep(rnorm(nitem, mean = difficulty.mean, sd = difficulty.sd), nperson),
+    difficulty=rep(c(rnorm(it1, mean = difficulty.mean, sd = difficulty.sd),
+                     rnorm(it2, mean = difficulty.mean, sd = difficulty.sd)), nperson),
     # Person groups
     group=c(rep(0, g1*nitem), rep(1, g2*nitem)),
     # Person group effect
     group.effect=c(rep(group.effect[1], g1*nitem), rep(group.effect[2], g2*nitem)),
-    # Item groups
+    # Item type
     itemtype=rep(c(rep(0, it1),rep(1, it2)), nperson),
-    # Item group effect
+    # Item type effect
     itemtype.effect=rep(c(rep(itemtype.effect[1], it1), rep(itemtype.effect[2], it2)), nperson),
     # DIF effect
     dif=rep(dif.effect, nperson)
@@ -115,7 +116,7 @@ simEIRM <- function(nitem, nperson, theta.mean = 0, theta.sd = 1,
   # Person group effect adjustment
   data$theta <- data$theta + (data$group*data$group.effect)
 
-  # Item group effect adjustment
+  # Item type effect adjustment
   data$difficulty <- data$difficulty + (data$itemtype*data$itemtype.effect)
 
   # DIF effect adjustment
@@ -123,7 +124,7 @@ simEIRM <- function(nitem, nperson, theta.mean = 0, theta.sd = 1,
 
   # Generate responses
   data$response <- rbinom(length(data$person), 1,
-                         exp(data$theta-data$difficulty)/(1+ exp(data$theta-data$difficulty)))
+                          exp(data$theta-data$difficulty)/(1+ exp(data$theta-data$difficulty)))
 
   # Turn item and person IDs into factors
   data$item <- as.factor(data$item)
