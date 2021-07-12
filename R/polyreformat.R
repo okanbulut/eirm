@@ -56,7 +56,7 @@ polyreformat <- function(data, id.var, long.format = FALSE, var.name = "item", v
   PCMMat <- PCMMat[,-1]
   dataMat2 <- dataMat[c(respColumn)]
   names(dataMat2) = val.name
-  names(PCMMat) <- paste(rep('cat',cats-1),levels(as.factor(dataMat2$resp))[2:(cats)],sep='_')
+  names(PCMMat) <- paste(rep('cat', cats-1), levels(as.factor(dataMat2[,1]))[2:(cats)], sep='_')
   rm(dataMat2)
   PCMVars <- names(PCMMat)
 

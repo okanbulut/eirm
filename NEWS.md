@@ -1,3 +1,7 @@
+# eirm 0.5
+
+- A bug in the `polyreformat` function was fixed.
+
 # eirm 0.4
 
 - A marginal effect plot was added. 
