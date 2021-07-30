@@ -62,7 +62,7 @@ To cite `eirm` in your work, please use the following APA-style
 citations:
 
 > Bulut, O. (2021). *eirm: Explanatory item response modeling for
-> dichotomous and polytomous item responses*, R package version 0.3.
+> dichotomous and polytomous item responses*, R package version 0.4.
 > doi: 10.5281/zenodo.4556285 Available from
 > <https://CRAN.R-project.org/package=eirm>.
 
