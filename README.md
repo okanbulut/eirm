@@ -68,7 +68,7 @@ citations:
 
 > Bulut, O., Gorgun, G., & Yildirim-Erbasli, S. N. (2021). Estimating 
 > explanatory extensions of dichotomous and polytomous Rasch models: 
-> The eirm package in R. Psych, 3(3), 308-321. doi:10.3390/psych3030023
+> The eirm package in R. *Psych, 3*(3), 308-321. doi:10.3390/psych3030023
 
 ------------------------------------------------------------------------
 
