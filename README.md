@@ -59,18 +59,18 @@ devtools::install_github(repo = "okanbulut/eirm")
 ### Citing `eirm`
 
 To cite `eirm` in your work, please use the following APA-style
-citations:
+citation:
 
 > Bulut, O. (2021). *eirm: Explanatory item response modeling for
 > dichotomous and polytomous item responses*, R package version 0.4.
 > doi: 10.5281/zenodo.4556285 Available from
 > <https://CRAN.R-project.org/package=eirm>.
 
-> Bulut, O., Gorgun, G., & Yildirim-Erbasli, S. N. (2021). Estimating 
-> explanatory extensions of dichotomous and polytomous Rasch models: 
-> The eirm package in R. *Psych, 3*(3), 308-321. doi:10.3390/psych3030023
+> Bulut, O., Gorgun, G., & Yildirim-Erbasli, S. N. (2021). Estimating
+> explanatory extensions of dichotomous and polytomous Rasch models: The
+> eirm package in R. *Psych, 3*(3), 308-321. <doi:10.3390/psych3030023>
 
-------------------------------------------------------------------------
+-----
 
 ### Shiny GUI for `eirm`
 
@@ -101,14 +101,14 @@ head(VerbAgg)
 To estimate the Rasch model, a regression-like formula must be defined:
 `formula = "r2 ~ -1 + item + (1|id)"`. In the formula,
 
--   `r2` is the variable for dichotomous item responses.
--   `-1` removes the intercept from the model and yields parameter
+  - `r2` is the variable for dichotomous item responses.
+  - `-1` removes the intercept from the model and yields parameter
     estimates for **all** items in the data set. With `1` (instead of
     `-1`), an intercept representing the parameter of the first item and
     relative parameters for the remaining items (i.e., distances from
     the parameter of the first item) would be estimated.
--   `item`is the variable representing item IDs in the data set.
--   `(1|id)` refers to the random effects for persons represented by the
+  - `item`is the variable representing item IDs in the data set.
+  - `(1|id)` refers to the random effects for persons represented by the
     `id` column in the data set.
 
 The output for the Rasch model is shown below:
@@ -204,17 +204,17 @@ Note: The estimated parameters above represent 'difficulty'.
 ```
 
 The `mod1` object is essentially a `glmerMod`-class object from the
-`lme4` package ([Bates, Maechler, Bolker, & Walker,
-2015](https://www.jstatsoft.org/article/view/v067i01)). All `glmerMod`
-results for the estimated model can be seen with `mod1$model`. For
-example, estimated random effects for persons (i.e., theta estimates)
-can be obtained using:
+`lme4` package ([Bates, Maechler, Bolker, &
+Walker, 2015](https://www.jstatsoft.org/article/view/v067i01)). All
+`glmerMod` results for the estimated model can be seen with
+`mod1$model`. For example, estimated random effects for persons (i.e.,
+theta estimates) can be obtained using:
 
 ``` r
 ranef(mod1$model)$id
 ```
 
-------------------------------------------------------------------------
+-----
 
 ### Example 2: EIRM for dichotomous responses
 
@@ -249,8 +249,8 @@ Note: The estimated parameters above represent 'easiness'. Use difficulty = TRUE
 It is possible to visualize the parameters using an item-person map
 using `plot(mod2a)`, which returns the following plot. Note that this
 plot is a modified version of the `plotPImap` function from the `eRm`
-package ([Mair, Hatzinger, Maier, Rusch, & Debelak,
-2020](https://cran.r-project.org/web/packages/eRm/index.html)).
+package ([Mair, Hatzinger, Maier, Rusch, &
+Debelak, 2020](https://cran.r-project.org/web/packages/eRm/index.html)).
 
 ![](man/figures/item-person-map.png)
 
@@ -301,7 +301,7 @@ mod2a$model  6 8250 8292  -4119     8238   142      1     <2e-16 ***
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 ```
 
-------------------------------------------------------------------------
+-----
 
 ### Example 3: EIRM for polytomous responses
 
@@ -334,20 +334,20 @@ categories - 1) based on the following rules (see [Stanke and Bulut
 (2019)](https://dergipark.org.tr/en/download/article-file/716984) for
 further details on this parameterization):
 
--   If `polycategory` = “cat\_perhaps” and `resp` = “no”, then
+  - If `polycategory` = “cat\_perhaps” and `resp` = “no”, then
     `polyresponse` = 0
--   If `polycategory` = “cat\_perhaps” and `resp` = “perhaps”, then
+  - If `polycategory` = “cat\_perhaps” and `resp` = “perhaps”, then
     `polyresponse` = 1
--   If `polycategory` = “cat\_perhaps” and `resp` = “yes”, then
+  - If `polycategory` = “cat\_perhaps” and `resp` = “yes”, then
     `polyresponse` = NA
 
 and
 
--   If `polycategory` = “cat\_yes” and `resp` = “no”, then
+  - If `polycategory` = “cat\_yes” and `resp` = “no”, then
     `polyresponse` = NA
--   If `polycategory` = “cat\_yes” and `resp` = “perhaps”, then
+  - If `polycategory` = “cat\_yes” and `resp` = “perhaps”, then
     `polyresponse` = 0
--   If `polycategory` = “cat\_yes” and `resp` = “yes”, then
+  - If `polycategory` = “cat\_yes” and `resp` = “yes”, then
     `polyresponse` = 1
 
 **NOTE:** Although `polyreformat` is capable of reshaping wide-format
