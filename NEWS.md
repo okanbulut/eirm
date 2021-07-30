@@ -1,6 +1,7 @@
 # eirm 0.5
 
 - A bug in the `polyreformat` function was fixed.
+- A new citation for eirm was included.
 
 # eirm 0.4
 
