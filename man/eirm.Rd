@@ -7,8 +7,13 @@
 eirm(
   formula,
   data,
+  engine = "lme4",
   na.action = "na.omit",
   weights = NULL,
+  mustart = NULL,
+  etastart = NULL,
+  cov.prior = "wishart",
+  fixef.prior = NULL,
   control = glmerControl(optimizer = "optimx", calc.derivs = FALSE, optCtrl =
     list(method = "nlminb", starttests = FALSE, kkt = FALSE))
 )
@@ -24,9 +29,19 @@ each person (i.e., nested data). The data should involve a variable that represe
 item responses, a variable that represents persons, and additional predictors to be
 used for 'explaining' item responses.}
 
+\item{engine}{Estimation engine with the options of either "lme4" (default) or "blme".}
+
 \item{na.action}{How missing data should be handled (default: "na.omit").}
 
 \item{weights}{Weights to be used in the estimation.}
+
+\item{mustart, etastart}{Model specification arguments for glmer. See \code{\link[lme4]{glmer}} for details.}
+
+\item{cov.prior}{A BLME prior or list of priors with the options of "wishart" (default), "invwishart",
+"gamma", "invgamma", or NULL to impose a prior over the covariance of the random effects.}
+
+\item{fixef.prior}{A BLME prior of family "normal", "t", "horseshoe", or NULL (default) to impose a prior over
+the fixed effects.}
 
 \item{control}{Control settings for the glmer function in lme4. Note that the optimx
 package is used by default to speed up the estimation. For higher accuracy in the
@@ -42,7 +57,7 @@ further analysis and graphics based on lme4.
 The eirm function estimates explanatory item response models with item-related and
 person-related covariates. The function requires the data to be in a long format where
 items are nested within persons. If item responses are polytomous, then the data has to
-be reformatted using the \code{\link{polyreformat}}) function.
+be reformatted using the \code{\link{polyreformat}} function.
 }
 \examples{
 \donttest{
