@@ -35,13 +35,15 @@ used for 'explaining' item responses.}
 
 \item{weights}{Weights to be used in the estimation.}
 
-\item{mustart, etastart}{Model specification arguments for glmer. See \code{\link[lme4]{glmer}} for details.}
+\item{mustart, etastart}{Model specification arguments for glmer. See \code{\link[lme4]{glmer}} for details.
+Not used when engine = "lme4".}
 
 \item{cov.prior}{A BLME prior or list of priors with the options of "wishart" (default), "invwishart",
-"gamma", "invgamma", or NULL to impose a prior over the covariance of the random effects.}
+"gamma", "invgamma", or NULL to impose a prior over the covariance of the random effects. Not used
+when engine = "lme4".}
 
 \item{fixef.prior}{A BLME prior of family "normal", "t", "horseshoe", or NULL (default) to impose a prior over
-the fixed effects.}
+the fixed effects. Not used when engine = "lme4".}
 
 \item{control}{Control settings for the glmer function in lme4. Note that the optimx
 package is used by default to speed up the estimation. For higher accuracy in the

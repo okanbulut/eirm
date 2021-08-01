@@ -21,10 +21,12 @@
 #' @param na.action How missing data should be handled (default: "na.omit").
 #' @param weights Weights to be used in the estimation.
 #' @param mustart,etastart Model specification arguments for glmer. See \code{\link[lme4]{glmer}} for details.
+#' Not used when engine = "lme4".
 #' @param cov.prior A BLME prior or list of priors with the options of "wishart" (default), "invwishart",
-#' "gamma", "invgamma", or NULL to impose a prior over the covariance of the random effects.
+#' "gamma", "invgamma", or NULL to impose a prior over the covariance of the random effects. Not used
+#' when engine = "lme4".
 #' @param fixef.prior A BLME prior of family "normal", "t", "horseshoe", or NULL (default) to impose a prior over
-#' the fixed effects.
+#' the fixed effects. Not used when engine = "lme4".
 #' @param control Control settings for the glmer function in lme4. Note that the optimx
 #' package is used by default to speed up the estimation. For higher accuracy in the
 #' results, the default lme4 optimizers can be used.
@@ -67,31 +69,47 @@ eirm <- function(formula, data, engine = "lme4", na.action = "na.omit", weights 
     if(is.null(weights)) {
       mod <- glmer(formula = eirm_formula, data = data, family=binomial("logit"), control = control,
                    na.action = na.action)
-    } else
+    } else {
 
       mod <- glmer(formula = eirm_formula, data = data, family=binomial("logit"), control = control,
                    weights = weights, na.action = na.action)
 
-    # Save results
-    results <- list()
+    }
 
-    # Formula
-    results$eirm_formula <- formula
-
-    # Item and item-related variables
-    summary_parameters <- summary(mod)
-    results$parameters <- as.data.frame(summary_parameters$coefficients)
-    colnames(results$parameters) <- c("Easiness", "S.E.", "z-value", "p-value")
-
-    # Random effects for persons and items (if any)
-    results$persons <- ranef(mod)
-
-    # Save lme4 object for other results
-    results$model <- mod
   } else {
-    stop("blme is not supported yet.")
+    #stop("blme is not supported yet.")
+
+    if(is.null(weights)) {
+      mod <- bglmer(formula = eirm_formula, data = data, family=binomial("logit"), control = control,
+                   na.action = na.action, mustart = mustart, etastart = etastart,
+                   cov.prior = cov.prior, fixef.prior = fixef.prior)
+    } else {
+
+      mod <- bglmer(formula = eirm_formula, data = data, family=binomial("logit"), control = control,
+                    na.action = na.action, mustart = mustart, etastart = etastart,
+                    cov.prior = cov.prior, fixef.prior = fixef.prior, weights = weights)
+    }
   }
 
+  # Save results
+  results <- list()
+
+  # Formula
+  results$eirm_formula <- formula
+
+  # Engine
+  results$engine <- engine
+
+  # Item and item-related variables
+  summary_parameters <- summary(mod)
+  results$parameters <- as.data.frame(summary_parameters$coefficients)
+  colnames(results$parameters) <- c("Easiness", "S.E.", "z-value", "p-value")
+
+  # Random effects for persons and items (if any)
+  results$persons <- ranef(mod)
+
+  # Save lme4 object for other results
+  results$model <- mod
 
   class(results) <- "eirm"
 
