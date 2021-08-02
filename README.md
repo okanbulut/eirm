@@ -13,6 +13,17 @@ status](https://github.com/okanbulut/eirm/workflows/R-CMD-check/badge.svg)](http
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4556285.svg)](https://doi.org/10.5281/zenodo.4556285)
 [![Rbadge](https://img.shields.io/badge/Build%20with-♥%20and%20R-red)](https://github.com/okanbulut/eirm)
 
+The `eirm` package, which is essentially a wrapper around the `lme4` and
+`blme` packages, provides a simple and easy-to-use set of tools for
+preparing data, estimating **explanatory** item response theory (IRT)
+models, extracting model output, and visualizing model results. The
+primary goal of `eirm` is to streamline the processes of data
+preparation, model estimation, and model interpretation for various
+explanatory IRT models. The functions in the `eirm` package enable
+researchers to leverage the power of `lme4` and `blme` for the
+estimation of explanatory IRT models while providing additional helper
+functions and visualization tools to better interpret the model output.
+
 ### Installing `eirm`
 
 The latest version on CRAN can be installed by:
@@ -69,6 +80,9 @@ citation:
 > Bulut, O., Gorgun, G., & Yildirim-Erbasli, S. N. (2021). Estimating
 > explanatory extensions of dichotomous and polytomous Rasch models: The
 > eirm package in R. *Psych, 3*(3), 308-321. <doi:10.3390/psych3030023>
+
+You can also `print(citation("eirm"), bibtex = TRUE)` to view the
+citations in BibTeX format.
 
 -----
 

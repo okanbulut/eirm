@@ -2,6 +2,7 @@
 
 - A bug in the `polyreformat` function was fixed.
 - A new citation for eirm was included.
+- The `blme` package was linked with `eirm` for Maximum a posteriori estimation in a Bayesian setting. See the `engine` option in the `eirm` function.
 
 # eirm 0.4
 
