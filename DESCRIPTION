@@ -1,15 +1,16 @@
 Package: eirm
 Type: Package
 Title: Explanatory Item Response Modeling for Dichotomous and Polytomous Items
-Version: 0.4
+Version: 0.5
 Authors@R:
     person("Okan", "Bulut", email = "bulut@ualberta.ca", role = c("aut", "cre"),
     comment = c(ORCID="0000-0001-5853-1267"))
 Maintainer: Okan Bulut <bulut@ualberta.ca>
 URL: https://github.com/okanbulut/eirm
-Description: Analysis of dichotomous and polytomous response data using the explanatory item response modeling framework, as described in Stanke & Bulut (2019) <doi:10.21449/ijate.515085> and De Boeck & Wilson (2004) <doi:10.1007/978-1-4757-3990-9>. Generalized linear mixed modeling is used for estimating the effects of item-related and person-related variables on dichotomous and polytomous item responses. 
+Description: Analysis of dichotomous and polytomous response data using the explanatory item response modeling framework, as described in Bulut, Gorgun, & Yildirim-Erbasli (2021) <doi:10.3390/psych3030023>, Stanke & Bulut (2019) <doi:10.21449/ijate.515085>, and De Boeck & Wilson (2004) <doi:10.1007/978-1-4757-3990-9>. Generalized linear mixed modeling is used for estimating the effects of item-related and person-related variables on dichotomous and polytomous item responses. 
 Depends:
     lme4,
+    blme,
     reshape2,
     optimx
 Imports: 

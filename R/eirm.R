@@ -1,12 +1,13 @@
 #' @title Estimating explanatory item response modeling using the GLMM framework
 #' @import lme4
+#' @import blme
 #' @import optimx
 #' @importFrom stats as.formula binomial
 #' @description
 #' The eirm function estimates explanatory item response models with item-related and
 #' person-related covariates. The function requires the data to be in a long format where
 #' items are nested within persons. If item responses are polytomous, then the data has to
-#' be reformatted using the \code{\link{polyreformat}}) function.
+#' be reformatted using the \code{\link{polyreformat}} function.
 #'
 #' @param formula A regression-like formula that defines item responses as a dependent
 #' variable and explanatory predictors as independent predictors.
@@ -16,8 +17,16 @@
 #' each person (i.e., nested data). The data should involve a variable that represents
 #' item responses, a variable that represents persons, and additional predictors to be
 #' used for 'explaining' item responses.
+#' @param engine Estimation engine with the options of either "lme4" (default) or "blme".
 #' @param na.action How missing data should be handled (default: "na.omit").
 #' @param weights Weights to be used in the estimation.
+#' @param mustart,etastart Model specification arguments for glmer. See \code{\link[lme4]{glmer}} for details.
+#' Not used when engine = "lme4".
+#' @param cov.prior A BLME prior or list of priors with the options of "wishart" (default), "invwishart",
+#' "gamma", "invgamma", or NULL to impose a prior over the covariance of the random effects. Not used
+#' when engine = "lme4".
+#' @param fixef.prior A BLME prior of family "normal", "t", "horseshoe", or NULL (default) to impose a prior over
+#' the fixed effects. Not used when engine = "lme4".
 #' @param control Control settings for the glmer function in lme4. Note that the optimx
 #' package is used by default to speed up the estimation. For higher accuracy in the
 #' results, the default lme4 optimizers can be used.
@@ -41,7 +50,8 @@
 #' }
 #' @export
 
-eirm <- function(formula, data, na.action = "na.omit", weights = NULL,
+eirm <- function(formula, data, engine = "lme4", na.action = "na.omit", weights = NULL,
+                 mustart = NULL, etastart = NULL,  cov.prior = "wishart", fixef.prior = NULL,
                  control = glmerControl(optimizer = "optimx", calc.derivs = FALSE,
                  optCtrl = list(method = "nlminb", starttests = FALSE, kkt = FALSE))) {
 
@@ -52,21 +62,43 @@ eirm <- function(formula, data, na.action = "na.omit", weights = NULL,
   # Set the number of digits to 3
   options(digits=3)
 
+  # Set the formula
   eirm_formula <- as.formula(formula)
 
-  if(is.null(weights)) {
-    mod <- glmer(formula = eirm_formula, data = data, family=binomial("logit"), control = control,
-                 na.action = na.action)
-  } else
+  if(engine == "lme4") {
+    if(is.null(weights)) {
+      mod <- glmer(formula = eirm_formula, data = data, family=binomial("logit"), control = control,
+                   na.action = na.action)
+    } else {
 
-    mod <- glmer(formula = eirm_formula, data = data, family=binomial("logit"), control = control,
-                 weights = weights, na.action = na.action)
+      mod <- glmer(formula = eirm_formula, data = data, family=binomial("logit"), control = control,
+                   weights = weights, na.action = na.action)
+
+    }
+
+  } else {
+    #stop("blme is not supported yet.")
+
+    if(is.null(weights)) {
+      mod <- bglmer(formula = eirm_formula, data = data, family=binomial("logit"), control = control,
+                   na.action = na.action, mustart = mustart, etastart = etastart,
+                   cov.prior = cov.prior, fixef.prior = fixef.prior)
+    } else {
+
+      mod <- bglmer(formula = eirm_formula, data = data, family=binomial("logit"), control = control,
+                    na.action = na.action, mustart = mustart, etastart = etastart,
+                    cov.prior = cov.prior, fixef.prior = fixef.prior, weights = weights)
+    }
+  }
 
   # Save results
   results <- list()
 
   # Formula
   results$eirm_formula <- formula
+
+  # Engine
+  results$engine <- engine
 
   # Item and item-related variables
   summary_parameters <- summary(mod)
@@ -78,6 +110,7 @@ eirm <- function(formula, data, na.action = "na.omit", weights = NULL,
 
   # Save lme4 object for other results
   results$model <- mod
+
   class(results) <- "eirm"
 
   return(results)
