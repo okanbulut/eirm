@@ -43,7 +43,7 @@
 <meta property="og:description" content="The eirm function estimates explanatory item response models with item-related and
 person-related covariates. The function requires the data to be in a long format where
 items are nested within persons. If item responses are polytomous, then the data has to
-be reformatted using the polyreformat) function." />
+be reformatted using the polyreformat function." />
 
 
 
@@ -75,7 +75,7 @@ be reformatted using the polyreformat) function." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">eirm</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5</span>
       </span>
     </div>
 
@@ -135,14 +135,19 @@ be reformatted using the polyreformat) function." />
     <p>The eirm function estimates explanatory item response models with item-related and
 person-related covariates. The function requires the data to be in a long format where
 items are nested within persons. If item responses are polytomous, then the data has to
-be reformatted using the <code><a href='polyreformat.html'>polyreformat</a></code>) function.</p>
+be reformatted using the <code><a href='polyreformat.html'>polyreformat</a></code> function.</p>
     </div>
 
     <pre class="usage"><span class='fu'>eirm</span><span class='op'>(</span>
   <span class='va'>formula</span>,
   <span class='va'>data</span>,
+  engine <span class='op'>=</span> <span class='st'>"lme4"</span>,
   na.action <span class='op'>=</span> <span class='st'>"na.omit"</span>,
   weights <span class='op'>=</span> <span class='cn'>NULL</span>,
+  mustart <span class='op'>=</span> <span class='cn'>NULL</span>,
+  etastart <span class='op'>=</span> <span class='cn'>NULL</span>,
+  cov.prior <span class='op'>=</span> <span class='st'>"wishart"</span>,
+  fixef.prior <span class='op'>=</span> <span class='cn'>NULL</span>,
   control <span class='op'>=</span> <span class='fu'>glmerControl</span><span class='op'>(</span>optimizer <span class='op'>=</span> <span class='st'>"optimx"</span>, calc.derivs <span class='op'>=</span> <span class='cn'>FALSE</span>, optCtrl <span class='op'>=</span>
     <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>method <span class='op'>=</span> <span class='st'>"nlminb"</span>, starttests <span class='op'>=</span> <span class='cn'>FALSE</span>, kkt <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span><span class='op'>)</span>
 <span class='op'>)</span></pre>
@@ -165,12 +170,32 @@ item responses, a variable that represents persons, and additional predictors to
 used for 'explaining' item responses.</p></td>
     </tr>
     <tr>
+      <th>engine</th>
+      <td><p>Estimation engine with the options of either "lme4" (default) or "blme".</p></td>
+    </tr>
+    <tr>
       <th>na.action</th>
       <td><p>How missing data should be handled (default: "na.omit").</p></td>
     </tr>
     <tr>
       <th>weights</th>
       <td><p>Weights to be used in the estimation.</p></td>
+    </tr>
+    <tr>
+      <th>mustart, etastart</th>
+      <td><p>Model specification arguments for glmer. See <code><a href='https://rdrr.io/pkg/lme4/man/glmer.html'>glmer</a></code> for details.
+Not used when engine = "lme4".</p></td>
+    </tr>
+    <tr>
+      <th>cov.prior</th>
+      <td><p>A BLME prior or list of priors with the options of "wishart" (default), "invwishart",
+"gamma", "invgamma", or NULL to impose a prior over the covariance of the random effects. Not used
+when engine = "lme4".</p></td>
+    </tr>
+    <tr>
+      <th>fixef.prior</th>
+      <td><p>A BLME prior of family "normal", "t", "horseshoe", or NULL (default) to impose a prior over
+the fixed effects. Not used when engine = "lme4".</p></td>
     </tr>
     <tr>
       <th>control</th>
