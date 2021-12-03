@@ -4,14 +4,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="How does eirm can be used for estimating dichotomous and polytomous  explanatory IRT models in R?
+">
 <title>Using eirm for estimating explanatory IRT models • eirm</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/cerulean/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
-<script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="../deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="Using eirm for estimating explanatory IRT models">
+<!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Using eirm for estimating explanatory IRT models">
 <meta property="og:description" content="How does eirm can be used for estimating dichotomous and polytomous  explanatory IRT models in R?
 ">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -19,94 +20,79 @@
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-<body data-spy="scroll" data-target="#toc">
-    <div class="container template-article">
-      <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">eirm</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5</span>
-      </span>
-    </div>
+<body>
+    <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
+    
 
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
+    <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-primary"><div class="container">
+    
+    <a class="navbar-brand me-2" href="../index.html">eirm</a>
+
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5</small>
+
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="navbar" class="collapse navbar-collapse ms-2">
+      <ul class="navbar-nav me-auto">
+<li class="nav-item">
+  <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
-<li>
-  <a href="../reference/index.html">Reference</a>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li>
-      <a href="../articles/eirm_vignette.html">Using eirm for estimating explanatory IRT models</a>
-    </li>
-  </ul>
-</li>
-<li>
-  <a href="../news/index.html">Changelog</a>
-</li>
-      </ul>
-<ul class="nav navbar-nav navbar-right">
-<li>
-  <a href="https://github.com/okanbulut/eirm/">
-    <span class="fab fa-github fa-lg"></span>
-     
-  </a>
-</li>
-      </ul>
-</div>
-<!--/.nav-collapse -->
+<li class="active nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/eirm_vignette.html">Using eirm for estimating explanatory IRT models</a>
   </div>
-<!--/.container -->
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="../news/index.html">Changelog</a>
+</li>
+      </ul>
+<form class="form-inline my-2 my-lg-0" role="search">
+        <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off">
+</form>
+
+      <ul class="navbar-nav">
+<li class="nav-item">
+  <a class="external-link nav-link" href="https://github.com/okanbulut/eirm/" aria-label="github">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
-<!--/.navbar -->
 
-      
+    
+  </div>
+</nav><div class="container template-article">
 
-      </header><script src="eirm_vignette_files/header-attrs-2.11/header-attrs.js"></script><div class="row">
-  <div class="col-md-9 contents">
-    <div class="page-header toc-ignore">
-      <h1 data-toc-skip>Using eirm for estimating explanatory IRT models</h1>
+<div class="row">
+  <main id="main"><div class="page-header">
+      <img src="" class="logo" alt=""><h1>Using eirm for estimating explanatory IRT models</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/okanbulut/eirm/blob/master/vignettes/eirm_vignette.Rmd"><code>vignettes/eirm_vignette.Rmd</code></a></small>
-      <div class="hidden name"><code>eirm_vignette.Rmd</code></div>
-
+      <small class="dont-index">Source: <a href="https://github.com/okanbulut/eirm/blob/HEAD/vignettes/eirm_vignette.Rmd" class="external-link"><code>vignettes/eirm_vignette.Rmd</code></a></small>
+      <div class="d-none name"><code>eirm_vignette.Rmd</code></div>
     </div>
 
     
     
-<div id="example-1-rasch-model" class="section level3">
-<h3 class="hasAnchor">
-<a href="#example-1-rasch-model" class="anchor"></a>Example 1: Rasch model</h3>
+<div class="section level3">
+<h3 id="example-1-rasch-model">Example 1: Rasch model<a class="anchor" aria-label="anchor" href="#example-1-rasch-model"></a>
+</h3>
 <p>The Rasch model (i.e., a fully descriptive model) can be estimated using <code>eirm</code>. The following example shows how to estimate Rasch item parameters for the verbal aggression data set (see <code>?VerbAgg</code> for further details). A preview of the <code>VerbAgg</code> data set is shown below:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"VerbAgg"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">VerbAgg</span><span class="op">)</span></code></pre></div>
-<pre><code>##   Anger Gender        item    resp id btype  situ mode r2
-## 1    20      M S1WantCurse      no  1 curse other want  N
-## 2    11      M S1WantCurse      no  2 curse other want  N
-## 3    17      F S1WantCurse perhaps  3 curse other want  Y
-## 4    21      F S1WantCurse perhaps  4 curse other want  Y
-## 5    17      F S1WantCurse perhaps  5 curse other want  Y
-## 6    21      F S1WantCurse     yes  6 curse other want  Y</code></pre>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"VerbAgg"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">VerbAgg</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">##   Anger Gender        item    resp id btype  situ mode r2</span>
+<span class="co">## 1    20      M S1WantCurse      no  1 curse other want  N</span>
+<span class="co">## 2    11      M S1WantCurse      no  2 curse other want  N</span>
+<span class="co">## 3    17      F S1WantCurse perhaps  3 curse other want  Y</span>
+<span class="co">## 4    21      F S1WantCurse perhaps  4 curse other want  Y</span>
+<span class="co">## 5    17      F S1WantCurse perhaps  5 curse other want  Y</span>
+<span class="co">## 6    21      F S1WantCurse     yes  6 curse other want  Y</span></code></pre>
 <p>To estimate the Rasch model, a regression-like formula must be defined: <code>formula = "r2 ~ -1 + item + (1|id)"</code>. In the formula,</p>
 <ul>
 <li>
@@ -121,80 +107,80 @@
 <p>The output for the Rasch model is shown below:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mod1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/eirm.html">eirm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="st">"r2 ~ -1 + item + (1|id)"</span>, data <span class="op">=</span> <span class="va">VerbAgg</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">mod1</span><span class="op">)</span></code></pre></div>
-<p>By default, the <code>eirm</code> function returns the <strong>easiness</strong> parameters because the function uses a regression model parameterization where positive parameters indicate positive association with the dependent variable. In order to print the difficulty parameters (instead of easiness), <code><a href="https://rdrr.io/r/base/print.html">print(mod1, difficulty = TRUE)</a></code> must be used:</p>
+<span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">mod1</span><span class="op">)</span></code></pre></div>
+<p>By default, the <code>eirm</code> function returns the <strong>easiness</strong> parameters because the function uses a regression model parameterization where positive parameters indicate positive association with the dependent variable. In order to print the difficulty parameters (instead of easiness), <code>print(mod1, difficulty = TRUE)</code> must be used:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">mod1</span>, difficulty <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">mod1</span>, difficulty <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <p>The <code>mod1</code> object is essentially a <code>glmerMod</code>-class object from the <code>lme4</code> package (Bates, Maechler, Bolker, &amp; Walker (2015)). All <code>glmerMod</code> results for the estimated model can seen with <code>mod1$model</code>. For example, estimated random effects for persons (i.e., theta estimates) can be obtained using:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">theta</span> <span class="op">&lt;-</span> <span class="fu">ranef</span><span class="op">(</span><span class="va">mod1</span><span class="op">$</span><span class="va">model</span><span class="op">)</span><span class="op">$</span><span class="va">id</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">theta</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">theta</span><span class="op">)</span></code></pre></div>
 <hr>
 </div>
-<div id="example-2-eirm-for-dichotomous-responses" class="section level3">
-<h3 class="hasAnchor">
-<a href="#example-2-eirm-for-dichotomous-responses" class="anchor"></a>Example 2: EIRM for dichotomous responses</h3>
+<div class="section level3">
+<h3 id="example-2-eirm-for-dichotomous-responses">Example 2: EIRM for dichotomous responses<a class="anchor" aria-label="anchor" href="#example-2-eirm-for-dichotomous-responses"></a>
+</h3>
 <p>The following example shows how to use item-related and person-related explanatory variables to explain dichotomous responses in the verbal aggression data set.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mod2a</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/eirm.html">eirm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="st">"r2 ~ -1 + situ + btype + mode + (1|id)"</span>, data <span class="op">=</span> <span class="va">VerbAgg</span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">mod2a</span><span class="op">)</span></code></pre></div>
-<pre><code>## EIRM formula: "r2 ~ -1 + situ + btype + mode + (1|id)" 
-## 
-## Number of persons: 316 
-## 
-## Number of observations: 7584 
-## 
-## Number of predictors: 5 
-## 
-## Parameter Estimates:
-## 
-##              Easiness       S.E.   z-value       p-value
-## situother   1.7437027 0.10145090  17.18765  3.285796e-66
-## situself    0.7158127 0.09775376   7.32261  2.431943e-13
-## btypescold -1.0551642 0.06803581 -15.50895  3.017583e-54
-## btypeshout -2.0421978 0.07292877 -28.00263 1.509082e-172
-## modedo     -0.6715770 0.05621055 -11.94753  6.688613e-33
-## 
-## Note: The estimated parameters above represent 'easiness'.
-## Use difficulty = TRUE to get difficulty parameters.</code></pre>
-<p>It is possible to visualize the parameters using an item-person map using <code><a href="https://rdrr.io/r/graphics/plot.default.html">plot(mod2a)</a></code>, which returns the following plot. Note that this plot is a modified version of the <code>plotPImap</code> function from the <code>eRm</code> package).</p>
+<span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">mod2a</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">## EIRM formula: "r2 ~ -1 + situ + btype + mode + (1|id)" </span>
+<span class="co">## </span>
+<span class="co">## Number of persons: 316 </span>
+<span class="co">## </span>
+<span class="co">## Number of observations: 7584 </span>
+<span class="co">## </span>
+<span class="co">## Number of predictors: 5 </span>
+<span class="co">## </span>
+<span class="co">## Parameter Estimates:</span>
+<span class="co">## </span>
+<span class="co">##              Easiness       S.E.   z-value       p-value</span>
+<span class="co">## situother   1.7437027 0.10145090  17.18765  3.285796e-66</span>
+<span class="co">## situself    0.7158127 0.09775376   7.32261  2.431943e-13</span>
+<span class="co">## btypescold -1.0551642 0.06803581 -15.50895  3.017583e-54</span>
+<span class="co">## btypeshout -2.0421978 0.07292877 -28.00263 1.509082e-172</span>
+<span class="co">## modedo     -0.6715770 0.05621055 -11.94753  6.688613e-33</span>
+<span class="co">## </span>
+<span class="co">## Note: The estimated parameters above represent 'easiness'.</span>
+<span class="co">## Use difficulty = TRUE to get difficulty parameters.</span></code></pre>
+<p>It is possible to visualize the parameters using an item-person map using <code>plot(mod2a)</code>, which returns the following plot. Note that this plot is a modified version of the <code>plotPImap</code> function from the <code>eRm</code> package).</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">mod2a</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">mod2a</span><span class="op">)</span></code></pre></div>
 <p>Aesthetic elements such as axis labels and plot title can be added to the plot. For example, the following code updates the x-axis label and the main plot title (see <code><a href="../reference/plot.eirm.html">?plot.eirm</a></code> for further details).</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">mod2a</span>, difficulty <span class="op">=</span> <span class="cn">TRUE</span>, main <span class="op">=</span> <span class="st">"Verbal Aggression Example"</span>, latdim <span class="op">=</span> <span class="st">"Verbal Aggression"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">mod2a</span>, difficulty <span class="op">=</span> <span class="cn">TRUE</span>, main <span class="op">=</span> <span class="st">"Verbal Aggression Example"</span>, latdim <span class="op">=</span> <span class="st">"Verbal Aggression"</span><span class="op">)</span></code></pre></div>
 <p>This plot wpuld show the difficulty parameters (instead of easiness), change the main title above the plot, and change the x-axis – the name for the latent trait being measured.</p>
 <p>Also, it is possible to compare nested explanatory models with each other. The following example shows the estimation of a more compact version of <code>mod2a</code> with one less variable and compares the two models (i.e., <code>mod2a</code> vs. <code>mod2b</code>).</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mod2b</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/eirm.html">eirm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="st">"r2 ~ -1 + situ + btype + (1|id)"</span>, data <span class="op">=</span> <span class="va">VerbAgg</span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/r/stats/anova.html">anova</a></span><span class="op">(</span><span class="va">mod2a</span><span class="op">$</span><span class="va">model</span>, <span class="va">mod2b</span><span class="op">$</span><span class="va">model</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/r/stats/anova.html" class="external-link">anova</a></span><span class="op">(</span><span class="va">mod2a</span><span class="op">$</span><span class="va">model</span>, <span class="va">mod2b</span><span class="op">$</span><span class="va">model</span><span class="op">)</span></code></pre></div>
 <hr>
 </div>
-<div id="example-3-eirm-for-polytomous-responses" class="section level3">
-<h3 class="hasAnchor">
-<a href="#example-3-eirm-for-polytomous-responses" class="anchor"></a>Example 3: EIRM for polytomous responses</h3>
+<div class="section level3">
+<h3 id="example-3-eirm-for-polytomous-responses">Example 3: EIRM for polytomous responses<a class="anchor" aria-label="anchor" href="#example-3-eirm-for-polytomous-responses"></a>
+</h3>
 <p>It is also possible to use the <code>eirm</code> function with polytomous item responses as well. Because the function only accepts dichotomous responses (i.e., binomial distribution), polytomous data must be reformatted first. To reformat the data, the <code>polyreformat</code> function can be used. The following example demonstrates how polytomous responses (no, perhaps, and yes) in the verbal aggression data set can be reformatted into a dichotomous form:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">VerbAgg2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/polyreformat.html">polyreformat</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">VerbAgg</span>, id.var <span class="op">=</span> <span class="st">"id"</span>, long.format <span class="op">=</span> <span class="cn">FALSE</span>, 
                          var.name <span class="op">=</span> <span class="st">"item"</span>, val.name <span class="op">=</span> <span class="st">"resp"</span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">VerbAgg2</span><span class="op">)</span></code></pre></div>
-<pre><code>##   Anger Gender        item    resp id btype  situ mode r2 polycategory
-## 1    20      M S1WantCurse      no  1 curse other want  N  cat_perhaps
-## 2    11      M S1WantCurse      no  2 curse other want  N  cat_perhaps
-## 3    17      F S1WantCurse perhaps  3 curse other want  Y  cat_perhaps
-## 4    21      F S1WantCurse perhaps  4 curse other want  Y  cat_perhaps
-## 5    17      F S1WantCurse perhaps  5 curse other want  Y  cat_perhaps
-## 6    21      F S1WantCurse     yes  6 curse other want  Y  cat_perhaps
-##   polyresponse                polyitem
-## 1            0 S1WantCurse.cat_perhaps
-## 2            0 S1WantCurse.cat_perhaps
-## 3            1 S1WantCurse.cat_perhaps
-## 4            1 S1WantCurse.cat_perhaps
-## 5            1 S1WantCurse.cat_perhaps
-## 6           NA S1WantCurse.cat_perhaps</code></pre>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">VerbAgg2</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">##   Anger Gender        item    resp id btype  situ mode r2 polycategory</span>
+<span class="co">## 1    20      M S1WantCurse      no  1 curse other want  N  cat_perhaps</span>
+<span class="co">## 2    11      M S1WantCurse      no  2 curse other want  N  cat_perhaps</span>
+<span class="co">## 3    17      F S1WantCurse perhaps  3 curse other want  Y  cat_perhaps</span>
+<span class="co">## 4    21      F S1WantCurse perhaps  4 curse other want  Y  cat_perhaps</span>
+<span class="co">## 5    17      F S1WantCurse perhaps  5 curse other want  Y  cat_perhaps</span>
+<span class="co">## 6    21      F S1WantCurse     yes  6 curse other want  Y  cat_perhaps</span>
+<span class="co">##   polyresponse                polyitem</span>
+<span class="co">## 1            0 S1WantCurse.cat_perhaps</span>
+<span class="co">## 2            0 S1WantCurse.cat_perhaps</span>
+<span class="co">## 3            1 S1WantCurse.cat_perhaps</span>
+<span class="co">## 4            1 S1WantCurse.cat_perhaps</span>
+<span class="co">## 5            1 S1WantCurse.cat_perhaps</span>
+<span class="co">## 6           NA S1WantCurse.cat_perhaps</span></code></pre>
 <p>In the reformatted data, <code>polyresponse</code> is the new dependent variable (i.e., pseudo-dichotomous version of the original response variable <code>resp</code>) and <code>polycategory</code> represents the response categories. Based on the reformatted data, each item has two rows (number of response categories - 1) based on the following rules (Stanke &amp; Bulut (2019)) for further details on this parameterization):</p>
 <ul>
 <li>If <code>polycategory</code> = “cat_perhaps” and <code>resp</code> = “no”, then <code>polyresponse</code> = 0</li>
@@ -218,29 +204,27 @@
 <code class="sourceCode R"><span class="va">mod4</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/eirm.html">eirm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="st">"polyresponse ~ -1 + btype + situ + mode + 
              polycategory + polycategory:btype + (1|id)"</span>, data <span class="op">=</span> <span class="va">VerbAgg2</span><span class="op">)</span></code></pre></div>
 </div>
-  </div>
-
-  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-
-      </div>
-
+  </main>
 </div>
 
 
 
-      <footer><div class="copyright">
-  <p>Developed by Okan Bulut.</p>
+    <footer><div class="pkgdown-footer-left">
+  <p></p>
+<p>Developed by Okan Bulut.</p>
 </div>
 
-<div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+<div class="pkgdown-footer-right">
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
 </div>
 
-      </footer>
+    </footer>
 </div>
 
   
 
+  
 
   </body>
 </html>
