@@ -1,4 +1,23 @@
+authors:
+  Okan Bulut:
+    href: https://github.com/okanbulut
+
 destination: docs
+
 template:
   bootstrap: 5
   bootswatch: cerulean
+
+navbar:
+  left:
+  - text: News
+    href: news/index.html
+  - text: Reference
+    href: reference/index.html
+  - text: Vignettes
+    menu:
+      - text: 'Explanatory IRT for Dichotomous Data'
+        href: articles/dich_vignette.html
+      - text: 'Explanatory IRT for Polytomous Data'
+        href: articles/poly_vignette.html
+

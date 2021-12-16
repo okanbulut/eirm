@@ -1,7 +1,8 @@
-pandoc: 2.11.4
+pandoc: 2.11.2
 pkgdown: 2.0.1
 pkgdown_sha: ~
 articles:
-  eirm_vignette: eirm_vignette.html
-last_built: 2021-12-03T22:10Z
+  dich_vignette: dich_vignette.html
+  poly_vignette: poly_vignette.html
+last_built: 2021-12-16T21:47Z
 

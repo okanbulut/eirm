@@ -36,16 +36,17 @@
     <div id="navbar" class="collapse navbar-collapse ms-2">
       <ul class="navbar-nav me-auto">
 <li class="nav-item">
+  <a class="nav-link" href="news/index.html">News</a>
+</li>
+<li class="nav-item">
   <a class="nav-link" href="reference/index.html">Reference</a>
 </li>
 <li class="nav-item dropdown">
-  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
-  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="articles/eirm_vignette.html">Using eirm for estimating explanatory IRT models</a>
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-vignettes">Vignettes</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-vignettes">
+    <a class="dropdown-item" href="articles/dich_vignette.html">Explanatory IRT for Dichotomous Data</a>
+    <a class="dropdown-item" href="articles/poly_vignette.html">Explanatory IRT for Polytomous Data</a>
   </div>
-</li>
-<li class="nav-item">
-  <a class="nav-link" href="news/index.html">Changelog</a>
 </li>
       </ul>
 <form class="form-inline my-2 my-lg-0" role="search">
@@ -120,203 +121,20 @@
 </h3>
 <p>You can use <code><a href="reference/eirmShiny.html">eirmShiny()</a></code> to open the Shiny GUI for the <code>eirm</code> function:</p>
 <p><img src="reference/figures/eirmGIF.gif"></p>
-</div>
-<div class="section level3">
-<h3 id="example-1-rasch-model">Example 1: Rasch model<a class="anchor" aria-label="anchor" href="#example-1-rasch-model"></a>
-</h3>
-<p>The Rasch model (i.e., a fully-descriptive model) can be estimated using <code>eirm</code>. The following example shows how to estimate Rasch item parameters for the verbal aggression data set (see <code>?VerbAgg</code> for further details). A preview of the <code>VerbAgg</code> data set is shown below:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"VerbAgg"</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(VerbAgg)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  Anger Gender        item    resp id btype  situ mode r2</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>    <span class="dv">20</span>      M S1WantCurse      no  <span class="dv">1</span> curse other want  N</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>    <span class="dv">11</span>      M S1WantCurse      no  <span class="dv">2</span> curse other want  N</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>    <span class="dv">17</span>      F S1WantCurse perhaps  <span class="dv">3</span> curse other want  Y</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>    <span class="dv">21</span>      F S1WantCurse perhaps  <span class="dv">4</span> curse other want  Y</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span>    <span class="dv">17</span>      F S1WantCurse perhaps  <span class="dv">5</span> curse other want  Y</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span>    <span class="dv">21</span>      F S1WantCurse     yes  <span class="dv">6</span> curse other want  Y</span></code></pre></div>
-<p>To estimate the Rasch model, a regression-like formula must be defined: <code>formula = "r2 ~ -1 + item + (1|id)"</code>. In the formula,</p>
-<ul>
-<li>
-<code>r2</code> is the variable for dichotomous item responses.</li>
-<li>
-<code>-1</code> removes the intercept from the model and yields parameter estimates for <strong>all</strong> items in the data set. With <code>1</code> (instead of <code>-1</code>), an intercept representing the parameter of the first item and relative parameters for the remaining items (i.e., distances from the parameter of the first item) would be estimated.</li>
-<li>
-<code>item</code>is the variable representing item IDs in the data set.</li>
-<li>
-<code>(1|id)</code> refers to the random effects for persons represented by the <code>id</code> column in the data set.</li>
-</ul>
-<p>The output for the Rasch model is shown below:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>mod1 <span class="ot">&lt;-</span> <span class="fu">eirm</span>(<span class="at">formula =</span> <span class="st">"r2 ~ -1 + item + (1|id)"</span>, <span class="at">data =</span> VerbAgg)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(mod1)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>EIRM formula<span class="sc">:</span> <span class="st">"r2 ~ -1 + item + (1|id)"</span> </span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>Number of persons<span class="sc">:</span> <span class="dv">316</span> </span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>Number of observations<span class="sc">:</span> <span class="dv">7584</span> </span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>Number of predictors<span class="sc">:</span> <span class="dv">24</span> </span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>Parameter Estimates<span class="sc">:</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>                Easiness  S.E.  z<span class="sc">-</span>value  p<span class="sc">-</span>value</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>itemS1WantCurse   <span class="fl">1.2211</span> <span class="fl">0.161</span>   <span class="fl">7.5794</span> <span class="fl">3.47e-14</span></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>itemS1WantScold   <span class="fl">0.5648</span> <span class="fl">0.153</span>   <span class="fl">3.7032</span> <span class="fl">2.13e-04</span></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>itemS1WantShout   <span class="fl">0.0801</span> <span class="fl">0.150</span>   <span class="fl">0.5323</span> <span class="fl">5.95e-01</span></span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>itemS2WantCurse   <span class="fl">1.7488</span> <span class="fl">0.174</span>  <span class="fl">10.0632</span> <span class="fl">8.03e-24</span></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>itemS2WantScold   <span class="fl">0.7077</span> <span class="fl">0.154</span>   <span class="fl">4.6020</span> <span class="fl">4.18e-06</span></span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>itemS2WantShout   <span class="fl">0.0117</span> <span class="fl">0.150</span>   <span class="fl">0.0779</span> <span class="fl">9.38e-01</span></span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>itemS3WantCurse   <span class="fl">0.5295</span> <span class="fl">0.152</span>   <span class="fl">3.4777</span> <span class="fl">5.06e-04</span></span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>itemS3WantScold  <span class="sc">-</span><span class="fl">0.6864</span> <span class="fl">0.154</span>  <span class="sc">-</span><span class="fl">4.4506</span> <span class="fl">8.56e-06</span></span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>itemS3WantShout  <span class="sc">-</span><span class="fl">1.5269</span> <span class="fl">0.169</span>  <span class="sc">-</span><span class="fl">9.0222</span> <span class="fl">1.84e-19</span></span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>itemS4wantCurse   <span class="fl">1.0820</span> <span class="fl">0.159</span>   <span class="fl">6.8193</span> <span class="fl">9.15e-12</span></span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>itemS4WantScold  <span class="sc">-</span><span class="fl">0.3494</span> <span class="fl">0.151</span>  <span class="sc">-</span><span class="fl">2.3062</span> <span class="fl">2.11e-02</span></span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>itemS4WantShout  <span class="sc">-</span><span class="fl">1.0440</span> <span class="fl">0.159</span>  <span class="sc">-</span><span class="fl">6.5628</span> <span class="fl">5.28e-11</span></span>
-<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>itemS1DoCurse     <span class="fl">1.2211</span> <span class="fl">0.161</span>   <span class="fl">7.5794</span> <span class="fl">3.47e-14</span></span>
-<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>itemS1DoScold     <span class="fl">0.3896</span> <span class="fl">0.151</span>   <span class="fl">2.5739</span> <span class="fl">1.01e-02</span></span>
-<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>itemS1DoShout    <span class="sc">-</span><span class="fl">0.8712</span> <span class="fl">0.156</span>  <span class="sc">-</span><span class="fl">5.5680</span> <span class="fl">2.58e-08</span></span>
-<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>itemS2DoCurse     <span class="fl">0.8726</span> <span class="fl">0.156</span>   <span class="fl">5.6063</span> <span class="fl">2.07e-08</span></span>
-<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>itemS2DoScold    <span class="sc">-</span><span class="fl">0.0567</span> <span class="fl">0.151</span>  <span class="sc">-</span><span class="fl">0.3766</span> <span class="fl">7.06e-01</span></span>
-<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>itemS2DoShout    <span class="sc">-</span><span class="fl">1.4819</span> <span class="fl">0.168</span>  <span class="sc">-</span><span class="fl">8.8152</span> <span class="fl">1.19e-18</span></span>
-<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>itemS3DoCurse    <span class="sc">-</span><span class="fl">0.2110</span> <span class="fl">0.151</span>  <span class="sc">-</span><span class="fl">1.3988</span> <span class="fl">1.62e-01</span></span>
-<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>itemS3DoScold    <span class="sc">-</span><span class="fl">1.5043</span> <span class="fl">0.169</span>  <span class="sc">-</span><span class="fl">8.9189</span> <span class="fl">4.71e-19</span></span>
-<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>itemS3DoShout    <span class="sc">-</span><span class="fl">2.9750</span> <span class="fl">0.233</span> <span class="sc">-</span><span class="fl">12.7483</span> <span class="fl">3.19e-37</span></span>
-<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>itemS4DoCurse     <span class="fl">0.7077</span> <span class="fl">0.154</span>   <span class="fl">4.6020</span> <span class="fl">4.18e-06</span></span>
-<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>itemS4DoScold    <span class="sc">-</span><span class="fl">0.3842</span> <span class="fl">0.152</span>  <span class="sc">-</span><span class="fl">2.5328</span> <span class="fl">1.13e-02</span></span>
-<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>itemS4DoShout    <span class="sc">-</span><span class="fl">1.9995</span> <span class="fl">0.184</span> <span class="sc">-</span><span class="fl">10.8750</span> <span class="fl">1.52e-27</span></span>
-<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>Note<span class="sc">:</span> The estimated parameters above represent <span class="st">'easiness'</span>.</span>
-<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>Use difficulty <span class="ot">=</span> <span class="cn">TRUE</span> to get difficulty parameters.</span></code></pre></div>
-<p>By default, the <code>eirm</code> function returns the <strong>easiness</strong> parameters because the function uses a regression model parameterization where positive parameters indicate positive association with the dependent variable. In order to print the difficulty parameters (instead of easiness), <code>print(mod1, difficulty = TRUE)</code> must be used:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>EIRM formula<span class="sc">:</span> <span class="st">"r2 ~ -1 + item + (1|id)"</span> </span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>Number of persons<span class="sc">:</span> <span class="dv">316</span> </span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>Number of observations<span class="sc">:</span> <span class="dv">7584</span> </span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>Number of predictors<span class="sc">:</span> <span class="dv">24</span> </span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>Parameter Estimates<span class="sc">:</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>                Difficulty  S.E.  z<span class="sc">-</span>value  p<span class="sc">-</span>value</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>itemS1WantCurse    <span class="sc">-</span><span class="fl">1.2211</span> <span class="fl">0.161</span>   <span class="fl">7.5794</span> <span class="fl">3.47e-14</span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>itemS1WantScold    <span class="sc">-</span><span class="fl">0.5648</span> <span class="fl">0.153</span>   <span class="fl">3.7032</span> <span class="fl">2.13e-04</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>itemS1WantShout    <span class="sc">-</span><span class="fl">0.0801</span> <span class="fl">0.150</span>   <span class="fl">0.5323</span> <span class="fl">5.95e-01</span></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>itemS2WantCurse    <span class="sc">-</span><span class="fl">1.7488</span> <span class="fl">0.174</span>  <span class="fl">10.0632</span> <span class="fl">8.03e-24</span></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>itemS2WantScold    <span class="sc">-</span><span class="fl">0.7077</span> <span class="fl">0.154</span>   <span class="fl">4.6020</span> <span class="fl">4.18e-06</span></span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>itemS2WantShout    <span class="sc">-</span><span class="fl">0.0117</span> <span class="fl">0.150</span>   <span class="fl">0.0779</span> <span class="fl">9.38e-01</span></span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>itemS3WantCurse    <span class="sc">-</span><span class="fl">0.5295</span> <span class="fl">0.152</span>   <span class="fl">3.4777</span> <span class="fl">5.06e-04</span></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>itemS3WantScold     <span class="fl">0.6864</span> <span class="fl">0.154</span>  <span class="sc">-</span><span class="fl">4.4506</span> <span class="fl">8.56e-06</span></span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>itemS3WantShout     <span class="fl">1.5269</span> <span class="fl">0.169</span>  <span class="sc">-</span><span class="fl">9.0222</span> <span class="fl">1.84e-19</span></span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>itemS4wantCurse    <span class="sc">-</span><span class="fl">1.0820</span> <span class="fl">0.159</span>   <span class="fl">6.8193</span> <span class="fl">9.15e-12</span></span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>itemS4WantScold     <span class="fl">0.3494</span> <span class="fl">0.151</span>  <span class="sc">-</span><span class="fl">2.3062</span> <span class="fl">2.11e-02</span></span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>itemS4WantShout     <span class="fl">1.0440</span> <span class="fl">0.159</span>  <span class="sc">-</span><span class="fl">6.5628</span> <span class="fl">5.28e-11</span></span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>itemS1DoCurse      <span class="sc">-</span><span class="fl">1.2211</span> <span class="fl">0.161</span>   <span class="fl">7.5794</span> <span class="fl">3.47e-14</span></span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>itemS1DoScold      <span class="sc">-</span><span class="fl">0.3896</span> <span class="fl">0.151</span>   <span class="fl">2.5739</span> <span class="fl">1.01e-02</span></span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>itemS1DoShout       <span class="fl">0.8712</span> <span class="fl">0.156</span>  <span class="sc">-</span><span class="fl">5.5680</span> <span class="fl">2.58e-08</span></span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>itemS2DoCurse      <span class="sc">-</span><span class="fl">0.8726</span> <span class="fl">0.156</span>   <span class="fl">5.6063</span> <span class="fl">2.07e-08</span></span>
-<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>itemS2DoScold       <span class="fl">0.0567</span> <span class="fl">0.151</span>  <span class="sc">-</span><span class="fl">0.3766</span> <span class="fl">7.06e-01</span></span>
-<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>itemS2DoShout       <span class="fl">1.4819</span> <span class="fl">0.168</span>  <span class="sc">-</span><span class="fl">8.8152</span> <span class="fl">1.19e-18</span></span>
-<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>itemS3DoCurse       <span class="fl">0.2110</span> <span class="fl">0.151</span>  <span class="sc">-</span><span class="fl">1.3988</span> <span class="fl">1.62e-01</span></span>
-<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>itemS3DoScold       <span class="fl">1.5043</span> <span class="fl">0.169</span>  <span class="sc">-</span><span class="fl">8.9189</span> <span class="fl">4.71e-19</span></span>
-<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>itemS3DoShout       <span class="fl">2.9750</span> <span class="fl">0.233</span> <span class="sc">-</span><span class="fl">12.7483</span> <span class="fl">3.19e-37</span></span>
-<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>itemS4DoCurse      <span class="sc">-</span><span class="fl">0.7077</span> <span class="fl">0.154</span>   <span class="fl">4.6020</span> <span class="fl">4.18e-06</span></span>
-<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>itemS4DoScold       <span class="fl">0.3842</span> <span class="fl">0.152</span>  <span class="sc">-</span><span class="fl">2.5328</span> <span class="fl">1.13e-02</span></span>
-<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>itemS4DoShout       <span class="fl">1.9995</span> <span class="fl">0.184</span> <span class="sc">-</span><span class="fl">10.8750</span> <span class="fl">1.52e-27</span></span>
-<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>Note<span class="sc">:</span> The estimated parameters above represent <span class="st">'difficulty'</span>.</span></code></pre></div>
-<p>The <code>mod1</code> object is essentially a <code>glmerMod</code>-class object from the <code>lme4</code> package (<a href="https://www.jstatsoft.org/article/view/v067i01" class="external-link">Bates, Maechler, Bolker, &amp; Walker, 2015</a>). All <code>glmerMod</code> results for the estimated model can be seen with <code>mod1$model</code>. For example, estimated random effects for persons (i.e., theta estimates) can be obtained using:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">ranef</span><span class="op">(</span><span class="va">mod1</span><span class="op">$</span><span class="va">model</span><span class="op">)</span><span class="op">$</span><span class="va">id</span></code></pre></div>
+<p>I plan to expand the Shiny GUI with additional features in the future. Please let me know if you have any suggestions or comments.</p>
 <hr>
 </div>
 <div class="section level3">
-<h3 id="example-2-eirm-for-dichotomous-responses">Example 2: EIRM for dichotomous responses<a class="anchor" aria-label="anchor" href="#example-2-eirm-for-dichotomous-responses"></a>
+<h3 id="examples">Examples<a class="anchor" aria-label="anchor" href="#examples"></a>
 </h3>
-<p>The following example shows how to use item-related and person-related explanatory variables to explain dichotomous responses in the verbal aggression data set.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>mod2a <span class="ot">&lt;-</span> <span class="fu">eirm</span>(<span class="at">formula =</span> <span class="st">"r2 ~ -1 + situ + btype + mode + (1|id)"</span>, <span class="at">data =</span> VerbAgg)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(mod2a)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>EIRM formula<span class="sc">:</span> <span class="st">"r2 ~ -1 + situ + btype + mode + (1|id)"</span> </span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>Number of persons<span class="sc">:</span> <span class="dv">316</span> </span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>Number of observations<span class="sc">:</span> <span class="dv">7584</span> </span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>Number of predictors<span class="sc">:</span> <span class="dv">5</span> </span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>Parameter Estimates<span class="sc">:</span></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>           Easiness   S.E. z<span class="sc">-</span>value   p<span class="sc">-</span>value</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>situother     <span class="fl">1.744</span> <span class="fl">0.1015</span>   <span class="fl">17.19</span>  <span class="fl">3.29e-66</span></span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>situself      <span class="fl">0.716</span> <span class="fl">0.0978</span>    <span class="fl">7.32</span>  <span class="fl">2.43e-13</span></span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>btypescold   <span class="sc">-</span><span class="fl">1.055</span> <span class="fl">0.0680</span>  <span class="sc">-</span><span class="fl">15.51</span>  <span class="fl">3.02e-54</span></span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>btypeshout   <span class="sc">-</span><span class="fl">2.042</span> <span class="fl">0.0729</span>  <span class="sc">-</span><span class="fl">28.00</span> <span class="fl">1.51e-172</span></span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>modedo       <span class="sc">-</span><span class="fl">0.672</span> <span class="fl">0.0562</span>  <span class="sc">-</span><span class="fl">11.95</span>  <span class="fl">6.69e-33</span></span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>Note<span class="sc">:</span> The estimated parameters above represent <span class="st">'easiness'</span>. Use difficulty <span class="ot">=</span> <span class="cn">TRUE</span> to get difficulty parameters.</span></code></pre></div>
-<p>It is possible to visualize the parameters using an item-person map using <code>plot(mod2a)</code>, which returns the following plot. Note that this plot is a modified version of the <code>plotPImap</code> function from the <code>eRm</code> package (<a href="https://cran.r-project.org/web/packages/eRm/index.html" class="external-link">Mair, Hatzinger, Maier, Rusch, &amp; Debelak, 2020</a>).</p>
-<p><img src="reference/figures/item-person-map.png"></p>
-<p>Aesthetic elements such as axis labels and plot title can be added to the plot. For example, the following code updates the x-axis label and the main plot title (see <code><a href="reference/plot.eirm.html">?plot.eirm</a></code> for further details).</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">mod2a</span>, difficulty <span class="op">=</span> <span class="cn">TRUE</span>, main <span class="op">=</span> <span class="st">"Verbal Aggression Example"</span>, latdim <span class="op">=</span> <span class="st">"Verbal Aggression"</span><span class="op">)</span></code></pre></div>
-<p>which will show the difficulty parameters (instead of easiness), change the main title above the plot, and change the x-axis – the name for the latent trait being measured.</p>
-<p>In addition to item-person map, we can also visualize the marginal effects in the model using the <code>marginalplot</code> function. This plot uses the <a href="https://strengejacke.github.io/ggeffects/index.html" class="external-link">ggeffects</a> package to calculate the marginal effects and the <a href="https://ggplot2.tidyverse.org/" class="external-link">ggplot2</a> package to create a plot. The following code will return a marginal effect plot with the three explanatory variables in <code>mod2a</code>.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="reference/marginalplot.html">marginalplot</a></span><span class="op">(</span><span class="va">mod2a</span>, predictors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"situ"</span>, <span class="st">"btype"</span>, <span class="st">"mode"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<p><img src="reference/figures/marginalplot.png"></p>
-<p>Also, it is possible to compare nested explanatory models with each other. The following example shows the estimation of a more compact version of <code>mod2a</code> with one less variable and compares the two models (i.e., <code>mod2a</code> vs. <code>mod2b</code>).</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>mod2b <span class="ot">&lt;-</span> <span class="fu">eirm</span>(<span class="at">formula =</span> <span class="st">"r2 ~ -1 + situ + btype + (1|id)"</span>, <span class="at">data =</span> VerbAgg)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(mod2a<span class="sc">$</span>model, mod2b<span class="sc">$</span>model)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>Data<span class="sc">:</span> data</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>Models<span class="sc">:</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>mod2b<span class="sc">$</span>model<span class="sc">:</span> r2 <span class="sc">~</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">+</span> situ <span class="sc">+</span> btype <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> id)</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>mod2a<span class="sc">$</span>model<span class="sc">:</span> r2 <span class="sc">~</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">+</span> situ <span class="sc">+</span> btype <span class="sc">+</span> mode <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> id)</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>            Df  AIC  BIC logLik deviance Chisq Chi Df <span class="fu">Pr</span>(<span class="sc">&gt;</span>Chisq)    </span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>mod2b<span class="sc">$</span>model  <span class="dv">5</span> <span class="dv">8390</span> <span class="dv">8424</span>  <span class="sc">-</span><span class="dv">4190</span>     <span class="dv">8380</span>                            </span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>mod2a<span class="sc">$</span>model  <span class="dv">6</span> <span class="dv">8250</span> <span class="dv">8292</span>  <span class="sc">-</span><span class="dv">4119</span>     <span class="dv">8238</span>   <span class="dv">142</span>      <span class="dv">1</span>     <span class="sc">&lt;</span><span class="fl">2e-16</span> <span class="sc">**</span><span class="er">*</span></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>Signif. codes<span class="sc">:</span>  <span class="dv">0</span> ‘<span class="sc">**</span><span class="er">*</span>’ <span class="fl">0.001</span> ‘<span class="sc">**</span>’ <span class="fl">0.01</span> ‘<span class="sc">*</span>’ <span class="fl">0.05</span> ‘.’ <span class="fl">0.1</span> ‘ ’ <span class="dv">1</span></span></code></pre></div>
-<hr>
-</div>
-<div class="section level3">
-<h3 id="example-3-eirm-for-polytomous-responses">Example 3: EIRM for polytomous responses<a class="anchor" aria-label="anchor" href="#example-3-eirm-for-polytomous-responses"></a>
-</h3>
-<p>It is also possible to use the <code>eirm</code> function with polytomous item responses as well. Because the function only accepts dichotomous responses (i.e., binomial distribution), polytomous data must be reformatted first. To reformat the data, the <code>polyreformat</code> function can be used. The following example demonstrates how polytomous responses (no, perhaps, and yes) in the verbal aggression data set can be reformatted into a dichotomous form:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>VerbAgg2 <span class="ot">&lt;-</span> <span class="fu">polyreformat</span>(<span class="at">data=</span>VerbAgg, <span class="at">id.var =</span> <span class="st">"id"</span>, <span class="at">long.format =</span> <span class="cn">FALSE</span>, <span class="at">var.name =</span> <span class="st">"item"</span>, <span class="at">val.name =</span> <span class="st">"resp"</span>)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(VerbAgg2)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  Anger Gender        item    resp id btype  situ mode r2 polycategory polyresponse                polyitem</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>    <span class="dv">20</span>      M S1WantCurse      no  <span class="dv">1</span> curse other want  N  cat_perhaps            <span class="dv">0</span> S1WantCurse.cat_perhaps</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>    <span class="dv">11</span>      M S1WantCurse      no  <span class="dv">2</span> curse other want  N  cat_perhaps            <span class="dv">0</span> S1WantCurse.cat_perhaps</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>    <span class="dv">17</span>      F S1WantCurse perhaps  <span class="dv">3</span> curse other want  Y  cat_perhaps            <span class="dv">1</span> S1WantCurse.cat_perhaps</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>    <span class="dv">21</span>      F S1WantCurse perhaps  <span class="dv">4</span> curse other want  Y  cat_perhaps            <span class="dv">1</span> S1WantCurse.cat_perhaps</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span>    <span class="dv">17</span>      F S1WantCurse perhaps  <span class="dv">5</span> curse other want  Y  cat_perhaps            <span class="dv">1</span> S1WantCurse.cat_perhaps</span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span>    <span class="dv">21</span>      F S1WantCurse     yes  <span class="dv">6</span> curse other want  Y  cat_perhaps           <span class="cn">NA</span> S1WantCurse.cat_perhaps</span></code></pre></div>
-<p>In the reformatted data, <code>polyresponse</code> is the new dependent variable (i.e., pseudo-dichotomous version of the original response variable <code>resp</code>) and <code>polycategory</code> represents the response categories. Based on the reformatted data, each item has two rows (number of response categories - 1) based on the following rules (see <a href="https://dergipark.org.tr/en/download/article-file/716984" class="external-link">Stanke and Bulut (2019)</a> for further details on this parameterization):</p>
-<ul>
-<li>If <code>polycategory</code> = “cat_perhaps” and <code>resp</code> = “no”, then <code>polyresponse</code> = 0</li>
-<li>If <code>polycategory</code> = “cat_perhaps” and <code>resp</code> = “perhaps”, then <code>polyresponse</code> = 1</li>
-<li>If <code>polycategory</code> = “cat_perhaps” and <code>resp</code> = “yes”, then <code>polyresponse</code> = NA</li>
-</ul>
-<p>and</p>
-<ul>
-<li>If <code>polycategory</code> = “cat_yes” and <code>resp</code> = “no”, then <code>polyresponse</code> = NA</li>
-<li>If <code>polycategory</code> = “cat_yes” and <code>resp</code> = “perhaps”, then <code>polyresponse</code> = 0</li>
-<li>If <code>polycategory</code> = “cat_yes” and <code>resp</code> = “yes”, then <code>polyresponse</code> = 1</li>
-</ul>
-<p><strong>NOTE:</strong> Although <code>polyreformat</code> is capable of reshaping wide-format data into long-format and reformat the long data for the analysis with <code>eirm</code>, a safer option is to transform the data from wide to long format before using <code>polyreformat</code>. The <code>melt</code> function from the <code>reshape2</code> package can easily transform wide data to long data.</p>
-<p>Several polytomous models can be estimated using the reformatted data:</p>
-<p><strong>Model 1:</strong> It explains only the first threshold (i.e., threshold from no to perhaps) based on explanatory variables:</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">mod3</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/eirm.html">eirm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="st">"polyresponse ~ -1 + situ + btype + mode + (1|id)"</span>, data <span class="op">=</span> <span class="va">VerbAgg2</span><span class="op">)</span></code></pre></div>
-<p><strong>Model 2:</strong> It explains the first threshold (i.e., threshold from no to perhaps) and second threshold (perhaps to yes) based on explanatory variables:</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">mod4</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/eirm.html">eirm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="st">"polyresponse ~ -1 + btype + situ + mode + polycategory + polycategory:btype + (1|id)"</span>, 
-             data <span class="op">=</span> <span class="va">VerbAgg2</span><span class="op">)</span></code></pre></div>
+<p>Please visit <a href="https://okanbulut.github.io/eirm" class="external-link uri">https://okanbulut.github.io/eirm</a> for documentation and vignettes. For questions about the functionality, you may either contact me via email or also file an issue.</p>
+<p>On the package <a href="https://okanbulut.github.io/eirm" class="external-link">website</a>, you can access two vignettes demonstrating how to use <code>eirm</code> for:</p>
+<ol style="list-style-type: decimal">
+<li>
+<a href="https://okanbulut.github.io/eirm/vignettes/dich_vignette.html" class="external-link">Estimating dichotomous explanatory IRT models</a> with binary data (e.g., 0 = Wrong, 1 = Right)</li>
+<li>
+<a href="https://okanbulut.github.io/eirm/vignettes/poly_vignette.html" class="external-link">Estimating polytomous explanatory IRT models</a> with ordinal data (e.g., 1 = No, 2 = Maybe, 3 = Yes)</li>
+</ol>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">
@@ -345,7 +163,8 @@
 <div class="developers">
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li>Okan Bulut <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0001-5853-1267" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>
+<a href="https://github.com/okanbulut" class="external-link">Okan Bulut</a> <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0001-5853-1267" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 </ul>
 </div>
 
@@ -355,7 +174,7 @@
 <li><a href="https://github.com/okanbulut/eirm/actions" class="external-link"><img src="https://github.com/okanbulut/eirm/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
 <li><a href="https://www.codefactor.io/repository/github/okanbulut/eirm" class="external-link"><img src="https://www.codefactor.io/repository/github/okanbulut/eirm/badge" alt="CodeFactor"></a></li>
 <li><a href="https://cran.r-project.org/package=eirm" class="external-link"><img src="https://www.r-pkg.org/badges/version/eirm?color=orange"></a></li>
-<li><a href="https://github.com/okanbulut/eirm" class="external-link"><img src="https://img.shields.io/badge/devel%20version-0.5-yellow.svg"></a></li>
+<li><a href="https://github.com/okanbulut/eirm" class="external-link"><img src="https://img.shields.io/badge/devel%20version-0.6-yellow.svg"></a></li>
 <li><a href="https://cran.r-project.org/package=eirm" class="external-link"><img src="http://cranlogs.r-pkg.org/badges/grand-total/eirm?color=blue"></a></li>
 <li><a href="https://cranlogs.r-pkg.org/" class="external-link"><img src="http://cranlogs.r-pkg.org/badges/eirm"></a></li>
 <li><a href="https://doi.org/10.5281/zenodo.4556285" class="external-link"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.4556285.svg" alt="DOI"></a></li>
@@ -369,7 +188,7 @@
 
     <footer><div class="pkgdown-footer-left">
   <p></p>
-<p>Developed by Okan Bulut.</p>
+<p>Developed by <a href="https://github.com/okanbulut" class="external-link">Okan Bulut</a>.</p>
 </div>
 
 <div class="pkgdown-footer-right">

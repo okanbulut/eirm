@@ -1,17 +1,21 @@
 ---
-title: "Using eirm for estimating explanatory IRT models"
+title: "Explanatory IRT for Dichotomous Data"
+author: "Okan Bulut"
+date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 description: >
   How does eirm can be used for estimating dichotomous and polytomous 
   explanatory IRT models in R?
 vignette: >
-  %\VignetteIndexEntry{Using eirm for estimating explanatory IRT models}
+  %\VignetteIndexEntry{Explanatory IRT for Dichotomous Data}
   %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
   \usepackage[utf8]{inputenc}
 ---
 
 ```{r setup, echo = TRUE, eval = TRUE, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE)
+options(width = 800)
 ```
 
 ### Example 1: Rasch model
@@ -55,7 +59,8 @@ head(theta)
 ```
 
 ***
-### Example 2: EIRM for dichotomous responses 
+
+### Example 2: Explanatory Models with Item and Person Covariates 
 
 The following example shows how to use item-related and person-related explanatory variables to explain dichotomous responses in the verbal aggression data set. 
 
@@ -86,47 +91,3 @@ mod2b <- eirm(formula = "r2 ~ -1 + situ + btype + (1|id)", data = VerbAgg)
 
 anova(mod2a$model, mod2b$model)
 ```
-
-***
-### Example 3: EIRM for polytomous responses 
-
-It is also possible to use the `eirm` function with polytomous item responses as well. Because the function only accepts dichotomous responses (i.e., binomial distribution), polytomous data must be reformatted first. To reformat the data, the `polyreformat` function can be used. The following example demonstrates how polytomous responses (no, perhaps, and yes) in the verbal aggression data set can be reformatted into a dichotomous form:
-
-```{r, echo = TRUE, eval = TRUE}
-VerbAgg2 <- polyreformat(data=VerbAgg, id.var = "id", long.format = FALSE, 
-                         var.name = "item", val.name = "resp")
-
-head(VerbAgg2)
-```
-
-In the reformatted data, `polyresponse` is the new dependent variable (i.e., pseudo-dichotomous version of the original response variable `resp`) and `polycategory` represents the response categories. Based on the reformatted data, each item has two rows (number of response categories - 1) based on the following rules (Stanke & Bulut (2019)) for further details on this parameterization):
-
-* If `polycategory` = "cat_perhaps" and `resp` = "no", then `polyresponse` = 0
-* If `polycategory` = "cat_perhaps" and `resp` = "perhaps", then `polyresponse` = 1
-* If `polycategory` = "cat_perhaps" and `resp` = "yes", then `polyresponse` = NA
-
-and
-
-* If `polycategory` = "cat_yes" and `resp` = "no", then `polyresponse` = NA
-* If `polycategory` = "cat_yes" and `resp` = "perhaps", then `polyresponse` = 0
-* If `polycategory` = "cat_yes" and `resp` = "yes", then `polyresponse` = 1
-
-
-**NOTE:** Although `polyreformat` is capable of reshaping wide-format data into long-format and reformat the long data for the analysis with `eirm`, a safer option is to transform the data from wide to long format before using `polyreformat`. The `melt` function from the `reshape2` package can easily transform wide data to long data. 
-
-Several polytomous models can be estimated using the reformatted data:
-
-**Model 1:** It explains only the first threshold (i.e., threshold from no to perhaps) based on explanatory variables:
-
-```{r, echo = TRUE, eval = FALSE}
-mod3 <- eirm(formula = "polyresponse ~ -1 + situ + btype + mode + (1|id)", 
-             data = VerbAgg2)
-```
-
-**Model 2:** It explains the first threshold (i.e., threshold from no to perhaps) and second threshold (perhaps to yes) based on explanatory variables:
-
-```{r, echo = TRUE, eval = FALSE}
-mod4 <- eirm(formula = "polyresponse ~ -1 + btype + situ + mode + 
-             polycategory + polycategory:btype + (1|id)", data = VerbAgg2)
-```
-
