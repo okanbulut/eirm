@@ -232,9 +232,19 @@
 <span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>itemS4DoShout      <span class="fl">1.99947</span> <span class="fl">0.1839</span> <span class="sc">-</span><span class="fl">10.8750</span> <span class="fl">1.516e-27</span></span>
 <span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>Note<span class="sc">:</span> The estimated parameters above represent <span class="st">'difficulty'</span>.</span></code></pre></div>
-<p>The <code>mod1</code> object is essentially a <code>glmerMod</code>-class object from the <code>lme4</code> package (Bates, Maechler, Bolker, &amp; Walker (2015)). All <code>glmerMod</code> results for the estimated model can seen with <code>mod1$model</code>. For example, estimated random effects for persons (i.e., theta estimates) can be obtained using:</p>
+<p>The <code>mod1</code> object is essentially a <code>glmerMod</code>-class object from the <code>lme4</code> package (<a href="https://www.jstatsoft.org/article/view/v067i01" class="external-link">Bates, Maechler, Bolker, &amp; Walker (2015)</a>). All <code>glmerMod</code> results for the estimated model can seen with <code>mod1$model</code>. For example, estimated random effects for persons (i.e., theta estimates) can be obtained using:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">theta</span> <span class="op">&lt;-</span> <span class="fu">ranef</span><span class="op">(</span><span class="va">mod1</span><span class="op">$</span><span class="va">model</span><span class="op">)</span><span class="op">$</span><span class="va">id</span></code></pre></div>
+<p>To visualize the results, we can create an item-person map using <code>plot(mod1)</code>, which returns the following plot. Note that this plot is a modified version of the <code>plotPImap</code> function from the <code>eRm</code> package (<a href="https://cran.r-project.org/web/packages/eRm/index.html" class="external-link">Mair, Hatzinger, Maier, Rusch, &amp; Debelak, 2020</a>).</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">mod1</span><span class="op">)</span></code></pre></div>
+<p><img src="reference/figures/itempersonmap-rasch1.png"></p>
+<p>Aesthetic elements such as axis labels and plot title can be added to the plot. For example, the following code updates the x-axis label and the main plot title (see <code><a href="reference/plot.eirm.html">?plot.eirm</a></code> for further details).</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">mod1</span>, difficulty <span class="op">=</span> <span class="cn">TRUE</span>, main <span class="op">=</span> <span class="st">"Verbal Aggression Example"</span>, 
+     latdim <span class="op">=</span> <span class="st">"Verbal Aggression"</span><span class="op">)</span></code></pre></div>
+<p>which will show the difficulty parameters (instead of easiness), change the main title above the plot, and change the x-axis – the name for the latent trait being measured.</p>
+<p><img src="reference/figures/itempersonmap-rasch2.png"></p>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">

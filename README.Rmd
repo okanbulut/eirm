@@ -11,7 +11,9 @@ knitr::opts_chunk$set(
   fig.path = "man/figures/README-",
   out.width = "100%",
   message = FALSE, 
-  warning = FALSE
+  warning = FALSE,
+  fig.width = 9,
+  fig.height = 6
 )
 
 options(width = 800)
@@ -104,7 +106,6 @@ On the package [website](https://okanbulut.github.io/eirm), you can access two v
 
 
 To demonstrate how the `eirm()` function works with a quick example, we will estimate the Rasch model (i.e., a fully descriptive model). The following example shows how to estimate item parameters for the verbal aggression data set (see `?VerbAgg` for further details). A preview of the `VerbAgg` data set is shown below:
-
 
 ```{r}
 data("VerbAgg")
@@ -201,9 +202,28 @@ itemS4DoShout      1.99947 0.1839 -10.8750 1.516e-27
 Note: The estimated parameters above represent 'difficulty'.
 ```
 
-The `mod1` object is essentially a `glmerMod`-class object from the `lme4` package (Bates, Maechler, Bolker, & Walker (2015)). All `glmerMod` results for the estimated model can seen with `mod1$model`. For example, estimated random effects for persons (i.e., theta estimates) can be obtained using:
+The `mod1` object is essentially a `glmerMod`-class object from the `lme4` package ([Bates, Maechler, Bolker, & Walker (2015)](https://www.jstatsoft.org/article/view/v067i01)). All `glmerMod` results for the estimated model can seen with `mod1$model`. For example, estimated random effects for persons (i.e., theta estimates) can be obtained using:
 
 ```{r, echo = TRUE, eval = FALSE}
 theta <- ranef(mod1$model)$id
 ```
+
+To visualize the results, we can create an item-person map using `plot(mod1)`, which returns the following plot. Note that this plot is a modified version of the `plotPImap` function from the `eRm` package ([Mair, Hatzinger, Maier, Rusch, & Debelak, 2020](https://cran.r-project.org/web/packages/eRm/index.html)). 
+
+```{r, echo = TRUE, eval = FALSE}
+plot(mod1)
+```
+
+![](man/figures/itempersonmap-rasch1.png)
+
+Aesthetic elements such as axis labels and plot title can be added to the plot. For example, the following code updates the x-axis label and the main plot title (see `?plot.eirm` for further details). 
+
+```{r, echo = TRUE, eval=FALSE}
+plot(mod1, difficulty = TRUE, main = "Verbal Aggression Example", 
+     latdim = "Verbal Aggression")
+```
+which will show the difficulty parameters (instead of easiness), change the main title above the plot, and change the x-axis -- the name for the latent trait being measured. 
+
+![](man/figures/itempersonmap-rasch2.png)
+
 

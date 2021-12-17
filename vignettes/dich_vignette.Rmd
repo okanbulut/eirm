@@ -14,11 +14,9 @@ vignette: >
 ---
 
 ```{r setup, echo = TRUE, eval = TRUE, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE)
+knitr::opts_chunk$set(echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE,
+                      fig.width = 9, fig.height = 6)
 options(width = 800)
-```
-
-```{r, echo=FALSE}
 library("eirm")
 ```
 
@@ -32,23 +30,21 @@ mod2a <- eirm(formula = "r2 ~ -1 + situ + btype + mode + (1|id)", data = VerbAgg
 print(mod2a)
 ```
 
-It is possible to visualize the parameters using an item-person map using `plot(mod2a)`, which returns the following plot. Note that this plot is a modified version of the `plotPImap` function from the `eRm` package). 
+It is possible to visualize the parameters using an item-person map using `plot(mod2a)`, which returns the following plot:
 
-```{r, echo = TRUE, eval = FALSE}
+```{r, echo = TRUE, eval = TRUE}
 plot(mod2a)
 ```
 
-Aesthetic elements such as axis labels and plot title can be added to the plot. For example, the following code updates the x-axis label and the main plot title (see `?plot.eirm` for further details).
+In addition to the item-person map, we can also visualize the marginal effects in the model using the `marginalplot` function. This plot uses the [ggeffects](https://strengejacke.github.io/ggeffects/index.html) package to calculate the marginal effects and the [ggplot2](https://ggplot2.tidyverse.org/) package to create a plot. The following code will return a marginal effect plot with the three explanatory variables in `mod2a`.
 
-```{r, echo = TRUE, eval = FALSE}
-plot(mod2a, difficulty = TRUE, main = "Verbal Aggression Example", latdim = "Verbal Aggression")
+```{r, echo = TRUE, eval = TRUE}
+marginalplot(mod2a, predictors = c("situ", "btype", "mode"))
 ```
 
-This plot wpuld show the difficulty parameters (instead of easiness), change the main title above the plot, and change the x-axis -- the name for the latent trait being measured. 
+Lastly, we can compare nested explanatory models with each other. The following example shows the estimation of a more compact version of `mod2a` with one less variable and compares the two models (i.e., `mod2a` vs. `mod2b`).
 
-Also, it is possible to compare nested explanatory models with each other. The following example shows the estimation of a more compact version of `mod2a` with one less variable and compares the two models (i.e., `mod2a` vs. `mod2b`).
-
-```{r, echo = TRUE, eval = FALSE}
+```{r, echo = TRUE, eval = TRUE}
 mod2b <- eirm(formula = "r2 ~ -1 + situ + btype + (1|id)", data = VerbAgg)
 
 anova(mod2a$model, mod2b$model)

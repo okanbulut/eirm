@@ -16,6 +16,7 @@ vignette: >
 ```{r setup, echo = TRUE, eval = TRUE, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE)
 options(width = 800)
+library("eirm")
 ```
 
 
@@ -24,20 +25,11 @@ It is possible to use the `eirm` function with polytomous item responses. Becaus
 The following example demonstrates how polytomous responses (no, perhaps, and yes) in the verbal aggression data set can be reformatted into a dichotomous form:
 
 
-```{r, echo=FALSE}
-library("eirm")
-```
-
-
 ```{r, echo = TRUE, eval = TRUE}
 data("VerbAgg")
 
-head(VerbAgg)
-
 VerbAgg2 <- polyreformat(data=VerbAgg, id.var = "id", long.format = FALSE, 
                          var.name = "item", val.name = "resp")
-
-head(VerbAgg2)
 ```
 
 In the reformatted data, `polyresponse` is the new dependent variable (i.e., pseudo-dichotomous version of the original response variable `resp`) and `polycategory` represents the response categories. Based on the reformatted data, each item has two rows (number of response categories - 1) based on the following rules (Stanke & Bulut (2019)) for further details on this parameterization):

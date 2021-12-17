@@ -87,26 +87,8 @@
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"VerbAgg"</span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">VerbAgg</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">##   Anger Gender        item    resp id btype  situ mode r2</span>
-<span class="co">## 1    20      M S1WantCurse      no  1 curse other want  N</span>
-<span class="co">## 2    11      M S1WantCurse      no  2 curse other want  N</span>
-<span class="co">## 3    17      F S1WantCurse perhaps  3 curse other want  Y</span>
-<span class="co">## 4    21      F S1WantCurse perhaps  4 curse other want  Y</span>
-<span class="co">## 5    17      F S1WantCurse perhaps  5 curse other want  Y</span>
-<span class="co">## 6    21      F S1WantCurse     yes  6 curse other want  Y</span></code></pre>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">VerbAgg2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/polyreformat.html">polyreformat</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">VerbAgg</span>, id.var <span class="op">=</span> <span class="st">"id"</span>, long.format <span class="op">=</span> <span class="cn">FALSE</span>, 
-                         var.name <span class="op">=</span> <span class="st">"item"</span>, val.name <span class="op">=</span> <span class="st">"resp"</span><span class="op">)</span>
-
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">VerbAgg2</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">##   Anger Gender        item    resp id btype  situ mode r2 polycategory polyresponse                polyitem</span>
-<span class="co">## 1    20      M S1WantCurse      no  1 curse other want  N  cat_perhaps            0 S1WantCurse.cat_perhaps</span>
-<span class="co">## 2    11      M S1WantCurse      no  2 curse other want  N  cat_perhaps            0 S1WantCurse.cat_perhaps</span>
-<span class="co">## 3    17      F S1WantCurse perhaps  3 curse other want  Y  cat_perhaps            1 S1WantCurse.cat_perhaps</span>
-<span class="co">## 4    21      F S1WantCurse perhaps  4 curse other want  Y  cat_perhaps            1 S1WantCurse.cat_perhaps</span>
-<span class="co">## 5    17      F S1WantCurse perhaps  5 curse other want  Y  cat_perhaps            1 S1WantCurse.cat_perhaps</span>
-<span class="co">## 6    21      F S1WantCurse     yes  6 curse other want  Y  cat_perhaps           NA S1WantCurse.cat_perhaps</span></code></pre>
+<span class="va">VerbAgg2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/polyreformat.html">polyreformat</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">VerbAgg</span>, id.var <span class="op">=</span> <span class="st">"id"</span>, long.format <span class="op">=</span> <span class="cn">FALSE</span>, 
+                         var.name <span class="op">=</span> <span class="st">"item"</span>, val.name <span class="op">=</span> <span class="st">"resp"</span><span class="op">)</span></code></pre></div>
 <p>In the reformatted data, <code>polyresponse</code> is the new dependent variable (i.e., pseudo-dichotomous version of the original response variable <code>resp</code>) and <code>polycategory</code> represents the response categories. Based on the reformatted data, each item has two rows (number of response categories - 1) based on the following rules (Stanke &amp; Bulut (2019)) for further details on this parameterization):</p>
 <ul>
 <li>If <code>polycategory</code> = “cat_perhaps” and <code>resp</code> = “no”, then <code>polyresponse</code> = 0</li>
@@ -122,11 +104,11 @@
 <p><strong>NOTE:</strong> Although <code>polyreformat</code> is capable of reshaping wide-format data into long-format and reformat the long data for the analysis with <code>eirm</code>, a safer option is to transform the data from wide to long format before using <code>polyreformat</code>. The <code>melt</code> function from the <code>reshape2</code> package can easily transform wide data to long data.</p>
 <p>Several polytomous models can be estimated using the reformatted data:</p>
 <p><strong>Model 1:</strong> It explains only the first threshold (i.e., threshold from no to perhaps) based on explanatory variables:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mod1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/eirm.html">eirm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="st">"polyresponse ~ -1 + situ + btype + mode + (1|id)"</span>, 
              data <span class="op">=</span> <span class="va">VerbAgg2</span><span class="op">)</span></code></pre></div>
 <p><strong>Model 2:</strong> It explains the first threshold (i.e., threshold from no to perhaps) and second threshold (perhaps to yes) based on explanatory variables:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mod2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/eirm.html">eirm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="st">"polyresponse ~ -1 + btype + situ + mode + 
              polycategory + polycategory:btype + (1|id)"</span>, 
              data <span class="op">=</span> <span class="va">VerbAgg2</span><span class="op">)</span></code></pre></div>

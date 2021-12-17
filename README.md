@@ -232,11 +232,39 @@ Note: The estimated parameters above represent 'difficulty'.
 ```
 
 The `mod1` object is essentially a `glmerMod`-class object from the
-`lme4` package (Bates, Maechler, Bolker, & Walker (2015)). All
-`glmerMod` results for the estimated model can seen with `mod1$model`.
-For example, estimated random effects for persons (i.e., theta
-estimates) can be obtained using:
+`lme4` package ([Bates, Maechler, Bolker, & Walker
+(2015)](https://www.jstatsoft.org/article/view/v067i01)). All `glmerMod`
+results for the estimated model can seen with `mod1$model`. For example,
+estimated random effects for persons (i.e., theta estimates) can be
+obtained using:
 
 ``` r
 theta <- ranef(mod1$model)$id
 ```
+
+To visualize the results, we can create an item-person map using
+`plot(mod1)`, which returns the following plot. Note that this plot is a
+modified version of the `plotPImap` function from the `eRm` package
+([Mair, Hatzinger, Maier, Rusch, & Debelak,
+2020](https://cran.r-project.org/web/packages/eRm/index.html)).
+
+``` r
+plot(mod1)
+```
+
+![](man/figures/itempersonmap-rasch1.png)
+
+Aesthetic elements such as axis labels and plot title can be added to
+the plot. For example, the following code updates the x-axis label and
+the main plot title (see `?plot.eirm` for further details).
+
+``` r
+plot(mod1, difficulty = TRUE, main = "Verbal Aggression Example", 
+     latdim = "Verbal Aggression")
+```
+
+which will show the difficulty parameters (instead of easiness), change
+the main title above the plot, and change the x-axis – the name for the
+latent trait being measured.
+
+![](man/figures/itempersonmap-rasch2.png)
