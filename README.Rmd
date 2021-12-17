@@ -99,7 +99,7 @@ Please visit <https://okanbulut.github.io/eirm> for documentation and vignettes.
 
 On the package [website](https://okanbulut.github.io/eirm), you can access two vignettes demonstrating how to use `eirm` for:
 
-1. [Estimating dichotomous explanatory IRT models]https://okanbulut.github.io/eirm/articles/dich_vignette.html) with binary data (e.g., 0 = Wrong, 1 = Right)
+1. [Estimating dichotomous explanatory IRT models](https://okanbulut.github.io/eirm/articles/dich_vignette.html) with binary data (e.g., 0 = Wrong, 1 = Right)
 2. [Estimating polytomous explanatory IRT models](https://okanbulut.github.io/eirm/articles/poly_vignette.html) with ordinal data (e.g., 1 = No, 2 = Maybe, 3 = Yes)
 
 

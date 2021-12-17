@@ -106,8 +106,8 @@ me via email or also file an issue.
 On the package [website](https://okanbulut.github.io/eirm), you can
 access two vignettes demonstrating how to use `eirm` for:
 
-1.  \[Estimating dichotomous explanatory IRT
-    models\]<https://okanbulut.github.io/eirm/articles/dich_vignette.html>)
+1.  [Estimating dichotomous explanatory IRT
+    models](https://okanbulut.github.io/eirm/articles/dich_vignette.html)
     with binary data (e.g., 0 = Wrong, 1 = Right)
 2.  [Estimating polytomous explanatory IRT
     models](https://okanbulut.github.io/eirm/articles/poly_vignette.html)

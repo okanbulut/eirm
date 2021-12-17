@@ -6,7 +6,7 @@ destination: docs
 
 template:
   bootstrap: 5
-  bootswatch: cerulean
+  bootswatch: cosmo
 
 navbar:
   left:
@@ -14,7 +14,7 @@ navbar:
     href: news/index.html
   - text: Reference
     href: reference/index.html
-  - text: Vignettes
+  - text: Examples
     menu:
       - text: 'Explanatory IRT for Dichotomous Data'
         href: articles/dich_vignette.html
