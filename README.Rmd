@@ -9,8 +9,14 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   fig.path = "man/figures/README-",
-  out.width = "100%"
+  out.width = "100%",
+  message = FALSE, 
+  warning = FALSE
 )
+
+options(width = 800)
+
+library("eirm")
 ```
 
 # eirm: Explanatory Item Response Modeling <img src="man/figures/eirm_logo.png" align="right" width="120" />
@@ -97,15 +103,107 @@ On the package [website](https://okanbulut.github.io/eirm), you can access two v
 2. [Estimating polytomous explanatory IRT models](https://okanbulut.github.io/eirm/vignettes/poly_vignette.html) with ordinal data (e.g., 1 = No, 2 = Maybe, 3 = Yes)
 
 
+To demonstrate how the `eirm()` function works with a quick example, we will estimate the Rasch model (i.e., a fully descriptive model). The following example shows how to estimate item parameters for the verbal aggression data set (see `?VerbAgg` for further details). A preview of the `VerbAgg` data set is shown below:
 
 
+```{r}
+data("VerbAgg")
+head(VerbAgg)
+```
+
+To estimate the Rasch model, a regression-like formula must be defined: `formula = "r2 ~ -1 + item + (1|id)"`. In the formula, 
+
+* `r2` is the variable for dichotomous item responses
+* `-1` removes the intercept from the model and yields parameter estimates for all items in the data set. With `1` (instead of `-1`), an intercept representing the parameter of the first item and relative parameters for the remaining items (i.e., distance from the parameter of the first item) would be estimated.
+* `item`is the variable representing item IDs in the data set
+* `(1|id)` refers to the random effects for persons represented by the `id` column in the data set.
+
+The output for the Rasch model is shown below:
+
+```{r, echo = TRUE, eval = FALSE}
+mod1 <- eirm(formula = "r2 ~ -1 + item + (1|id)", data = VerbAgg)
+print(mod1)
 
 
+EIRM formula: "r2 ~ -1 + item + (1|id)" 
 
+Number of persons: 316 
 
+Number of observations: 7584 
 
+Number of predictors: 24 
 
+Parameter Estimates:
 
+                Easiness   S.E.  z-value   p-value
+itemS1WantCurse  1.22107 0.1611   7.5794 3.470e-14
+itemS1WantScold  0.56477 0.1525   3.7032 2.129e-04
+itemS1WantShout  0.08009 0.1505   0.5323 5.945e-01
+itemS2WantCurse  1.74879 0.1738  10.0632 8.035e-24
+itemS2WantScold  0.70772 0.1538   4.6020 4.184e-06
+itemS2WantShout  0.01172 0.1504   0.0779 9.379e-01
+itemS3WantCurse  0.52947 0.1522   3.4777 5.057e-04
+itemS3WantScold -0.68637 0.1542  -4.4506 8.564e-06
+itemS3WantShout -1.52694 0.1692  -9.0222 1.843e-19
+itemS4wantCurse  1.08204 0.1587   6.8193 9.151e-12
+itemS4WantScold -0.34938 0.1515  -2.3062 2.110e-02
+itemS4WantShout -1.04402 0.1591  -6.5628 5.280e-11
+itemS1DoCurse    1.22107 0.1611   7.5794 3.470e-14
+itemS1DoScold    0.38962 0.1514   2.5739 1.006e-02
+itemS1DoShout   -0.87122 0.1565  -5.5680 2.576e-08
+itemS2DoCurse    0.87264 0.1557   5.6063 2.067e-08
+itemS2DoScold   -0.05668 0.1505  -0.3766 7.065e-01
+itemS2DoShout   -1.48186 0.1681  -8.8152 1.195e-18
+itemS3DoCurse   -0.21104 0.1509  -1.3988 1.619e-01
+itemS3DoScold   -1.50431 0.1687  -8.9189 4.709e-19
+itemS3DoShout   -2.97500 0.2334 -12.7483 3.186e-37
+itemS4DoCurse    0.70772 0.1538   4.6020 4.184e-06
+itemS4DoScold   -0.38422 0.1517  -2.5328 1.132e-02
+itemS4DoShout   -1.99947 0.1839 -10.8750 1.516e-27
 
+Note: The estimated parameters above represent 'easiness'.
+Use difficulty = TRUE to get difficulty parameters.
+```
 
+By default, the `eirm` function returns the **easiness** parameters because the function uses a regression model parameterization where positive parameters indicate positive association with the dependent variable. In order to print the difficulty parameters (instead of easiness), `print(mod1, difficulty = TRUE)` must be used:
+
+```{r, echo = TRUE, eval = FALSE}
+print(mod1, difficulty = TRUE)
+
+Parameter Estimates:
+
+                Difficulty   S.E.  z-value   p-value
+itemS1WantCurse   -1.22107 0.1611   7.5794 3.470e-14
+itemS1WantScold   -0.56477 0.1525   3.7032 2.129e-04
+itemS1WantShout   -0.08009 0.1505   0.5323 5.945e-01
+itemS2WantCurse   -1.74879 0.1738  10.0632 8.035e-24
+itemS2WantScold   -0.70772 0.1538   4.6020 4.184e-06
+itemS2WantShout   -0.01172 0.1504   0.0779 9.379e-01
+itemS3WantCurse   -0.52947 0.1522   3.4777 5.057e-04
+itemS3WantScold    0.68637 0.1542  -4.4506 8.564e-06
+itemS3WantShout    1.52694 0.1692  -9.0222 1.843e-19
+itemS4wantCurse   -1.08204 0.1587   6.8193 9.151e-12
+itemS4WantScold    0.34938 0.1515  -2.3062 2.110e-02
+itemS4WantShout    1.04402 0.1591  -6.5628 5.280e-11
+itemS1DoCurse     -1.22107 0.1611   7.5794 3.470e-14
+itemS1DoScold     -0.38962 0.1514   2.5739 1.006e-02
+itemS1DoShout      0.87122 0.1565  -5.5680 2.576e-08
+itemS2DoCurse     -0.87264 0.1557   5.6063 2.067e-08
+itemS2DoScold      0.05668 0.1505  -0.3766 7.065e-01
+itemS2DoShout      1.48186 0.1681  -8.8152 1.195e-18
+itemS3DoCurse      0.21104 0.1509  -1.3988 1.619e-01
+itemS3DoScold      1.50431 0.1687  -8.9189 4.709e-19
+itemS3DoShout      2.97500 0.2334 -12.7483 3.186e-37
+itemS4DoCurse     -0.70772 0.1538   4.6020 4.184e-06
+itemS4DoScold      0.38422 0.1517  -2.5328 1.132e-02
+itemS4DoShout      1.99947 0.1839 -10.8750 1.516e-27
+
+Note: The estimated parameters above represent 'difficulty'.
+```
+
+The `mod1` object is essentially a `glmerMod`-class object from the `lme4` package (Bates, Maechler, Bolker, & Walker (2015)). All `glmerMod` results for the estimated model can seen with `mod1$model`. For example, estimated random effects for persons (i.e., theta estimates) can be obtained using:
+
+```{r, echo = TRUE, eval = FALSE}
+theta <- ranef(mod1$model)$id
+```
 

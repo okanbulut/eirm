@@ -18,53 +18,15 @@ knitr::opts_chunk$set(echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE
 options(width = 800)
 ```
 
-### Example 1: Rasch model
-
-The Rasch model (i.e., a fully descriptive model) can be estimated using `eirm`. The following example shows how to estimate Rasch item parameters for the verbal aggression data set (see `?VerbAgg` for further details). A preview of the `VerbAgg` data set is shown below:
-
 ```{r, echo=FALSE}
 library("eirm")
 ```
 
-```{r}
-data("VerbAgg")
-head(VerbAgg)
-```
-
-To estimate the Rasch model, a regression-like formula must be defined: `formula = "r2 ~ -1 + item + (1|id)"`. In the formula, 
-
-* `r2` is the variable for dichotomous item responses
-* `-1` removes the intercept from the model and yields parameter estimates for all items in the data set. With `1` (instead of `-1`), an intercept representing the parameter of the first item and relative parameters for the remaining items (i.e., distance from the parameter of the first item) would be estimated.
-* `item`is the variable representing item IDs in the data set
-* `(1|id)` refers to the random effects for persons represented by the `id` column in the data set.
-
-The output for the Rasch model is shown below:
-
-```{r, echo = TRUE, eval = FALSE}
-mod1 <- eirm(formula = "r2 ~ -1 + item + (1|id)", data = VerbAgg)
-print(mod1)
-```
-
-By default, the `eirm` function returns the **easiness** parameters because the function uses a regression model parameterization where positive parameters indicate positive association with the dependent variable. In order to print the difficulty parameters (instead of easiness), `print(mod1, difficulty = TRUE)` must be used:
-
-```{r, echo = TRUE, eval = FALSE}
-print(mod1, difficulty = TRUE)
-```
-
-The `mod1` object is essentially a `glmerMod`-class object from the `lme4` package (Bates, Maechler, Bolker, & Walker (2015)). All `glmerMod` results for the estimated model can seen with `mod1$model`. For example, estimated random effects for persons (i.e., theta estimates) can be obtained using:
-
-```{r, echo = TRUE, eval = FALSE}
-theta <- ranef(mod1$model)$id
-head(theta)
-```
-
-***
-
-### Example 2: Explanatory Models with Item and Person Covariates 
-
 The following example shows how to use item-related and person-related explanatory variables to explain dichotomous responses in the verbal aggression data set. 
 
 ```{r, echo = TRUE, eval = TRUE}
+data("VerbAgg")
+
 mod2a <- eirm(formula = "r2 ~ -1 + situ + btype + mode + (1|id)", data = VerbAgg)
 
 print(mod2a)
