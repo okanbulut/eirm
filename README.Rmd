@@ -99,8 +99,8 @@ Please visit <https://okanbulut.github.io/eirm> for documentation and vignettes.
 
 On the package [website](https://okanbulut.github.io/eirm), you can access two vignettes demonstrating how to use `eirm` for:
 
-1. [Estimating dichotomous explanatory IRT models](https://okanbulut.github.io/eirm/vignettes/dich_vignette.html) with binary data (e.g., 0 = Wrong, 1 = Right)
-2. [Estimating polytomous explanatory IRT models](https://okanbulut.github.io/eirm/vignettes/poly_vignette.html) with ordinal data (e.g., 1 = No, 2 = Maybe, 3 = Yes)
+1. [Estimating dichotomous explanatory IRT models]https://okanbulut.github.io/eirm/articles/dich_vignette.html) with binary data (e.g., 0 = Wrong, 1 = Right)
+2. [Estimating polytomous explanatory IRT models](https://okanbulut.github.io/eirm/articles/poly_vignette.html) with ordinal data (e.g., 1 = No, 2 = Maybe, 3 = Yes)
 
 
 To demonstrate how the `eirm()` function works with a quick example, we will estimate the Rasch model (i.e., a fully descriptive model). The following example shows how to estimate item parameters for the verbal aggression data set (see `?VerbAgg` for further details). A preview of the `VerbAgg` data set is shown below:
