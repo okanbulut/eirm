@@ -23,7 +23,7 @@ library("eirm")
 
 # eirm: Explanatory Item Response Modeling <img src="man/figures/eirm_logo.png" align="right" width="120" />
 
-[![R build status](https://github.com/okanbulut/eirm/workflows/R-CMD-check/badge.svg)](https://github.com/okanbulut/eirm/actions) [![CodeFactor](https://www.codefactor.io/repository/github/okanbulut/eirm/badge)](https://www.codefactor.io/repository/github/okanbulut/eirm)
+[![R build status](https://github.com/okanbulut/eirm/workflows/R-CMD-check/badge.svg)](https://github.com/okanbulut/eirm/actions) 
 [![](https://www.r-pkg.org/badges/version/eirm?color=orange)](https://cran.r-project.org/package=eirm)
 [![](https://img.shields.io/badge/devel%20version-0.6-yellow.svg)](https://github.com/okanbulut/eirm)
 [![](http://cranlogs.r-pkg.org/badges/grand-total/eirm?color=blue)](https://cran.r-project.org/package=eirm)
