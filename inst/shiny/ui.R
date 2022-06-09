@@ -6,7 +6,7 @@ shinydashboard::dashboardPage(skin = "blue",
                               shinydashboard::dashboardSidebar(
                                 shinydashboard::sidebarMenu(
                                   id="sidebarmenu",
-                                  shinydashboard::menuItem("About Package",tabName = "info",icon = icon("info-circle")),
+                                  shinydashboard::menuItem("About the Package",tabName = "info",icon = icon("info-circle")),
                                   shinydashboard::menuItem("Import Dataset",tabName = "preview",icon = icon("table")),
                                   shinydashboard::menuItem("Analyze",tabName = "dicho",icon = icon("cogs")),
                                   shinydashboard::menuItem("Item-Person Plot",tabName = "itemplot",icon = icon("chart-line"))
