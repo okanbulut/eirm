@@ -52,7 +52,7 @@ print.eirm <- function(x, difficulty = FALSE, ...){
     print(x$parameters)
     cat("\n")
     cat("Note: The estimated parameters above represent 'easiness'.\n")
-    cat("Use difficulty = TRUE to get difficulty parameters.")
+    cat("Use difficulty = TRUE to get difficulty parameters if your model only includes item-level covariates.")
     invisible(x)
   }
 }
