@@ -32,7 +32,7 @@ shinyServer(function(input, output, session) {
 
   output$vars <- shiny::renderUI({
 
-    textInput(inputId ="vars",label ="Please, write all variables with a sign of plus (+) in between of each",value = "")
+    textInput(inputId ="vars",label ="Predictors (separated by the plus (+) sign if there are two or more)", value = "")
 
   })
 
@@ -41,11 +41,11 @@ shinyServer(function(input, output, session) {
   })
 
   output$param <- shiny::renderUI({
-    selectInput(inputId ="param",label = "Select Parameter",choices =c("Easiness","Difficulty"),selected = "Easiness")
+    selectInput(inputId ="param", label = "Select Parameter", choices =c("Easiness", "Difficulty"), selected = "Easiness")
   })
 
   output$check <- shiny::renderUI({
-    checkboxInput(inputId ="check",label = "I want to view the item-person plot",value=FALSE)
+    checkboxInput(inputId ="check", label = "I want to view the item-person plot",value=FALSE)
   })
 
   output$check2 <- shiny::renderUI({
@@ -60,9 +60,9 @@ shinyServer(function(input, output, session) {
     data$r2 <-as.factor(data$r2)
     id <- input$personid
 
-    intercept<-(-1)
+    intercept <- (-1)
     if(input$check2==TRUE){
-      intercept<- (1)
+      intercept <- (1)
     }
 
     # Estimate the model only once
@@ -89,7 +89,6 @@ shinyServer(function(input, output, session) {
       if(mod0[[2]][i,4]< 0.01 & mod0[[2]][i,4]>=0.001 ){sig[i]<-"** "}
       if(mod0[[2]][i,4]<0.001 ){sig[i]<-"***"}
       if(mod0[[2]][i,4]>=0.05){sig[i]<-""}
-
     }
 
     mod0[[2]][,5]<-sig
